@@ -1,15 +1,15 @@
 {
   "name": "图轻 PicLite",
   "short_name": "图轻",
-  "description": "私密、轻巧的本地图片格式转换与压缩工具",
-  "lang": "zh-CN",
+  "description": "Private, local image and PDF conversion in 12 languages",
+  "lang": "en",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "orientation": "any",
   "background_color": "#f4f3ee",
   "theme_color": "#f4f3ee",
-  "categories": ["utilities", "photo"],
+  "categories": ["utilities", "photo", "productivity"],
   "icons": [
     {
       "src": "/icon-192.png",

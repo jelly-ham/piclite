@@ -16,8 +16,10 @@
   "dependencies": {
     "drizzle-orm": "0.45.2",
     "heic-to": "1.4.2",
+    "jspdf": "4.2.1",
     "jszip": "3.10.1",
     "next": "16.2.6",
+    "pdfjs-dist": "6.1.200",
     "react": "19.2.6",
     "react-dom": "19.2.6"
   },

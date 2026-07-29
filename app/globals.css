@@ -105,7 +105,8 @@ body {
 }
 
 button,
-input {
+input,
+select {
   font: inherit;
 }
 
@@ -124,6 +125,11 @@ a:focus-visible,
 input:focus-visible {
   outline: 3px solid color-mix(in srgb, var(--accent) 34%, transparent);
   outline-offset: 3px;
+}
+
+select:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--accent) 34%, transparent);
+  outline-offset: 2px;
 }
 
 .app-shell {
@@ -210,6 +216,36 @@ input:focus-visible {
   display: flex;
   align-items: center;
   gap: 9px;
+}
+
+.language-control {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 38px;
+  padding: 0 9px;
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+  color: var(--ink-soft);
+}
+
+.language-control > span:first-child {
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 760;
+}
+
+.language-control select {
+  max-width: 112px;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--ink);
+  font-size: 11px;
+  font-weight: 620;
+  cursor: pointer;
 }
 
 .local-pill {
@@ -891,7 +927,7 @@ fieldset > legend,
 
 .format-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 7px;
 }
 
@@ -927,7 +963,7 @@ fieldset > legend,
 .format-grid small {
   margin-top: 3px;
   color: var(--ink-faint);
-  font-size: 8px;
+  font-size: 9px;
 }
 
 .format-grid i {
@@ -1370,6 +1406,74 @@ footer span {
   border: 0 !important;
 }
 
+.language-loading {
+  display: grid;
+  min-height: 100vh;
+  place-content: center;
+  justify-items: center;
+  gap: 12px;
+  color: var(--ink);
+  text-align: center;
+}
+
+.language-loading strong {
+  margin-top: 4px;
+  font-size: 19px;
+}
+
+.language-loading p {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 12px;
+}
+
+.locale-ja {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN",
+    "Yu Gothic", sans-serif;
+}
+
+.locale-ko {
+  font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
+    "Malgun Gothic", sans-serif;
+}
+
+.locale-ar {
+  font-family: Tahoma, "Noto Sans Arabic", "Segoe UI", sans-serif;
+  letter-spacing: 0;
+}
+
+.locale-hi {
+  font-family: "Noto Sans Devanagari", "Kohinoor Devanagari", "Mangal",
+    sans-serif;
+}
+
+[dir="rtl"] .theme-menu {
+  right: auto;
+  left: 0;
+}
+
+[dir="rtl"] .theme-menu button {
+  text-align: right;
+}
+
+[dir="rtl"] .format-grid i {
+  right: auto;
+  left: 7px;
+}
+
+[dir="rtl"] .file-title-row,
+[dir="rtl"] .file-meta,
+[dir="rtl"] .file-result-row,
+[dir="rtl"] .conversion-note,
+[dir="rtl"] .total-summary {
+  text-align: right;
+}
+
+[dir="rtl"] .drop-copy button {
+  margin-right: 4px;
+  margin-left: 4px;
+}
+
 @keyframes spin {
   to {
     transform: rotate(360deg);
@@ -1465,6 +1569,19 @@ footer span {
   .local-pill,
   .install-button > span:last-child {
     display: none;
+  }
+
+  .language-control {
+    width: 38px;
+    padding: 0;
+    justify-content: center;
+  }
+
+  .language-control select {
+    position: absolute;
+    width: 38px;
+    height: 38px;
+    opacity: 0;
   }
 
   .install-button {

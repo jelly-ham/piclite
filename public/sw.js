@@ -1,10 +1,11 @@
-const CACHE_NAME = "piclite-shell-v1";
+const CACHE_NAME = "piclite-shell-v2";
 const CORE_ASSETS = [
   "/",
   "/manifest.webmanifest",
   "/icon-192.png",
   "/icon-512.png",
   "/apple-touch-icon.png",
+  "/pdf.worker.min.mjs",
 ];
 
 self.addEventListener("install", (event) => {

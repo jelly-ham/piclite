@@ -2,9 +2,9 @@ import type { Metadata, Viewport } from "next";
 import { headers } from "next/headers";
 import "./globals.css";
 
-const title = "图轻 PicLite — 图片格式转换与压缩";
+const title = "图轻 PicLite — Image & PDF Converter";
 const description =
-  "在设备本地转换 JPG、PNG、WebP、AVIF、BMP 与 HEIC 图片。无需上传，支持批量处理、离线使用和安装到桌面。";
+  "Convert and compress images and PDF files privately on your device. Supports HEIC, JPG, PNG, WebP and PDF.";
 
 export async function generateMetadata(): Promise<Metadata> {
   const requestHeaders = await headers();
@@ -47,10 +47,10 @@ export async function generateMetadata(): Promise<Metadata> {
       url: "/",
       images: [
         {
-          url: "/og.png",
+          url: "/og-v2.png",
           width: 1200,
           height: 630,
-          alt: "图轻 PicLite — 把图片，轻轻换一种格式。",
+          alt: "图轻 PicLite — Private image and PDF conversion",
         },
       ],
     },
@@ -58,7 +58,7 @@ export async function generateMetadata(): Promise<Metadata> {
       card: "summary_large_image",
       title,
       description,
-      images: ["/og.png"],
+      images: ["/og-v2.png"],
     },
   };
 }
@@ -86,7 +86,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="zh-CN" data-theme="auto" suppressHydrationWarning>
+    <html lang="en" data-theme="auto" suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
