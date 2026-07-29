@@ -1,8 +1,13 @@
 import type { Metadata } from "next";
-import { headers } from "next/headers";
 import { notFound } from "next/navigation";
 import ImageConverter from "../ImageConverter";
 import { dictionaries, isLocale, LOCALES } from "../i18n";
+import {
+  languageAlternates,
+  SITE_NAME,
+  SITE_URL,
+  SOCIAL_IMAGE,
+} from "../site";
 
 type LocalePageProps = {
   params: Promise<{ locale: string }>;
@@ -18,33 +23,39 @@ export async function generateMetadata({
   const { locale } = await params;
   if (!isLocale(locale)) return {};
   const messages = dictionaries[locale];
-  const requestHeaders = await headers();
-  const host =
-    requestHeaders.get("x-forwarded-host") ??
-    requestHeaders.get("host") ??
-    "localhost:3000";
-  const protocol =
-    requestHeaders.get("x-forwarded-proto") ??
-    (host.startsWith("localhost") ? "http" : "https");
 
   return {
-    metadataBase: new URL(`${protocol}://${host}`),
+    metadataBase: new URL(SITE_URL),
     title: messages.metaTitle,
     description: messages.metaDescription,
     alternates: {
       canonical: `/${locale}`,
-      languages: Object.fromEntries(LOCALES.map((code) => [dictionaries[code].tag, `/${code}`])),
+      languages: languageAlternates,
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+        "max-video-preview": -1,
+      },
     },
     openGraph: {
       title: messages.metaTitle,
       description: messages.metaDescription,
       type: "website",
       locale: messages.tag.replace("-", "_"),
-      siteName: "图轻 PicLite",
+      alternateLocale: LOCALES
+        .filter((code) => code !== locale)
+        .map((code) => dictionaries[code].tag.replace("-", "_")),
+      siteName: SITE_NAME,
       url: `/${locale}`,
       images: [
         {
-          url: "/og-v2.png",
+          url: SOCIAL_IMAGE,
           width: 1200,
           height: 630,
           alt: messages.metaTitle,
@@ -55,7 +66,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: messages.metaTitle,
       description: messages.metaDescription,
-      images: ["/og-v2.png"],
+      images: [SOCIAL_IMAGE],
     },
   };
 }

@@ -1,4 +1,4 @@
-const CACHE_NAME = "piclite-shell-v2";
+const CACHE_NAME = "piclite-shell-v3";
 const CORE_ASSETS = [
   "/",
   "/manifest.webmanifest",

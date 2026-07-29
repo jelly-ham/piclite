@@ -14,7 +14,7 @@ export default function LanguageRedirect() {
         <span />
         <span />
       </span>
-      <strong>图轻 PicLite</strong>
+      <strong>PicLite</strong>
       <p>Choosing your language…</p>
     </main>
   );

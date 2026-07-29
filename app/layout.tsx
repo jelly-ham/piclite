@@ -1,67 +1,60 @@
 import type { Metadata, Viewport } from "next";
-import { headers } from "next/headers";
 import "./globals.css";
+import { languageAlternates, SITE_NAME, SITE_URL, SOCIAL_IMAGE } from "./site";
 
-const title = "图轻 PicLite — Image & PDF Converter";
+const title = "PicLite — Private Image & PDF Converter";
 const description =
   "Convert and compress images and PDF files privately on your device. Supports HEIC, JPG, PNG, WebP and PDF.";
 
-export async function generateMetadata(): Promise<Metadata> {
-  const requestHeaders = await headers();
-  const host =
-    requestHeaders.get("x-forwarded-host") ??
-    requestHeaders.get("host") ??
-    "localhost:3000";
-  const protocol =
-    requestHeaders.get("x-forwarded-proto") ??
-    (host.startsWith("localhost") ? "http" : "https");
-
-  return {
-    metadataBase: new URL(`${protocol}://${host}`),
+export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
+  title,
+  description,
+  applicationName: SITE_NAME,
+  manifest: "/manifest.webmanifest",
+  alternates: {
+    canonical: "/en",
+    languages: languageAlternates,
+  },
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: SITE_NAME,
+  },
+  formatDetection: {
+    telephone: false,
+  },
+  icons: {
+    icon: [
+      { url: "/favicon.png", sizes: "64x64", type: "image/png" },
+      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/icon-512.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
+  },
+  openGraph: {
     title,
     description,
-    applicationName: "图轻 PicLite",
-    manifest: "/manifest.webmanifest",
-    appleWebApp: {
-      capable: true,
-      statusBarStyle: "default",
-      title: "图轻",
-    },
-    formatDetection: {
-      telephone: false,
-    },
-    icons: {
-      icon: [
-        { url: "/favicon.png", sizes: "64x64", type: "image/png" },
-        { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
-        { url: "/icon-512.png", sizes: "512x512", type: "image/png" },
-      ],
-      apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
-    },
-    openGraph: {
-      title,
-      description,
-      type: "website",
-      locale: "zh_CN",
-      siteName: "图轻 PicLite",
-      url: "/",
-      images: [
-        {
-          url: "/og-v2.png",
-          width: 1200,
-          height: 630,
-          alt: "图轻 PicLite — Private image and PDF conversion",
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-      images: ["/og-v2.png"],
-    },
-  };
-}
+    type: "website",
+    locale: "en",
+    siteName: SITE_NAME,
+    url: "/en",
+    images: [
+      {
+        url: SOCIAL_IMAGE,
+        width: 1200,
+        height: 630,
+        alt: "PicLite — Private image and PDF conversion",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+    images: [SOCIAL_IMAGE],
+  },
+};
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -80,6 +73,13 @@ const themeScript = `
   } catch (_) {}
 `;
 
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: SITE_NAME,
+  url: SITE_URL,
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -89,6 +89,12 @@ export default function RootLayout({
     <html lang="en" data-theme="auto" suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(websiteJsonLd).replace(/</g, "\\u003c"),
+          }}
+        />
       </head>
       <body>{children}</body>
     </html>

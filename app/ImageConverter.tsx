@@ -683,7 +683,7 @@ export default function ImageConverter({
       <header className="site-header">
         <a className="brand" href={`/${locale}`} aria-label="PicLite">
           <span className="brand-mark" aria-hidden="true"><span /><span /></span>
-          <span className="brand-copy"><strong>图轻</strong><small>PicLite</small></span>
+          <span className="brand-copy"><strong>PicLite</strong></span>
         </a>
 
         <div className="header-actions">
@@ -1000,7 +1000,7 @@ export default function ImageConverter({
       )}
 
       <footer>
-        <p>图轻 PicLite <span>·</span> {m.footer}</p>
+        <p>PicLite <span>·</span> {m.footer}</p>
         <p className="codec-credit">{m.codecCredit}</p>
       </footer>
 

@@ -1,6 +1,6 @@
 {
-  "name": "图轻 PicLite",
-  "short_name": "图轻",
+  "name": "PicLite",
+  "short_name": "PicLite",
   "description": "Private, local image and PDF conversion in 12 languages",
   "lang": "en",
   "start_url": "/",
