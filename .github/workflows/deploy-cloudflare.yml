@@ -41,8 +41,9 @@ jobs:
         run: npm test
 
       - name: Deploy Worker
-        uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE }}
-          wranglerVersion: "4.92.0"
-          command: deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE }}
+        run: |
+          token="$(printf '%s' "$CLOUDFLARE_API_TOKEN" | tr -d '\r\n' | sed 's/^[[:space:]]*//; s/[[:space:]]*$//')"
+          test -n "$token"
+          CLOUDFLARE_API_TOKEN="$token" npx --no-install wrangler deploy
