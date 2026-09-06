@@ -1,0 +1,36 @@
+# PicLite
+
+PicLite is a free, privacy-first image converter and compressor at https://piclite.net.
+It runs in the user's browser and does not require uploading image or PDF files to a server.
+
+## What PicLite does
+
+- Convert HEIC and HEIF photos to JPG, PNG, WebP, or PDF.
+- Convert JPG, PNG, WebP, AVIF, and BMP images to JPG, PNG, WebP, or PDF.
+- Compress JPG and WebP output by choosing image quality.
+- Convert PNG to JPG and JPG to PNG.
+- Combine multiple images into a multi-page PDF.
+- Render PDF pages to images and convert them to JPG, PNG, or WebP.
+- Process multiple files in one browser session and download results together.
+
+## Privacy and processing
+
+- Files are read, decoded, rendered, and converted in the browser on the user's device.
+- PicLite does not require an account or an upload queue for conversion.
+- Users should verify the page's current privacy policy and browser permissions before processing sensitive files.
+
+## Key pages
+
+- Homepage: https://piclite.net/en
+- Image converter: https://piclite.net/en/image-converter
+- Image compressor: https://piclite.net/en/image-compressor
+- HEIC to JPG: https://piclite.net/en/heic-to-jpg
+- WebP to JPG: https://piclite.net/en/webp-to-jpg
+- PNG to JPG: https://piclite.net/en/png-to-jpg
+- JPG to PNG: https://piclite.net/en/jpg-to-png
+- Image to PDF: https://piclite.net/en/image-to-pdf
+- PDF to JPG: https://piclite.net/en/pdf-to-jpg
+
+## Languages
+
+The interface is available at locale paths including English (`/en`), Simplified Chinese (`/zh-cn`), Traditional Chinese (`/zh-tw`), Japanese, Korean, Russian, Spanish, Portuguese, French, German, Arabic, and Hindi.

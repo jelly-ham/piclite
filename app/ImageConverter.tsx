@@ -232,9 +232,11 @@ function statusText(item: ImageItem, messages: Messages) {
 export default function ImageConverter({
   locale,
   messages: m,
+  children,
 }: {
   locale: Locale;
   messages: Messages;
+  children?: React.ReactNode;
 }) {
   const [items, setItems] = useState<ImageItem[]>([]);
   const [format, setFormat] = useState<OutputFormat>("jpeg");
@@ -998,6 +1000,8 @@ export default function ImageConverter({
           </aside>
         </section>
       )}
+
+      {children}
 
       <footer>
         <p>PicLite <span>·</span> {m.footer}</p>

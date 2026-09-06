@@ -1,21 +1,9 @@
-"use client";
-
-import { useEffect } from "react";
+import { headers } from "next/headers";
+import { redirect } from "next/navigation";
 import { localeFromBrowser } from "./i18n";
 
-export default function LanguageRedirect() {
-  useEffect(() => {
-    window.location.replace(`/${localeFromBrowser(navigator.language)}`);
-  }, []);
-
-  return (
-    <main className="language-loading" aria-live="polite">
-      <span className="brand-mark" aria-hidden="true">
-        <span />
-        <span />
-      </span>
-      <strong>PicLite</strong>
-      <p>Choosing your language…</p>
-    </main>
-  );
+export default async function RootPage() {
+  const requestHeaders = await headers();
+  const acceptLanguage = requestHeaders.get("accept-language") ?? "en";
+  redirect(`/${localeFromBrowser(acceptLanguage)}`);
 }

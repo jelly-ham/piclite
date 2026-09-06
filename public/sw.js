@@ -1,6 +1,6 @@
 const CACHE_NAME = "piclite-shell-v3";
 const CORE_ASSETS = [
-  "/",
+  "/en",
   "/manifest.webmanifest",
   "/icon-192.png",
   "/icon-512.png",
@@ -49,7 +49,7 @@ self.addEventListener("fetch", (event) => {
       .catch(async () => {
         const cached = await caches.match(request);
         if (cached) return cached;
-        if (request.mode === "navigate") return caches.match("/");
+        if (request.mode === "navigate") return caches.match("/en");
         return new Response("Offline", { status: 503, statusText: "Offline" });
       }),
   );

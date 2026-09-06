@@ -1,17 +1,35 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
-import { languageAlternates, SITE_NAME, SITE_URL, SOCIAL_IMAGE } from "./site";
+import {
+  languageAlternates,
+  SITE_NAME,
+  SITE_URL,
+  SOCIAL_IMAGE,
+  siteStructuredData,
+} from "./site";
 
-const title = "PicLite — Private Image & PDF Converter";
+const title = "PicLite — Free online image converter & compressor";
 const description =
-  "Convert and compress images and PDF files privately on your device. Supports HEIC, JPG, PNG, WebP and PDF.";
+  "Convert and compress HEIC, JPG, PNG, WebP and PDF files in your browser. Private image conversion with no upload required.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title,
   description,
   applicationName: SITE_NAME,
+  category: "utilities",
   manifest: "/manifest.webmanifest",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
   alternates: {
     canonical: "/en",
     languages: languageAlternates,
@@ -73,13 +91,6 @@ const themeScript = `
   } catch (_) {}
 `;
 
-const websiteJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  name: SITE_NAME,
-  url: SITE_URL,
-};
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -92,7 +103,7 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(websiteJsonLd).replace(/</g, "\\u003c"),
+            __html: JSON.stringify(siteStructuredData).replace(/</g, "\\u003c"),
           }}
         />
       </head>

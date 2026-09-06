@@ -8,6 +8,8 @@ import {
   SITE_URL,
   SOCIAL_IMAGE,
 } from "../site";
+import { rootStructuredData } from "../seo";
+import SeoContent from "../seo-content";
 
 type LocalePageProps = {
   params: Promise<{ locale: string }>;
@@ -28,6 +30,8 @@ export async function generateMetadata({
     metadataBase: new URL(SITE_URL),
     title: messages.metaTitle,
     description: messages.metaDescription,
+    applicationName: SITE_NAME,
+    category: "utilities",
     alternates: {
       canonical: `/${locale}`,
       languages: languageAlternates,
@@ -74,5 +78,19 @@ export async function generateMetadata({
 export default async function LocalePage({ params }: LocalePageProps) {
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
-  return <ImageConverter locale={locale} messages={dictionaries[locale]} />;
+  const structuredData = rootStructuredData(locale);
+
+  return (
+    <>
+      <ImageConverter locale={locale} messages={dictionaries[locale]}>
+        <SeoContent locale={locale} />
+      </ImageConverter>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(structuredData).replace(/</g, "\\u003c"),
+        }}
+      />
+    </>
+  );
 }
