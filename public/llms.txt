@@ -17,7 +17,16 @@ It runs in the user's browser and does not require uploading image or PDF files 
 
 - Files are read, decoded, rendered, and converted in the browser on the user's device.
 - PicLite does not require an account or an upload queue for conversion.
-- Users should verify the page's current privacy policy and browser permissions before processing sensitive files.
+- Files are re-encoded from decoded pixels; original EXIF and GPS metadata are not copied to raster outputs.
+
+## Limits
+
+- JPG and WebP quality controls use lossy encoding; output is not guaranteed to be smaller or meet a target KB size.
+- PNG encoding is lossless for decoded pixels but does not restore detail lost in a source JPG.
+- JPG and image-to-PDF outputs flatten transparent areas onto white.
+- PDF conversion renders complete pages, not original embedded images; rendering is capped at 4096 pixels on the longer edge.
+- PicLite does not provide OCR, resizing, animation export, or a password entry for encrypted PDFs.
+- Large files and batches are limited by the device's available memory. Format support also depends on the browser.
 
 ## Key pages
 

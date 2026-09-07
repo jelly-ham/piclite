@@ -1,5 +1,6 @@
 import { dictionaries, type Locale } from "./i18n";
 import { SITE_NAME, SITE_URL } from "./site";
+import { TOOL_GUIDES } from "./tool-guides";
 
 export type SeoFaq = {
   question: string;
@@ -315,8 +316,8 @@ const TOOL_INTENTS: Record<ToolSlug, Record<KeywordLocale, ToolIntent>> = {
   "image-compressor": {
     en: {
       name: "Image compressor",
-      title: "Free image compressor online — reduce JPG, PNG and WebP size",
-      description: "Compress JPG, PNG and WebP images in your browser. Control output quality, process files in batches and keep images on your device.",
+      title: "Free image compressor — compress JPG & WebP, no upload",
+      description: "Reduce image file size with JPG or WebP quality controls. Convert PNG photos to smaller formats, compare output sizes and process batches without uploading.",
       intro: "Make image files smaller before sending, publishing or storing them. PicLite compresses images locally, so your photos do not need to be uploaded to a cloud service.",
       input: "JPG, PNG, WebP, AVIF, BMP or HEIC",
       output: "JPG, PNG or WebP",
@@ -326,8 +327,8 @@ const TOOL_INTENTS: Record<ToolSlug, Record<KeywordLocale, ToolIntent>> = {
     },
     "zh-cn": {
       name: "在线图片压缩工具",
-      title: "免费在线图片压缩｜压缩 JPG、PNG、WebP 且不上传",
-      description: "在浏览器中压缩 JPG、PNG 和 WebP 图片，调整输出质量并批量处理，图片始终留在你的设备上。",
+      title: "免费在线图片压缩｜JPG、WebP 压缩与 PNG 格式转换",
+      description: "通过调整 JPG 或 WebP 质量减小图片文件，把 PNG 照片转换为更小的格式。支持比较输出大小和批量处理，无需上传图片。",
       intro: "在发送、发布或保存之前减小图片文件大小。PicLite 在本地浏览器中压缩图片，无需把照片上传到云端服务。",
       input: "JPG、PNG、WebP、AVIF、BMP 或 HEIC",
       output: "JPG、PNG 或 WebP",
@@ -588,6 +589,7 @@ export function getToolPageCopy(locale: KeywordLocale, slug: ToolSlug): ToolPage
     ],
     faqTitle: ui.faqTitle,
     faq: [
+      ...TOOL_GUIDES[slug][locale].faq,
       {
         question:
           locale === "en"
@@ -649,13 +651,6 @@ export function rootStructuredData(locale: Locale) {
         about: { "@id": applicationId },
         mainEntity: { "@id": applicationId },
       },
-      {
-        "@type": "BreadcrumbList",
-        itemListElement: [
-          { "@type": "ListItem", position: 1, name: SITE_NAME, item: SITE_URL },
-          { "@type": "ListItem", position: 2, name: copy.title, item: url },
-        ],
-      },
       ...(copy.faq.length
         ? [
             {
@@ -710,7 +705,7 @@ export function toolStructuredData(locale: KeywordLocale, copy: ToolPageCopy) {
       {
         "@type": "BreadcrumbList",
         itemListElement: [
-          { "@type": "ListItem", position: 1, name: SITE_NAME, item: SITE_URL },
+          { "@type": "ListItem", position: 1, name: SITE_NAME, item: `${SITE_URL}/${locale}` },
           { "@type": "ListItem", position: 2, name: copy.name, item: url },
         ],
       },

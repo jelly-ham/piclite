@@ -10,6 +10,7 @@ import {
 } from "../site";
 import { rootStructuredData } from "../seo";
 import SeoContent from "../seo-content";
+import LanguageLinks from "../language-links";
 
 type LocalePageProps = {
   params: Promise<{ locale: string }>;
@@ -84,6 +85,7 @@ export default async function LocalePage({ params }: LocalePageProps) {
     <>
       <ImageConverter locale={locale} messages={dictionaries[locale]}>
         <SeoContent locale={locale} />
+        <LanguageLinks locale={locale} />
       </ImageConverter>
       <script
         type="application/ld+json"

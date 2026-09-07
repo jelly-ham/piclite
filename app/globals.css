@@ -1204,6 +1204,42 @@ fieldset > legend,
   margin: 112px auto 0;
 }
 
+.tool-breadcrumbs {
+  margin: 24px 0 0;
+}
+
+.tool-facts {
+  margin: 24px 0;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+}
+
+.tool-facts > div {
+  display: grid;
+  grid-template-columns: minmax(80px, 1fr) minmax(0, 3fr);
+  gap: 16px;
+  padding: 16px 20px;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.tool-facts > div + div { border-top: 1px solid var(--line); }
+.tool-facts dt { font-weight: 650; }
+.tool-facts dd { margin: 0; color: var(--ink-soft); }
+
+.language-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px 20px;
+  margin: 32px 0;
+  font-size: 13px;
+}
+
+.language-links a { color: var(--ink-soft); text-underline-offset: 4px; }
+.language-links a[aria-current="page"] { color: var(--accent); }
+
 .seo-intro {
   max-width: 820px;
   margin: 0 auto 72px;

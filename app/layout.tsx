@@ -1,4 +1,6 @@
 import type { Metadata, Viewport } from "next";
+import { headers } from "next/headers";
+import { dictionaries, isLocale } from "./i18n";
 import "./globals.css";
 import {
   languageAlternates,
@@ -91,13 +93,15 @@ const themeScript = `
   } catch (_) {}
 `;
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = (await headers()).get("x-piclite-locale") ?? "en";
+  const messages = dictionaries[isLocale(locale) ? locale : "en"];
   return (
-    <html lang="en" data-theme="auto" suppressHydrationWarning>
+    <html lang={messages.tag} dir={messages.dir} data-theme="auto" suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <script

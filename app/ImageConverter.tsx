@@ -234,14 +234,26 @@ export default function ImageConverter({
   locale,
   messages: m,
   children,
+  heading,
+  introduction,
+  navigation,
+  initialFormat = "jpeg",
+  initialQuality = 82,
+  toolSlug,
 }: {
   locale: Locale;
   messages: Messages;
   children?: React.ReactNode;
+  heading?: string;
+  introduction?: string;
+  navigation?: React.ReactNode;
+  initialFormat?: OutputFormat;
+  initialQuality?: number;
+  toolSlug?: string;
 }) {
   const [items, setItems] = useState<ImageItem[]>([]);
-  const [format, setFormat] = useState<OutputFormat>("jpeg");
-  const [quality, setQuality] = useState(82);
+  const [format, setFormat] = useState<OutputFormat>(initialFormat);
+  const [quality, setQuality] = useState(initialQuality);
   const [pdfResult, setPdfResult] = useState<PdfResult | null>(null);
   const [isDragging, setIsDragging] = useState(false);
   const [isConverting, setIsConverting] = useState(false);
@@ -698,7 +710,9 @@ export default function ImageConverter({
               value={locale}
               aria-label={m.languageLabel}
               onChange={(event) => {
-                window.location.href = `/${event.target.value}`;
+                const nextLocale = event.target.value;
+                const suffix = toolSlug && (nextLocale === "en" || nextLocale === "zh-cn") ? `/${toolSlug}` : "";
+                window.location.href = `/${nextLocale}${suffix}`;
               }}
             >
               {LOCALES.map((code) => (
@@ -747,10 +761,11 @@ export default function ImageConverter({
         </div>
       </header>
 
+      {navigation}
       <section className={`hero ${items.length ? "hero-compact" : ""}`}>
         <div className="eyebrow"><span aria-hidden="true">✦</span>{m.eyebrow}</div>
-        <h1>{m.headline[0]}<em>{m.headline[1]}</em>{m.headline[2]}</h1>
-        <p>{m.heroLine1}<br className="desktop-break" />{m.heroLine2}</p>
+        <h1>{heading ?? <>{m.headline[0]}<em>{m.headline[1]}</em>{m.headline[2]}</>}</h1>
+        <p>{introduction ?? <>{m.heroLine1}<br className="desktop-break" />{m.heroLine2}</>}</p>
       </section>
 
       <input

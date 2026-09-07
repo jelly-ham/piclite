@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { KeywordLocale, ToolPageCopy, ToolSlug } from "./seo";
 import { TOOL_SLUGS } from "./seo";
+import { TOOL_GUIDES } from "./tool-guides";
 
 export default function ToolLanding({
   locale,
@@ -9,25 +10,22 @@ export default function ToolLanding({
   locale: KeywordLocale;
   copy: ToolPageCopy;
 }) {
+  const guide = TOOL_GUIDES[copy.slug][locale];
   return (
-    <main className="seo-landing">
-      <nav className="seo-breadcrumbs" aria-label="Breadcrumb">
-        <Link href={`/${locale}`}>PicLite</Link>
-        <span aria-hidden="true">/</span>
-        <span>{copy.name}</span>
-      </nav>
-
+    <div className="seo-landing">
       <article>
-        <header className="seo-landing-hero">
-          <span className="section-kicker">{copy.eyebrow}</span>
-          <h1>{copy.title}</h1>
-          <p>{copy.intro}</p>
-          <Link className="seo-primary-action" href={`/${locale}`}>
-            {copy.cta}
-            <span aria-hidden="true">→</span>
-          </Link>
-        </header>
-
+        <section className="seo-landing-section" aria-labelledby="landing-guide-title">
+          <div className="seo-section-heading">
+            <h2 id="landing-guide-title">{locale === "en" ? `What to know about ${copy.name.toLowerCase()}` : `${copy.name}使用说明`}</h2>
+          </div>
+          <p className="seo-proof">{guide.summary}</p>
+          <dl className="tool-facts">
+            <div><dt>{locale === "en" ? "Input" : "输入"}</dt><dd>{copy.input}</dd></div>
+            <div><dt>{locale === "en" ? "Output" : "输出"}</dt><dd>{copy.output}</dd></div>
+            <div><dt>{locale === "en" ? "Processing" : "处理方式"}</dt><dd>{locale === "en" ? "On your device; no file upload or account required" : "设备本地处理，无需上传文件或注册账号"}</dd></div>
+          </dl>
+          {guide.notes.map((note) => <p className="seo-proof" key={note}>{note}</p>)}
+        </section>
         <section className="seo-landing-section" aria-labelledby="landing-steps-title">
           <div className="seo-section-heading">
             <span className="section-kicker">{copy.input}</span>
@@ -96,7 +94,7 @@ export default function ToolLanding({
       <Link className="seo-back-link" href={`/${locale}`}>
         ← {copy.backLabel}
       </Link>
-    </main>
+    </div>
   );
 }
 

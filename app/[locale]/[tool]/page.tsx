@@ -13,6 +13,8 @@ import {
   type ToolSlug,
 } from "../../seo";
 import ToolLanding from "../../tool-landing";
+import ImageConverter from "../../ImageConverter";
+import LanguageLinks from "../../language-links";
 import { SITE_NAME, SITE_URL, SOCIAL_IMAGE } from "../../site";
 
 type ToolPageProps = {
@@ -59,6 +61,8 @@ export async function generateMetadata({ params }: ToolPageProps): Promise<Metad
       description: copy.description,
       type: "website",
       locale: dictionaries[locale].tag.replace("-", "_"),
+      alternateLocale: KEYWORD_LOCALES.filter((code) => code !== locale)
+        .map((code) => dictionaries[code].tag.replace("-", "_")),
       siteName: SITE_NAME,
       url,
       images: [
@@ -91,7 +95,26 @@ export default async function ToolPage({ params }: ToolPageProps) {
 
   return (
     <>
-      <ToolLanding locale={locale} copy={copy} />
+      <ImageConverter
+        key={`${locale}/${rawTool}`}
+        locale={locale}
+        messages={dictionaries[locale]}
+        heading={copy.name}
+        introduction={copy.intro}
+        initialFormat={rawTool === "jpg-to-png" ? "png" : rawTool === "image-to-pdf" ? "pdf" : "jpeg"}
+        initialQuality={rawTool === "image-compressor" ? 68 : 82}
+        toolSlug={rawTool}
+        navigation={
+          <nav className="seo-breadcrumbs tool-breadcrumbs" aria-label={locale === "en" ? "Breadcrumb" : "面包屑导航"}>
+            <a href={`/${locale}`}>PicLite</a>
+            <span aria-hidden="true">/</span>
+            <span aria-current="page">{copy.name}</span>
+          </nav>
+        }
+      >
+        <ToolLanding locale={locale} copy={copy} />
+        <LanguageLinks locale={locale} tool={rawTool} />
+      </ImageConverter>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

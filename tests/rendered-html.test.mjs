@@ -7,7 +7,7 @@ const { default: worker } = await import(workerUrl.href);
 
 async function render(pathname, acceptLanguage = "en-US") {
   const response = await worker.fetch(
-    new Request(`http://localhost${pathname}`, {
+    new Request(new URL(pathname, "http://localhost"), {
       headers: {
         accept: "text/html",
         "accept-language": acceptLanguage,
@@ -31,6 +31,99 @@ test("redirects the root to a server-selected locale", async () => {
   const { response } = await render("/", "zh-CN,zh;q=0.9");
   assert.equal(response.status, 307);
   assert.equal(new URL(response.headers.get("location")).pathname, "/zh-cn");
+  assert.match(response.headers.get("vary"), /Accept-Language/i);
+  assert.match(response.headers.get("cache-control"), /no-store/);
+});
+
+test("consolidates the www host and HTTP URLs without losing the path or query", async () => {
+  for (const origin of ["https://www.piclite.net", "http://piclite.net"]) {
+    const { response } = await render(`${origin}/zh-cn/heic-to-jpg?ref=test`);
+    assert.equal(response.status, 308);
+    assert.equal(response.headers.get("location"), "https://piclite.net/zh-cn/heic-to-jpg?ref=test");
+  }
+});
+
+const localeTags = {
+  en: "en", "zh-cn": "zh-CN", "zh-tw": "zh-TW", ja: "ja", ko: "ko",
+  ru: "ru", es: "es", pt: "pt", fr: "fr", de: "de", ar: "ar", hi: "hi",
+};
+const toolSlugs = ["image-converter", "image-compressor", "heic-to-jpg", "webp-to-jpg", "png-to-jpg", "jpg-to-png", "image-to-pdf", "pdf-to-jpg"];
+
+function htmlContent(body) {
+  return body.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, "");
+}
+
+function structuredNodes(body) {
+  return [...body.matchAll(/<script\b[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)]
+    .flatMap((match) => JSON.parse(match[1])["@graph"] ?? []);
+}
+
+test("every sitemap URL serves indexable HTML with matching language, canonical and visible content", async () => {
+  const { body: sitemap } = await render("/sitemap.xml");
+  const urls = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map((match) => match[1]);
+  assert.equal(urls.length, 28);
+  assert.equal(new Set(urls).size, urls.length);
+  const titles = new Set();
+  for (const url of urls) {
+    const path = new URL(url).pathname;
+    const [, locale, tool] = path.split("/");
+    const { response, body } = await render(path, "fr");
+    const visible = htmlContent(body);
+    assert.equal(response.status, 200, path);
+    assert.match(body, new RegExp(`<html[^>]*lang="${localeTags[locale]}"`), path);
+    assert.match(body, new RegExp(`<html[^>]*dir="${locale === "ar" ? "rtl" : "ltr"}"`), path);
+    assert.ok(body.includes(`rel="canonical" href="${url}"`), path);
+    assert.doesNotMatch(body, /content="[^"]*noindex/i, path);
+    assert.equal((visible.match(/<h1\b/g) ?? []).length, 1, path);
+    assert.equal((visible.match(/<main\b/g) ?? []).length, 1, path);
+    assert.match(visible, /type="file"/, `${path} must offer a working converter`);
+    const title = body.match(/<title>(.*?)<\/title>/)?.[1];
+    assert.ok(title && !titles.has(title), `${path} must have a unique title`);
+    titles.add(title);
+    const nodes = structuredNodes(body);
+    const page = nodes.find((node) => node["@type"] === "WebPage");
+    assert.equal(page.url, url);
+    assert.equal(page.inLanguage, localeTags[locale]);
+    const faq = nodes.find((node) => node["@type"] === "FAQPage");
+    if (faq) {
+      assert.equal(faq.mainEntity.length, (visible.match(/<details\b/g) ?? []).length, path);
+      for (const item of faq.mainEntity) {
+        // React escapes punctuation; compare the parsed text rather than RSC script data.
+        const escape = (text) => text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#x27;");
+        assert.ok(visible.includes(escape(item.name)), `${path}: visible FAQ question`);
+        assert.ok(visible.includes(escape(item.acceptedAnswer.text)), `${path}: visible FAQ answer`);
+      }
+    }
+    if (tool) {
+      assert.ok(toolSlugs.includes(tool));
+      assert.ok(visible.includes(`href="/${locale === "en" ? "zh-cn" : "en"}/${tool}"`), `${path}: language navigation`);
+      assert.equal(nodes.find((node) => node["@type"] === "BreadcrumbList").itemListElement[0].item, `https://piclite.net/${locale}`);
+    }
+  }
+});
+
+test("unknown locales and tools return 404 instead of indexable duplicate pages", async () => {
+  for (const path of ["/xx", "/en/not-a-tool", "/fr/heic-to-jpg"]) {
+    const { response, body } = await render(path);
+    assert.equal(response.status, 404, path);
+    // A real 404 is excluded from indexing even when the framework sends plain text.
+    if (response.headers.get("content-type")?.includes("text/html")) {
+      assert.match(body, /noindex/, path);
+    }
+  }
+});
+
+test("tool guides explain the actual conversion limitations in server HTML", async () => {
+  for (const [slug, expected] of [
+    ["image-compressor", "does not guarantee a target file size"],
+    ["jpg-to-png", "cannot restore missing detail"],
+    ["png-to-jpg", "replaces them with white"],
+    ["image-to-pdf", "without optical character recognition"],
+    ["pdf-to-jpg", "4096 pixels"],
+  ]) {
+    const { body } = await render(`/en/${slug}`);
+    assert.ok(htmlContent(body).includes(expected), slug);
+  }
 });
 
 test("renders indexable SEO content on the English homepage", async () => {

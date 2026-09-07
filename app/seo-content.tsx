@@ -195,11 +195,11 @@ export default function SeoContent({ locale }: { locale: Locale }) {
         <div className="seo-tool-links">
           {TOOL_SLUGS.map((slug) => {
             const supportedLocale = locale === "en" || locale === "zh-cn";
-            const href = supportedLocale ? `/${locale}/${slug}` : `/${locale}`;
+            const href = `/${supportedLocale ? locale : "en"}/${slug}`;
             return (
               <Link href={href} key={slug}>
                 <span>{TOOL_LABELS[slug][locale]}</span>
-                <small>{supportedLocale ? copy.openTool : messages.chooseFiles}</small>
+                <small>{supportedLocale ? copy.openTool : "English →"}</small>
               </Link>
             );
           })}
