@@ -1732,6 +1732,31 @@ footer span {
   font-size: 12px;
 }
 
+.install-tip {
+  margin: 25px 0 22px;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+}
+
+.install-tip h3 {
+  margin: 7px 0 0;
+  color: var(--ink);
+  font-size: 17px;
+  line-height: 1.35;
+  letter-spacing: -0.025em;
+}
+
+.install-tip p {
+  margin: 8px 0 14px;
+  color: var(--ink-soft);
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+.install-tip .tip-links {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
 .modal-done {
   width: 100%;
   min-height: 44px;

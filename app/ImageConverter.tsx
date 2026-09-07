@@ -16,7 +16,7 @@ import {
   type Locale,
   type Messages,
 } from "./i18n";
-import TipSupport from "./TipSupport";
+import TipSupport, { TipLinks } from "./TipSupport";
 
 type RasterFormat = "jpeg" | "png" | "webp";
 type OutputFormat = RasterFormat | "pdf";
@@ -1044,6 +1044,12 @@ export default function ImageConverter({
                 <li key={step}><span>{index + 1}</span><p>{step}</p></li>
               ))}
             </ol>
+            <section className="install-tip" aria-labelledby="install-tip-title">
+              <span className="section-kicker">{m.tipKicker}</span>
+              <h3 id="install-tip-title">{m.tipTitle}</h3>
+              <p>{m.tipDescription}</p>
+              <TipLinks messages={m} />
+            </section>
             <button className="modal-done" onClick={() => setInstallHelpOpen(false)}>{m.gotIt}</button>
           </section>
         </div>
