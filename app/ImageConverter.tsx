@@ -16,6 +16,7 @@ import {
   type Locale,
   type Messages,
 } from "./i18n";
+import TipSupport from "./TipSupport";
 
 type RasterFormat = "jpeg" | "png" | "webp";
 type OutputFormat = RasterFormat | "pdf";
@@ -1002,6 +1003,8 @@ export default function ImageConverter({
       )}
 
       {children}
+
+      <TipSupport messages={m} />
 
       <footer>
         <p>PicLite <span>·</span> {m.footer}</p>

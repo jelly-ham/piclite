@@ -1493,6 +1493,72 @@ fieldset > legend,
   font-weight: 620;
 }
 
+.tip-support {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 28px;
+  width: min(calc(100% - 88px), 1120px);
+  margin: 72px auto 0;
+  padding: 27px 30px;
+  border: 1px solid color-mix(in srgb, var(--accent) 18%, var(--line));
+  border-radius: 22px;
+  background: linear-gradient(135deg, var(--accent-wash), var(--surface));
+  box-shadow: var(--shadow-sm);
+}
+
+.tip-support-copy h2 {
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(22px, 2.6vw, 31px);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.18;
+}
+
+.tip-support-copy p {
+  max-width: 620px;
+  margin: 11px 0 0;
+  color: var(--ink-soft);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.tip-links {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(54px, 1fr));
+  gap: 7px;
+}
+
+.tip-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 58px;
+  min-height: 46px;
+  padding: 0 12px;
+  border: 1px solid color-mix(in srgb, var(--accent) 22%, var(--line));
+  border-radius: 11px;
+  background: var(--surface-solid);
+  box-shadow: var(--shadow-sm);
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 720;
+  text-decoration: none;
+  transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+}
+
+.tip-link:hover {
+  border-color: color-mix(in srgb, var(--accent) 55%, transparent);
+  background: var(--accent-soft);
+  transform: translateY(-2px);
+}
+
+.tip-link span {
+  margin-right: 1px;
+  font-size: 11px;
+}
+
 footer {
   display: flex;
   align-items: center;
@@ -1907,6 +1973,32 @@ footer span {
 
   .seo-landing-hero h1 {
     font-size: clamp(36px, 10.5vw, 52px);
+  }
+
+  .tip-support {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    width: calc(100% - 32px);
+    margin-top: 53px;
+    padding: 23px 20px;
+  }
+
+  .tip-support-copy h2 {
+    font-size: 27px;
+  }
+
+  .tip-support-copy p {
+    font-size: 13px;
+  }
+
+  .tip-links {
+    gap: 6px;
+  }
+
+  .tip-link {
+    min-width: 0;
+    min-height: 45px;
+    padding: 0 8px;
   }
 
   .seo-related {

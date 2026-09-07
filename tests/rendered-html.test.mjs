@@ -44,6 +44,9 @@ test("renders indexable SEO content on the English homepage", async () => {
   assert.match(body, /HEIC to JPG/);
   assert.match(body, /"@type":"WebApplication"/);
   assert.match(body, /"@type":"FAQPage"/);
+  assert.equal((body.match(/https:\/\/buy\.stripe\.com\//g) ?? []).length, 5);
+  assert.match(body, /7sY4gB79d4xO1qee9u9AA00/);
+  assert.match(body, /6oU9AVgJN9S80ma0iE9AA04/);
 });
 
 test("renders a keyword landing page with metadata and structured data", async () => {
