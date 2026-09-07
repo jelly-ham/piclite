@@ -65,6 +65,9 @@ const TARGET_SIZE_MIN_KB = 50;
 const TARGET_SIZE_MAX_KB = 2000;
 const TARGET_SIZE_STEP_KB = 50;
 const TARGET_SIZE_PRESETS = [100, 500, 1000, 2000] as const;
+const DOWNLOAD_TIP_SHOWN_KEY = "piclite-download-tip-shown";
+const DOWNLOAD_TIP_DISMISSED_UNTIL_KEY = "piclite-download-tip-dismissed-until";
+const DOWNLOAD_TIP_COOLDOWN_MS = 7 * 24 * 60 * 60 * 1000;
 const ACCEPTED_EXTENSIONS = [
   "jpg",
   "jpeg",
@@ -303,8 +306,11 @@ export default function ImageConverter({
   const [installHelpOpen, setInstallHelpOpen] = useState(false);
   const [isStandalone, setIsStandalone] = useState(false);
   const [notice, setNotice] = useState("");
+  const [downloadTipOpen, setDownloadTipOpen] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const objectUrls = useRef(new Set<string>());
+  const downloadTipTimer = useRef<number | undefined>(undefined);
+  const downloadTipSeen = useRef(false);
 
   const createTrackedUrl = useCallback((blob: Blob) => {
     const url = URL.createObjectURL(blob);
@@ -328,6 +334,9 @@ export default function ImageConverter({
     return () => {
       urls.forEach((url) => URL.revokeObjectURL(url));
       urls.clear();
+      if (downloadTipTimer.current !== undefined) {
+        window.clearTimeout(downloadTipTimer.current);
+      }
     };
   }, []);
 
@@ -541,6 +550,43 @@ export default function ImageConverter({
     setItems([]);
   };
 
+  const dismissDownloadTip = useCallback(() => {
+    setDownloadTipOpen(false);
+    try {
+      localStorage.setItem(
+        DOWNLOAD_TIP_DISMISSED_UNTIL_KEY,
+        String(Date.now() + DOWNLOAD_TIP_COOLDOWN_MS),
+      );
+    } catch {
+      // Private browsing modes may block storage; the in-memory session guard still applies.
+    }
+  }, []);
+
+  const queueDownloadTip = useCallback(() => {
+    if (downloadTipSeen.current || typeof window === "undefined") return;
+    try {
+      if (sessionStorage.getItem(DOWNLOAD_TIP_SHOWN_KEY) === "1") {
+        downloadTipSeen.current = true;
+        return;
+      }
+      const dismissedUntil = Number(
+        localStorage.getItem(DOWNLOAD_TIP_DISMISSED_UNTIL_KEY) ?? "0",
+      );
+      if (dismissedUntil > Date.now()) {
+        downloadTipSeen.current = true;
+        return;
+      }
+      sessionStorage.setItem(DOWNLOAD_TIP_SHOWN_KEY, "1");
+    } catch {
+      // Continue with the in-memory guard when browser storage is unavailable.
+    }
+    downloadTipSeen.current = true;
+    downloadTipTimer.current = window.setTimeout(() => {
+      downloadTipTimer.current = undefined;
+      setDownloadTipOpen(true);
+    }, 700);
+  }, []);
+
   const convertToPdf = async () => {
     const candidates = items.filter(
       (item) => item.status === "ready" || item.status === "done",
@@ -659,6 +705,7 @@ export default function ImageConverter({
     anchor.click();
     anchor.remove();
     window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+    queueDownloadTip();
   };
 
   const downloadAll = async () => {
@@ -1104,6 +1151,25 @@ export default function ImageConverter({
       {children}
 
       <TipSupport messages={m} />
+
+      {downloadTipOpen && (
+        <aside className="download-tip-prompt" aria-labelledby="download-tip-title">
+          <button
+            className="download-tip-close"
+            type="button"
+            aria-label={m.close}
+            onClick={dismissDownloadTip}
+          >
+            ×
+          </button>
+          <div className="download-tip-copy">
+            <span className="section-kicker">{m.tipKicker}</span>
+            <h2 id="download-tip-title">{m.tipTitle}</h2>
+            <p>{m.tipDescription}</p>
+          </div>
+          <TipLinks messages={m} onTipClick={dismissDownloadTip} />
+        </aside>
+      )}
 
       <footer>
         <p>PicLite <span>·</span> {m.footer}</p>

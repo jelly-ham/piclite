@@ -8,7 +8,13 @@ export const TIP_LINKS = [
   { amount: 10, url: "https://buy.stripe.com/6oU9AVgJN9S80ma0iE9AA04" },
 ] as const;
 
-export function TipLinks({ messages }: { messages: Messages }) {
+export function TipLinks({
+  messages,
+  onTipClick,
+}: {
+  messages: Messages;
+  onTipClick?: () => void;
+}) {
   return (
     <div className="tip-links" aria-label={messages.tipChoose}>
       {TIP_LINKS.map(({ amount, url }) => (
@@ -18,6 +24,7 @@ export function TipLinks({ messages }: { messages: Messages }) {
           href={url}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={onTipClick}
           aria-label={`${messages.tipChoose}: $${amount}`}
         >
           <span aria-hidden="true">$</span>{amount}

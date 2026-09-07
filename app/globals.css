@@ -1595,6 +1595,70 @@ fieldset > legend,
   font-size: 11px;
 }
 
+.download-tip-prompt {
+  position: fixed;
+  z-index: 110;
+  right: 24px;
+  bottom: 78px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 14px;
+  width: min(420px, calc(100vw - 48px));
+  padding: 18px 20px 17px;
+  border: 1px solid color-mix(in srgb, var(--accent) 20%, var(--line));
+  border-radius: 17px;
+  background: color-mix(in srgb, var(--surface-solid) 96%, var(--accent-wash));
+  box-shadow: var(--shadow-lg);
+  animation: modal-in 220ms ease-out both;
+}
+
+.download-tip-copy {
+  padding-right: 22px;
+}
+
+.download-tip-copy h2 {
+  margin: 6px 0 0;
+  color: var(--ink);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.3;
+}
+
+.download-tip-copy p {
+  margin: 7px 0 0;
+  color: var(--ink-soft);
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+.download-tip-prompt .tip-links {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.download-tip-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: grid;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: var(--surface-hover);
+  color: var(--ink-soft);
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.download-tip-close:hover {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
 footer {
   display: flex;
   align-items: center;
@@ -2066,6 +2130,13 @@ footer span {
 
   .tip-links {
     gap: 6px;
+  }
+
+  .download-tip-prompt {
+    right: 16px;
+    bottom: 72px;
+    width: calc(100vw - 32px);
+    padding: 17px 16px 15px;
   }
 
   .tip-link {
