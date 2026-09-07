@@ -275,6 +275,7 @@ export default function ImageConverter({
   initialFormat = "jpeg",
   initialQuality = 82,
   toolSlug,
+  enableTargetSize = false,
 }: {
   locale: Locale;
   messages: Messages;
@@ -285,11 +286,13 @@ export default function ImageConverter({
   initialFormat?: OutputFormat;
   initialQuality?: number;
   toolSlug?: string;
+  enableTargetSize?: boolean;
 }) {
   const [items, setItems] = useState<ImageItem[]>([]);
   const [format, setFormat] = useState<OutputFormat>(initialFormat);
   const [quality, setQuality] = useState(initialQuality);
   const [targetSizeKb, setTargetSizeKb] = useState(500);
+  const targetSizeEnabled = enableTargetSize && (format === "jpeg" || format === "webp");
   const [pdfResult, setPdfResult] = useState<PdfResult | null>(null);
   const [isDragging, setIsDragging] = useState(false);
   const [isConverting, setIsConverting] = useState(false);
@@ -625,7 +628,7 @@ export default function ImageConverter({
       try {
         bitmap = await decodeImage(item.file);
         const result =
-          toolSlug === "image-compressor" && (format === "jpeg" || format === "webp")
+          targetSizeEnabled
             ? await bitmapToTargetBlob(bitmap, format, targetSizeKb * 1024)
             : await bitmapToBlob(bitmap, format, quality);
         revokeTrackedUrl(item.resultUrl);
@@ -979,7 +982,7 @@ export default function ImageConverter({
               </div>
             </fieldset>
 
-            {toolSlug === "image-compressor" && (format === "jpeg" || format === "webp") ? (
+            {targetSizeEnabled ? (
               <fieldset className="quality-options target-size-options" disabled={isConverting}>
                 <div className="legend-row">
                   <legend>{m.targetSize ?? "Target file size"}</legend>

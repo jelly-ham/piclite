@@ -104,6 +104,7 @@ export default async function ToolPage({ params }: ToolPageProps) {
         initialFormat={rawTool === "jpg-to-png" ? "png" : rawTool === "image-to-pdf" ? "pdf" : "jpeg"}
         initialQuality={rawTool === "image-compressor" ? 68 : 82}
         toolSlug={rawTool}
+        enableTargetSize={rawTool === "image-compressor" || rawTool === "image-converter"}
         navigation={
           <nav className="seo-breadcrumbs tool-breadcrumbs" aria-label={locale === "en" ? "Breadcrumb" : "面包屑导航"}>
             <a href={`/${locale}`}>PicLite</a>

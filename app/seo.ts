@@ -95,7 +95,7 @@ const ROOT_SEO_COPY: Partial<Record<Locale, RootSeoCopy>> = {
       },
       {
         title: "Choose the output",
-        body: "Select JPG, PNG, WebP or PDF, then set the output quality when the format supports it.",
+        body: "Select JPG, PNG, WebP or PDF. JPG and WebP also offer a target file size slider that adjusts quality automatically.",
       },
       {
         title: "Download the result",
@@ -165,7 +165,7 @@ const ROOT_SEO_COPY: Partial<Record<Locale, RootSeoCopy>> = {
       },
       {
         title: "选择输出格式",
-        body: "选择 JPG、PNG、WebP 或 PDF，并在支持的格式下调整输出质量。",
+        body: "选择 JPG、PNG、WebP 或 PDF。JPG 和 WebP 还可以设置目标文件大小，由工具自动调整质量。",
       },
       {
         title: "下载结果",

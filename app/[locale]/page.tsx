@@ -83,7 +83,7 @@ export default async function LocalePage({ params }: LocalePageProps) {
 
   return (
     <>
-      <ImageConverter locale={locale} messages={dictionaries[locale]}>
+      <ImageConverter locale={locale} messages={dictionaries[locale]} enableTargetSize>
         <SeoContent locale={locale} />
         <LanguageLinks locale={locale} />
       </ImageConverter>
