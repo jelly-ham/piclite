@@ -587,6 +587,20 @@ export default function ImageConverter({
     }, 700);
   }, []);
 
+  useEffect(() => {
+    if (!downloadTipOpen) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") dismissDownloadTip();
+    };
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, [dismissDownloadTip, downloadTipOpen]);
+
   const convertToPdf = async () => {
     const candidates = items.filter(
       (item) => item.status === "ready" || item.status === "done",
@@ -1153,22 +1167,35 @@ export default function ImageConverter({
       <TipSupport messages={m} />
 
       {downloadTipOpen && (
-        <aside className="download-tip-prompt" aria-labelledby="download-tip-title">
-          <button
-            className="download-tip-close"
-            type="button"
-            aria-label={m.close}
-            onClick={dismissDownloadTip}
+        <div
+          className="modal-backdrop download-tip-backdrop"
+          role="presentation"
+          onMouseDown={(event) => {
+            if (event.currentTarget === event.target) dismissDownloadTip();
+          }}
+        >
+          <section
+            className="download-tip-prompt"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="download-tip-title"
           >
-            ×
-          </button>
-          <div className="download-tip-copy">
-            <span className="section-kicker">{m.tipKicker}</span>
-            <h2 id="download-tip-title">{m.tipTitle}</h2>
-            <p>{m.tipDescription}</p>
-          </div>
-          <TipLinks messages={m} onTipClick={dismissDownloadTip} />
-        </aside>
+            <button
+              className="download-tip-close"
+              type="button"
+              aria-label={m.close}
+              onClick={dismissDownloadTip}
+            >
+              ×
+            </button>
+            <div className="download-tip-copy">
+              <span className="section-kicker">{m.tipKicker}</span>
+              <h2 id="download-tip-title">{m.tipTitle}</h2>
+              <p>{m.tipDescription}</p>
+            </div>
+            <TipLinks messages={m} onTipClick={dismissDownloadTip} />
+          </section>
+        </div>
       )}
 
       <footer>
