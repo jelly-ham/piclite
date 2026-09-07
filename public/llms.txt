@@ -7,7 +7,7 @@ It runs in the user's browser and does not require uploading image or PDF files 
 
 - Convert HEIC and HEIF photos to JPG, PNG, WebP, or PDF.
 - Convert JPG, PNG, WebP, AVIF, and BMP images to JPG, PNG, WebP, or PDF.
-- Compress JPG and WebP output by choosing image quality.
+- Compress JPG and WebP output with a target-size slider that adjusts quality locally.
 - Convert PNG to JPG and JPG to PNG.
 - Combine multiple images into a multi-page PDF.
 - Render PDF pages to images and convert them to JPG, PNG, or WebP.
@@ -21,7 +21,7 @@ It runs in the user's browser and does not require uploading image or PDF files 
 
 ## Limits
 
-- JPG and WebP quality controls use lossy encoding; output is not guaranteed to be smaller or meet a target KB size.
+- JPG and WebP use a target-size slider that adjusts lossy quality; the output aims for the selected size but is not guaranteed to match it exactly.
 - PNG encoding is lossless for decoded pixels but does not restore detail lost in a source JPG.
 - JPG and image-to-PDF outputs flatten transparent areas onto white.
 - PDF conversion renders complete pages, not original embedded images; rendering is capped at 4096 pixels on the longer edge.

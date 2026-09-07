@@ -1757,6 +1757,18 @@ footer span {
   grid-template-columns: repeat(5, minmax(0, 1fr));
 }
 
+.target-size-range {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 7px;
+  color: var(--ink-faint);
+  font-size: 10px;
+}
+
+.target-size-help {
+  margin-bottom: 12px !important;
+}
+
 .modal-done {
   width: 100%;
   min-height: 44px;

@@ -62,6 +62,8 @@ export type Messages = {
   settingsTitle: string;
   outputFormat: string;
   outputQuality: string;
+  targetSize?: string;
+  targetSizeDesc?: string;
   lossless: string;
   formatNotes: Record<"jpeg" | "png" | "webp" | "pdf", string>;
   losslessTitle: string;
@@ -146,6 +148,8 @@ export const dictionaries: Record<Locale, Messages> = {
     settingsTitle: "选择输出方式",
     outputFormat: "输出格式",
     outputQuality: "输出质量",
+    targetSize: "目标文件大小",
+    targetSizeDesc: "转换时会自动调整质量，尽量接近这个大小；实际结果会因图片内容而不同。",
     lossless: "无损",
     formatNotes: { jpeg: "通用兼容", png: "无损透明", webp: "轻巧高效", pdf: "多页文档" },
     losslessTitle: "保留每一个像素",
@@ -310,6 +314,8 @@ export const dictionaries: Record<Locale, Messages> = {
     settingsTitle: "Choose your output",
     outputFormat: "Output format",
     outputQuality: "Output quality",
+    targetSize: "Target file size",
+    targetSizeDesc: "Quality is adjusted automatically to approach this size; results vary by image content.",
     lossless: "Lossless",
     formatNotes: { jpeg: "Works everywhere", png: "Lossless alpha", webp: "Small & modern", pdf: "Multi-page file" },
     losslessTitle: "Keep every pixel",

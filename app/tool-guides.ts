@@ -24,18 +24,18 @@ export const TOOL_GUIDES: Record<ToolSlug, Record<KeywordLocale, Guide>> = {
   },
   "image-compressor": {
     en: {
-      summary: "PicLite reduces image size by re-encoding JPG or WebP at a chosen quality. This page starts at 68% quality; compare the result with your original before downloading.",
-      notes: ["The quality slider changes JPG and WebP encoding. PNG output is lossless and ignores the slider; re-encoding a PNG does not guarantee a smaller file. For smaller photos, try JPG or WebP.", "The converter keeps image dimensions and has no target-KB setting. An already optimized image may become larger. Compare the original and result sizes shown in the file list."],
+      summary: "PicLite uses a target-size slider for JPG and WebP, then adjusts encoding quality locally to approach the selected size. Compare the actual result with your original before downloading.",
+      notes: ["The target slider applies to JPG and WebP and aims for an output at or below the selected size. PNG output is lossless and does not use the target slider; re-encoding a PNG does not guarantee a smaller file.", "The converter keeps image dimensions and cannot guarantee an exact target because file size depends on image content and browser encoders. An already optimized image may still be larger at the minimum quality. Compare the sizes shown in the file list."],
       faq: [
-        { question: "Can I compress an image to exactly 100 KB or 200 KB?", answer: "PicLite does not guarantee a target file size. Lower JPG or WebP quality, convert again and check the displayed size. If the image is still too large, resize it in an image editor first." },
+        { question: "Can I compress an image to exactly 100 KB or 200 KB?", answer: "PicLite can aim for a selected target size with the JPG or WebP slider, but it does not guarantee a target file size. Check the displayed result and resize the image first if it remains too large." },
         { question: "Is image compression lossless?", answer: "JPG and the WebP quality setting use lossy encoding, which may remove detail. PNG encoding is lossless for the decoded pixels, but it may produce a larger file and cannot restore detail already lost in a JPG." },
       ],
     },
     "zh-cn": {
-      summary: "PicLite 通过以指定质量重新编码 JPG 或 WebP 来减小文件。本页默认质量为 68%，下载前请对比输出结果和原图。",
-      notes: ["质量滑块适用于 JPG 和 WebP。PNG 为无损输出，不受滑块影响，重新编码也不保证文件更小。照片需要减小时，可尝试 JPG 或 WebP。", "转换保持图片尺寸，没有指定 KB 大小的功能。已优化的图片可能变大，请对比文件列表中显示的原始大小和输出大小。"],
+      summary: "PicLite 提供目标文件大小滑块，并在浏览器本地调整 JPG 或 WebP 的编码质量，尽量接近选定大小。下载前请对比输出结果和原图。",
+      notes: ["目标大小滑块适用于 JPG 和 WebP，目标是让输出不超过选定大小。PNG 为无损输出，不使用目标大小滑块，重新编码也不保证文件更小。", "转换保持图片尺寸，无法保证精确达到目标，因为文件大小取决于图片内容和浏览器编码器。已优化的图片在最低质量下仍可能更大，请对比文件列表中显示的大小。"],
       faq: [
-        { question: "可以把图片压缩到指定的 100 KB 或 200 KB 吗？", answer: "PicLite 不保证输出到指定大小。可以降低 JPG 或 WebP 质量，再次转换并检查显示的大小。若仍然过大，请先用图片编辑器缩小尺寸。" },
+        { question: "可以把图片压缩到指定的 100 KB 或 200 KB 吗？", answer: "PicLite 可以通过 JPG 或 WebP 的目标大小滑块尽量接近指定大小，但不保证输出到指定大小。请检查显示的结果；若仍然过大，可以先用图片编辑器缩小尺寸。" },
         { question: "图片压缩是无损的吗？", answer: "JPG 和带质量设置的 WebP 使用有损编码，可能损失细节。PNG 对解码后的像素采用无损编码，但文件可能更大，也无法恢复 JPG 已经丢失的细节。" },
       ],
     },

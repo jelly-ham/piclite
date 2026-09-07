@@ -61,6 +61,10 @@ const OUTPUTS: Record<
 };
 
 const QUALITY_PRESETS = [92, 82, 68] as const;
+const TARGET_SIZE_MIN_KB = 50;
+const TARGET_SIZE_MAX_KB = 2000;
+const TARGET_SIZE_STEP_KB = 50;
+const TARGET_SIZE_PRESETS = [100, 500, 1000, 2000] as const;
 const ACCEPTED_EXTENSIONS = [
   "jpg",
   "jpeg",
@@ -179,6 +183,37 @@ async function bitmapToBlob(
   return blob;
 }
 
+async function bitmapToTargetBlob(
+  bitmap: ImageBitmap,
+  format: "jpeg" | "webp",
+  targetBytes: number,
+) {
+  const minQuality = 40;
+  const maxQuality = 100;
+  const highestQuality = await bitmapToBlob(bitmap, format, maxQuality);
+  if (highestQuality.size <= targetBytes) return highestQuality;
+
+  const lowestQuality = await bitmapToBlob(bitmap, format, minQuality);
+  if (lowestQuality.size > targetBytes) return lowestQuality;
+
+  // Canvas encoders are generally monotonic enough for a short binary search:
+  // find the highest quality whose result stays at or below the selected size.
+  let best = lowestQuality;
+  let lower = minQuality + 1;
+  let upper = maxQuality - 1;
+  while (lower <= upper) {
+    const quality = Math.floor((lower + upper) / 2);
+    const result = await bitmapToBlob(bitmap, format, quality);
+    if (result.size <= targetBytes) {
+      best = result;
+      lower = quality + 1;
+    } else {
+      upper = quality - 1;
+    }
+  }
+  return best;
+}
+
 async function renderPdfPages(file: File) {
   const pdfjs = await import("pdfjs-dist");
   pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.mjs";
@@ -254,6 +289,7 @@ export default function ImageConverter({
   const [items, setItems] = useState<ImageItem[]>([]);
   const [format, setFormat] = useState<OutputFormat>(initialFormat);
   const [quality, setQuality] = useState(initialQuality);
+  const [targetSizeKb, setTargetSizeKb] = useState(500);
   const [pdfResult, setPdfResult] = useState<PdfResult | null>(null);
   const [isDragging, setIsDragging] = useState(false);
   const [isConverting, setIsConverting] = useState(false);
@@ -471,6 +507,12 @@ export default function ImageConverter({
     setQuality(next);
   };
 
+  const selectTargetSize = (next: number) => {
+    if (next === targetSizeKb || isConverting) return;
+    invalidateResults();
+    setTargetSizeKb(next);
+  };
+
   const removeItem = (id: string) => {
     clearPdfResult();
     setItems((current) => {
@@ -582,7 +624,10 @@ export default function ImageConverter({
       let bitmap: ImageBitmap | undefined;
       try {
         bitmap = await decodeImage(item.file);
-        const result = await bitmapToBlob(bitmap, format, quality);
+        const result =
+          toolSlug === "image-compressor" && (format === "jpeg" || format === "webp")
+            ? await bitmapToTargetBlob(bitmap, format, targetSizeKb * 1024)
+            : await bitmapToBlob(bitmap, format, quality);
         revokeTrackedUrl(item.resultUrl);
         updateItem(item.id, {
           status: "done",
@@ -934,15 +979,50 @@ export default function ImageConverter({
               </div>
             </fieldset>
 
-            <fieldset
-              className={`quality-options ${format === "png" ? "is-lossless" : ""}`}
-              disabled={isConverting}
-            >
-              <div className="legend-row">
-                <legend>{m.outputQuality}</legend>
-                <span>{format === "png" ? m.lossless : `${quality}%`}</span>
-              </div>
-              {format === "png" ? (
+            {toolSlug === "image-compressor" && (format === "jpeg" || format === "webp") ? (
+              <fieldset className="quality-options target-size-options" disabled={isConverting}>
+                <div className="legend-row">
+                  <legend>{m.targetSize ?? "Target file size"}</legend>
+                  <span>≤ {formatBytes(targetSizeKb * 1024)}</span>
+                </div>
+                <input
+                  aria-label={m.targetSize ?? "Target file size"}
+                  type="range"
+                  min={TARGET_SIZE_MIN_KB}
+                  max={TARGET_SIZE_MAX_KB}
+                  step={TARGET_SIZE_STEP_KB}
+                  value={targetSizeKb}
+                  onChange={(event) => selectTargetSize(Number(event.target.value))}
+                  style={{ "--range-value": `${((targetSizeKb - TARGET_SIZE_MIN_KB) / (TARGET_SIZE_MAX_KB - TARGET_SIZE_MIN_KB)) * 100}%` } as React.CSSProperties}
+                />
+                <div className="target-size-range" aria-hidden="true">
+                  <span>{formatBytes(TARGET_SIZE_MIN_KB * 1024)}</span>
+                  <span>{formatBytes(TARGET_SIZE_MAX_KB * 1024)}</span>
+                </div>
+                <p className="target-size-help">{m.targetSizeDesc ?? "Quality is adjusted automatically to approach this size."}</p>
+                <div className="preset-row">
+                  {TARGET_SIZE_PRESETS.map((preset) => (
+                    <button
+                      key={preset}
+                      type="button"
+                      className={targetSizeKb === preset ? "active" : ""}
+                      onClick={() => selectTargetSize(preset)}
+                    >
+                      {formatBytes(preset * 1024)}
+                    </button>
+                  ))}
+                </div>
+              </fieldset>
+            ) : (
+              <fieldset
+                className={`quality-options ${format === "png" ? "is-lossless" : ""}`}
+                disabled={isConverting}
+              >
+                <div className="legend-row">
+                  <legend>{m.outputQuality}</legend>
+                  <span>{format === "png" ? m.lossless : `${quality}%`}</span>
+                </div>
+                {format === "png" ? (
                 <div className="lossless-note">
                   <span aria-hidden="true">◇</span>
                   <div><strong>{m.losslessTitle}</strong><p>{m.losslessDesc}</p></div>
@@ -973,7 +1053,8 @@ export default function ImageConverter({
                   </div>
                 </>
               )}
-            </fieldset>
+              </fieldset>
+            )}
 
             <div className="conversion-note">
               <span className="lock-dot">✓</span>

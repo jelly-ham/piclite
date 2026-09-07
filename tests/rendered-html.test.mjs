@@ -153,6 +153,13 @@ test("renders a keyword landing page with metadata and structured data", async (
   assert.match(body, /hrefLang="zh-CN"/);
 });
 
+test("renders the image compressor target-size control", async () => {
+  const { response, body } = await render("/en/image-compressor");
+  assert.equal(response.status, 200);
+  assert.match(body, /Target file size/);
+  assert.match(body, /Quality is adjusted automatically to approach this size/);
+});
+
 test("publishes keyword pages in the sitemap", async () => {
   const { response, body } = await render("/sitemap.xml");
   assert.equal(response.status, 200);
