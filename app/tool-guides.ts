@@ -42,17 +42,35 @@ export const TOOL_GUIDES: Record<ToolSlug, Record<KeywordLocale, Guide>> = {
   },
   "heic-to-jpg": {
     en: {
-      summary: "Convert HEIC or HEIF still photos to JPG when a form or app cannot open the originals. PicLite loads a local HEIC decoder when you select a HEIC file.",
-      notes: ["JPG is preselected at 82% quality. HEIC is already an efficient format, so the resulting JPG may be larger. Adjust quality after checking the result.", "This workflow exports a still image. It does not preserve Live Photo motion, depth data or the original HEIC container metadata. Keep the original for editing and archiving."],
+      summary: "Convert HEIC or HEIF still photos to JPG when a form or app cannot open the originals. PicLite loads a local HEIC decoder when you select a HEIC file. Convert one photo or a full batch; several results download together as a ZIP.",
+      notes: [
+        "JPG is preselected at 82% quality. HEIC is already an efficient format, so the resulting JPG may be larger. Adjust quality after checking the result.",
+        "iPhones save photos as HEIC when Camera is set to High Efficiency. Windows, Android and many web forms cannot open HEIC, which is why a JPG copy is the usual fix.",
+        "Add a whole album at once. Every photo converts in the same on-device session, and when there are multiple results they download together as one ZIP file.",
+        "This workflow exports a still image. It does not preserve Live Photo motion, depth data or the original HEIC container metadata. Keep the original for editing and archiving.",
+      ],
       faq: [
+        { question: "Why can't my Windows PC open my iPhone photos?", answer: "iPhones save photos as HEIC by default, and Windows cannot open HEIC without an extra codec. Converting the photos to JPG gives you files that open on Windows, Android, email apps and web forms." },
+        { question: "Can I convert multiple HEIC photos at once?", answer: "Yes. Drop or select as many HEIC photos as you need. Each one converts on your device, and multiple results download together as a single ZIP file." },
+        { question: "How do I stop my iPhone from taking HEIC photos?", answer: "Open Settings, then Camera, then Formats, and choose Most Compatible. New photos are saved as JPG from then on. Photos already taken in HEIC still need a one-time conversion." },
+        { question: "Is HEIC the same as HEIF?", answer: "HEIF is the container format, and HEIC is the name Apple uses for its HEIF photo variant. PicLite accepts both .heic and .heif files and converts either to JPG." },
         { question: "Why is the converted JPG larger than my HEIC photo?", answer: "HEIC can store a photo more efficiently than JPG. Converting improves compatibility but does not guarantee a smaller file. Lower JPG quality if the receiving service has a size limit." },
         { question: "Why does the first HEIC conversion take longer?", answer: "The browser downloads the HEIC decoder on demand before it can decode the photo. Large photos also need device memory. Start with fewer files if your phone runs out of memory." },
       ],
     },
     "zh-cn": {
-      summary: "表单或应用无法打开原片时，可把 HEIC 或 HEIF 静态照片转为 JPG。选择 HEIC 文件后，PicLite 会按需加载在本地运行的解码器。",
-      notes: ["本页预选 JPG，质量为 82%。HEIC 本身压缩效率较高，转换后的 JPG 可能更大，请查看结果后调整质量。", "该流程导出静态图片，不保留实况照片的动态内容、深度数据或原始 HEIC 容器元数据。编辑和归档请保留原件。"],
+      summary: "表单或应用无法打开原片时，可把 HEIC 或 HEIF 静态照片转为 JPG。选择 HEIC 文件后，PicLite 会按需加载在本地运行的解码器。可以转换单张或整批照片，多个结果会打包为 ZIP 下载。",
+      notes: [
+        "本页预选 JPG，质量为 82%。HEIC 本身压缩效率较高，转换后的 JPG 可能更大，请查看结果后调整质量。",
+        "iPhone 相机设置为“高效”时会将照片存为 HEIC。Windows、Android 和许多网页表单无法打开 HEIC，因此通常需要转成 JPG 副本。",
+        "可以一次添加整个相册。所有照片在同一个设备本地会话中转换，有多个结果时会打包为一个 ZIP 文件下载。",
+        "该流程导出静态图片，不保留实况照片的动态内容、深度数据或原始 HEIC 容器元数据。编辑和归档请保留原件。",
+      ],
       faq: [
+        { question: "为什么 Windows 电脑打不开 iPhone 照片？", answer: "iPhone 默认将照片存为 HEIC，Windows 不安装额外解码器就无法打开 HEIC。把照片转成 JPG 后，Windows、Android、邮件应用和网页表单都能正常打开。" },
+        { question: "可以一次转换多张 HEIC 照片吗？", answer: "可以。拖入或选择任意数量的 HEIC 照片，每张都在你的设备上完成转换；有多个结果时会打包为一个 ZIP 文件一起下载。" },
+        { question: "如何让 iPhone 不再拍 HEIC 照片？", answer: "打开“设置”，进入“相机”，再进入“格式”，选择“兼容性最佳”。之后新拍的照片会直接存为 JPG，此前已拍的 HEIC 照片仍需转换一次。" },
+        { question: "HEIC 和 HEIF 是一回事吗？", answer: "HEIF 是容器格式，HEIC 是 Apple 为其照片使用的 HEIF 变体所起的名字。PicLite 同时接受 .heic 和 .heif 文件，都可以转成 JPG。" },
         { question: "为什么转换后的 JPG 比 HEIC 更大？", answer: "HEIC 储存照片的效率可能高于 JPG。转换改善兼容性，但不保证减小文件。如接收方有文件大小限制，可以降低 JPG 质量。" },
         { question: "为什么第一次转换 HEIC 比较慢？", answer: "浏览器需要先按需下载 HEIC 解码器，再解码照片。大照片也需要设备内存，手机内存不足时可以减少每批文件数量。" },
       ],

@@ -347,7 +347,7 @@ const TOOL_INTENTS: Record<ToolSlug, Record<KeywordLocale, ToolIntent>> = {
       output: "JPG images",
       why: "JPG is easier to open on Windows, Android, email services, web forms and older photo apps.",
       quality: "Choose the JPG quality before downloading, and convert multiple iPhone photos in one batch.",
-      keywords: ["HEIC to JPG converter", "convert HEIC to JPG", "iPhone photo converter", "HEIC converter no upload"],
+      keywords: ["HEIC to JPG converter", "convert HEIC to JPG", "iPhone photo converter", "HEIC converter no upload", "batch HEIC to JPG"],
     },
     "zh-cn": {
       name: "HEIC 转 JPG",
@@ -358,7 +358,7 @@ const TOOL_INTENTS: Record<ToolSlug, Record<KeywordLocale, ToolIntent>> = {
       output: "JPG 图片",
       why: "JPG 更容易在 Windows、Android、邮件服务、网页表单和旧版图片应用中打开。",
       quality: "下载前可以选择 JPG 质量，也可以一次转换多张 iPhone 照片。",
-      keywords: ["HEIC 转 JPG", "HEIC 转换器", "iPhone 照片转 JPG", "不上传 HEIC 转 JPG"],
+      keywords: ["HEIC 转 JPG", "HEIC 转换器", "iPhone 照片转 JPG", "不上传 HEIC 转 JPG", "批量 HEIC 转 JPG"],
     },
   },
   "webp-to-jpg": {
@@ -460,7 +460,7 @@ const TOOL_INTENTS: Record<ToolSlug, Record<KeywordLocale, ToolIntent>> = {
   "pdf-to-jpg": {
     en: {
       name: "PDF to JPG converter",
-      title: "PDF to JPG converter — convert PDF pages privately in your browser",
+      title: "PDF to JPG converter — free, private and no upload",
       description: "Convert PDF pages to JPG images online without uploading the document. Render every page locally and download the results in a batch.",
       intro: "Turn PDF pages into JPG images for presentations, email, previews or web forms. PicLite reads the document in your browser and does not send it to a server.",
       input: "PDF documents",
