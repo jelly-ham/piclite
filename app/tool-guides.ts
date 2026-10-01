@@ -303,6 +303,13 @@ export const TOOL_GUIDES: Record<ToolSlug, Record<KeywordLocale, Guide>> = {
         { question: "Why is my image still larger than the target?", answer: "Very large or detailed photos may not compress below the target even at the lowest quality. Resize the image first, then compress it again." },
         { question: "Can I compress several images to the same target?", answer: "Yes. Add a batch and every file is compressed toward the same target in one pass, then downloaded together as a ZIP." },
       ],
+      useCases: [
+        { title: "Official forms and applications", body: "Many portals ask for 'JPG, max 500 KB'. A target just under the limit lowers the chance the form rejects the photo." },
+        { title: "CVs and job portals", body: "Every system has its own profile photo limit. Use 100 KB or 200 KB as the target and check the result immediately." },
+        { title: "Messaging apps and email", body: "Compress several photos to the same target to stay under attachment limits; the results download together in a ZIP." },
+        { title: "Blogs and online stores", body: "Lighter images load faster. Processing several at once saves time before publishing." },
+        { title: "Phone storage", body: "HEIC photos from an iPhone can be converted to JPG and shrunk at the same time. Keep the original and compress a copy." },
+      ],
     },
     "zh-cn": {
       summary: "设置目标文件大小后，PicLite 会在本地调整 JPG 或 WebP 质量，尽量接近该大小。输出的是新文件，下载前请与原图对比。",
@@ -316,6 +323,13 @@ export const TOOL_GUIDES: Record<ToolSlug, Record<KeywordLocale, Guide>> = {
         { question: "哪些格式支持目标文件大小？", answer: "目标大小适用于 JPG 和 WebP 输出。PNG 为无损格式，不受目标控制；很多时候需要先把 PNG 转成 JPG 才能达到较小的体积限制。" },
         { question: "为什么压缩后图片仍然大于目标值？", answer: "尺寸很大或细节很多的照片，即使使用最低质量也可能无法压到目标值以下。请先缩小图片尺寸，再重新压缩。" },
         { question: "可以批量压缩到同一个目标大小吗？", answer: "可以。一次添加多张图片，所有文件都会朝同一目标压缩，最后打包为 ZIP 一起下载。" },
+      ],
+      useCases: [
+        { title: "公职报名与考试照片", body: "很多报名网站要求「JPG、500KB 以内」。把目标设得比限制略低，可以降低表单拒收的风险。" },
+        { title: "简历与招聘网站头像", body: "各系统的头像大小限制不同。用 100KB 或 200KB 作为目标，并立即核对结果。" },
+        { title: "微信、邮件附件", body: "多张照片压到同一目标，就不容易超过附件限制，结果会打包成 ZIP 一起下载。" },
+        { title: "博客与网店图片", body: "发布前先压缩，页面加载更轻快；一次处理多张也更省时间。" },
+        { title: "手机存储空间", body: "iPhone 的 HEIC 照片可以同时转成 JPG 并压缩。保留原文件，压缩副本即可。" },
       ],
     },
     ko: {
@@ -601,7 +615,8 @@ export const TOOL_GUIDES: Record<ToolSlug, Record<KeywordLocale, Guide>> = {
         { question: "फ़ाइल लक्ष्य तक न पहुँचे तो क्या करें?", answer: "एडिटर में आयाम घटाएँ या PNG को JPG में बदलकर दोबारा कंप्रेस करें।" },
       ],
       useCases: [
-        { title: "सरकारी और परीक्षा फ़ॉर्म", body: "कई पोर्टल 'JPG, 500KB तक' माँगते हैं। सीमा से थोड़ा कम लक्ष्य रखने पर फ़ॉर्म के अस्वीकार होने का जोखिम घटता है।" },
+        { title: "SSC, UPSC और राज्य परीक्षा फ़ॉर्म", body: "इन आवेदनों में अक्सर 'JPG, 50KB–500KB' की सीमा होती है। सीमा से थोड़ा कम लक्ष्य रखें ताकि फ़ॉर्म अस्वीकार न हो।" },
+        { title: "पासपोर्ट और वीज़ा फ़ोटो", body: "पासपोर्ट, वीज़ा और आईडी आवेदनों में फ़ाइल साइज़ की सीमा होती है। 50KB–200KB लक्ष्य रखें; फ़ोटो के आयाम अलग से तय करने पड़ते हैं।" },
         { title: "रिज़्यूमे और जॉब पोर्टल", body: "हर सिस्टम की प्रोफ़ाइल फ़ोटो सीमा अलग होती है। 100KB या 200KB लक्ष्य रखें और नतीजा तुरंत देखें।" },
         { title: "WhatsApp और ईमेल अटैचमेंट", body: "कई फ़ोटो एक ही लक्ष्य पर कंप्रेस करें ताकि अटैचमेंट सीमा से न बढ़ें; नतीजे एक ZIP में साथ डाउनलोड होते हैं।" },
         { title: "ब्लॉग और ऑनलाइन स्टोर", body: "पब्लिश से पहले हल्का करने से पेज जल्दी लोड होता है। एक साथ कई इमेज प्रोसेस करने से समय बचता है।" },
