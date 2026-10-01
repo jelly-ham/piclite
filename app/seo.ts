@@ -273,6 +273,64 @@ const ROOT_SEO_COPY: Partial<Record<Locale, RootSeoCopy>> = {
   },
 };
 
+// Homepage FAQs for locales without a full ROOT_SEO_COPY entry.
+const ROOT_FAQ: Partial<Record<Locale, SeoFaq[]>> = {
+  ko: [
+    { question: "PicLite는 온라인 이미지 변환기인가요?", answer: "네. PicLite는 브라우저에서 실행되는 온라인 이미지 변환기로, 파일을 서버로 보내지 않고 JPG, PNG, WebP, HEIC를 변환할 수 있습니다." },
+    { question: "업로드 없이 HEIC를 JPG로 변환할 수 있나요?", answer: "네. HEIC 또는 HEIF 사진을 선택하고 출력 형식을 JPG로 두면 브라우저에서 기기 안으로 변환됩니다. 원본 사진은 업로드되지 않습니다." },
+    { question: "PDF를 JPG로, 이미지를 PDF로 변환할 수 있나요?", answer: "네. PDF 페이지를 이미지로 렌더링하고 여러 이미지를 여러 페이지 PDF로 합칠 수 있습니다. 변환은 기기에서 실행됩니다." },
+    { question: "PicLite는 오픈 소스인가요?", answer: "네. PicLite는 MIT 라이선스로 공개되어 있어 코드를 읽고, 직접 실행하거나 자체 호스팅으로 파일 처리 방식을 확인할 수 있습니다." },
+  ],
+  es: [
+    { question: "¿PicLite es un conversor de imágenes en línea?", answer: "Sí. PicLite es un conversor de imágenes en línea que funciona en el navegador, así que puedes convertir JPG, PNG, WebP y HEIC sin enviar el archivo a un servidor." },
+    { question: "¿Puedo convertir HEIC a JPG sin subir la foto?", answer: "Sí. Selecciona una foto HEIC o HEIF, deja JPG como formato de salida y conviértela localmente en el navegador. La foto original no se sube." },
+    { question: "¿PicLite convierte PDF a JPG y imágenes a PDF?", answer: "Sí. Puede renderizar páginas PDF como imágenes y combinar varias imágenes en un PDF de varias páginas. La conversión se hace en tu dispositivo." },
+    { question: "¿PicLite es de código abierto?", answer: "Sí. PicLite es de código abierto bajo la licencia MIT, así que puedes leer el código, ejecutarlo o alojarlo tú mismo para comprobar cómo se procesan los archivos." },
+  ],
+  pt: [
+    { question: "O PicLite é um conversor de imagens online?", answer: "Sim. O PicLite é um conversor de imagens online que roda no navegador, então você converte JPG, PNG, WebP e HEIC sem enviar o arquivo a um servidor." },
+    { question: "Dá para converter HEIC para JPG sem enviar a foto?", answer: "Sim. Selecione uma foto HEIC ou HEIF, mantenha JPG como formato de saída e converta localmente no navegador. A foto original não é enviada." },
+    { question: "O PicLite converte PDF para JPG e imagens para PDF?", answer: "Sim. Ele renderiza páginas de PDF como imagens e junta várias imagens em um PDF de várias páginas. A conversão acontece no seu aparelho." },
+    { question: "O PicLite é de código aberto?", answer: "Sim. O PicLite é de código aberto sob a licença MIT, então você pode ler o código, executá-lo ou hospedar sua própria cópia para verificar como os arquivos são processados." },
+  ],
+  de: [
+    { question: "Ist PicLite ein Online-Bildkonverter?", answer: "Ja. PicLite ist ein Online-Bildkonverter, der im Browser läuft, sodass du JPG, PNG, WebP und HEIC konvertieren kannst, ohne die Datei an einen Server zu senden." },
+    { question: "Kann ich HEIC ohne Upload in JPG umwandeln?", answer: "Ja. Wähle ein HEIC- oder HEIF-Foto, lasse JPG als Ausgabeformat und konvertiere es lokal im Browser. Das Originalfoto wird nicht hochgeladen." },
+    { question: "Konvertiert PicLite PDF in JPG und Bilder in PDF?", answer: "Ja. PDF-Seiten werden als Bilder gerendert und mehrere Bilder lassen sich zu einem mehrseitigen PDF zusammenfügen. Die Konvertierung läuft auf deinem Gerät." },
+    { question: "Ist PicLite Open Source?", answer: "Ja. PicLite ist unter der MIT-Lizenz quelloffen, sodass du den Code lesen, selbst ausführen oder hosten kannst, um die Verarbeitung zu prüfen." },
+  ],
+  fr: [
+    { question: "PicLite est-il un convertisseur d’images en ligne ?", answer: "Oui. PicLite est un convertisseur d’images en ligne qui fonctionne dans le navigateur : vous convertissez JPG, PNG, WebP et HEIC sans envoyer le fichier à un serveur." },
+    { question: "Puis-je convertir un HEIC en JPG sans envoyer la photo ?", answer: "Oui. Sélectionnez une photo HEIC ou HEIF, gardez JPG en sortie et convertissez-la localement dans le navigateur. La photo d’origine n’est pas envoyée." },
+    { question: "PicLite convertit-il le PDF en JPG et les images en PDF ?", answer: "Oui. Il rend les pages PDF en images et assemble plusieurs images dans un PDF de plusieurs pages. La conversion se fait sur votre appareil." },
+    { question: "PicLite est-il open source ?", answer: "Oui. PicLite est open source sous licence MIT : vous pouvez lire le code, l’exécuter ou l’héberger pour vérifier le traitement des fichiers." },
+  ],
+  ja: [
+    { question: "PicLiteはオンライン画像変換ツールですか？", answer: "はい。PicLiteはブラウザで動くオンライン画像変換ツールで、ファイルをサーバーに送らずにJPG、PNG、WebP、HEICを変換できます。" },
+    { question: "アップロードせずにHEICをJPGに変換できますか？", answer: "はい。HEICまたはHEIF写真を選び、出力をJPGのままにすると端末上で変換されます。元の写真はアップロードされません。" },
+    { question: "PDFからJPG、画像からPDFへの変換もできますか？", answer: "はい。PDFページを画像として描画し、複数の画像を複数ページのPDFにまとめられます。変換は端末内で実行されます。" },
+    { question: "PicLiteはオープンソースですか？", answer: "はい。PicLiteはMITライセンスで公開されており、コードを確認し、自分で実行したりホストして処理内容を確かめられます。" },
+  ],
+  ru: [
+    { question: "PicLite — это онлайн-конвертер изображений?", answer: "Да. PicLite — онлайн-конвертер, работающий в браузере: можно конвертировать JPG, PNG, WebP и HEIC, не отправляя файл на сервер." },
+    { question: "Можно конвертировать HEIC в JPG без загрузки?", answer: "Да. Выберите фото HEIC или HEIF, оставьте JPG как формат вывода и конвертируйте локально в браузере. Оригинал не загружается." },
+    { question: "PicLite конвертирует PDF в JPG и изображения в PDF?", answer: "Да. Он отрисовывает страницы PDF как изображения и объединяет несколько изображений в многостраничный PDF. Конвертация идёт на вашем устройстве." },
+    { question: "PicLite — открытый проект?", answer: "Да. PicLite распространяется по лицензии MIT: код можно прочитать, запустить или разместить у себя, чтобы проверить обработку файлов." },
+  ],
+  ar: [
+    { question: "هل PicLite محوّل صور عبر الإنترنت؟", answer: "نعم. PicLite محوّل صور يعمل في المتصفح، لذا يمكنك تحويل JPG وPNG وWebP وHEIC دون إرسال الملف إلى خادم." },
+    { question: "هل يمكن تحويل HEIC إلى JPG دون رفع الصورة؟", answer: "نعم. اختر صورة HEIC أو HEIF واترك JPG كصيغة الإخراج وحوّلها محلياً في المتصفح. لا تُرفع الصورة الأصلية." },
+    { question: "هل يحوّل PicLite ملفات PDF إلى JPG والصور إلى PDF؟", answer: "نعم. يعرض صفحات PDF كصور ويجمع عدة صور في ملف PDF متعدد الصفحات. يجري التحويل على جهازك." },
+    { question: "هل PicLite مفتوح المصدر؟", answer: "نعم. PicLite مفتوح المصدر برخصة MIT، لذا يمكنك قراءة الشيفرة أو تشغيله أو استضافته للتحقق من طريقة معالجة الملفات." },
+  ],
+  hi: [
+    { question: "क्या PicLite ऑनलाइन इमेज कन्वर्टर है?", answer: "हाँ। PicLite ब्राउज़र में चलने वाला ऑनलाइन इमेज कन्वर्टर है, इसलिए JPG, PNG, WebP और HEIC बिना फ़ाइल सर्वर पर भेजे बदल सकते हैं।" },
+    { question: "क्या HEIC को JPG में बिना अपलोड बदल सकते हैं?", answer: "हाँ। HEIC या HEIF फ़ोटो चुनें, आउटपुट में JPG रखें और ब्राउज़र में लोकली बदलें। मूल फ़ोटो अपलोड नहीं होती।" },
+    { question: "क्या PicLite PDF को JPG और इमेज को PDF में बदलता है?", answer: "हाँ। यह PDF पेजों को इमेज के रूप में रेंडर करता है और कई इमेज को मल्टी-पेज PDF में जोड़ता है। कन्वर्ज़न आपके डिवाइस पर होता है।" },
+    { question: "क्या PicLite ओपन सोर्स है?", answer: "हाँ। PicLite MIT लाइसेंस के तहत ओपन सोर्स है, इसलिए आप कोड पढ़ सकते हैं, चला सकते हैं या होस्ट करके फ़ाइल प्रोसेसिंग जाँच सकते हैं।" },
+  ],
+};
+
 export function getRootSeoCopy(locale: Locale): RootSeoCopy {
   const localized = ROOT_SEO_COPY[locale];
   if (localized) return localized;
@@ -297,7 +355,7 @@ export function getRootSeoCopy(locale: Locale): RootSeoCopy {
     privacyTitle: messages.trustLocal,
     privacy: `${messages.privacy}${messages.privacyStrong}`,
     faqTitle: messages.privacy,
-    faq: [],
+    faq: ROOT_FAQ[locale] ?? [],
     toolsTitle: messages.supportedFormats,
     openTool: messages.chooseFiles,
     keywords: [],

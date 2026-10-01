@@ -140,6 +140,22 @@ test("renders Korean use-case content on the compress page", async () => {
   assert.match(body, /핸드폰 사진도 압축할 수 있나요/);
 });
 
+test("every homepage publishes a visible FAQ with matching structured data", async () => {
+  const locales = ["en", "zh-cn", "zh-tw", "ko", "es", "pt", "de", "fr", "ja", "ru", "ar", "hi"];
+  for (const locale of locales) {
+    const { response, body } = await render(`/${locale}`);
+    assert.equal(response.status, 200, locale);
+    const faq = structuredNodes(body).find((node) => node["@type"] === "FAQPage");
+    assert.ok(faq, `${locale}: FAQPage structured data`);
+    assert.ok(faq.mainEntity.length >= 4, `${locale}: at least 4 questions`);
+    assert.equal(
+      faq.mainEntity.length,
+      (htmlContent(body).match(/<details\b/g) ?? []).length,
+      `${locale}: visible FAQ matches structured data`,
+    );
+  }
+});
+
 test("renders indexable SEO content on the English homepage", async () => {
   const { response, body } = await render("/en");
   assert.equal(response.status, 200);
@@ -151,9 +167,8 @@ test("renders indexable SEO content on the English homepage", async () => {
   assert.match(body, /HEIC to JPG/);
   assert.match(body, /"@type":"WebApplication"/);
   assert.match(body, /"@type":"FAQPage"/);
-  assert.equal((body.match(/https:\/\/buy\.stripe\.com\//g) ?? []).length, 5);
-  assert.match(body, /7sY4gB79d4xO1qee9u9AA00/);
-  assert.match(body, /6oU9AVgJN9S80ma0iE9AA04/);
+  assert.doesNotMatch(body, /buy\.stripe\.com/, "no payment links on the site");
+  assert.doesNotMatch(body, /tip-support|download-tip|install-tip/, "no tip UI on the site");
   assert.match(body, /https:\/\/github\.com\/jelly-ham\/piclite/);
   assert.match(body, /Open source and self-hostable/);
 });
