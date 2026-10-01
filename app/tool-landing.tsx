@@ -44,6 +44,22 @@ export default function ToolLanding({
           </ol>
         </section>
 
+        {guide.useCases && (
+          <section className="seo-landing-section" aria-labelledby="landing-usecases-title">
+            <div className="seo-section-heading">
+              <h2 id="landing-usecases-title">{copy.useCasesTitle}</h2>
+            </div>
+            <div className="seo-card-grid">
+              {guide.useCases.map((useCase) => (
+                <article className="seo-card" key={useCase.title}>
+                  <h3>{useCase.title}</h3>
+                  <p>{useCase.body}</p>
+                </article>
+              ))}
+            </div>
+          </section>
+        )}
+
         <section className="seo-landing-section" aria-labelledby="landing-benefits-title">
           <div className="seo-section-heading">
             <span className="section-kicker">{copy.output}</span>

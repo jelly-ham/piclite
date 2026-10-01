@@ -126,6 +126,15 @@ test("tool guides explain the actual conversion limitations in server HTML", asy
   }
 });
 
+test("renders Korean use-case content on the compress page", async () => {
+  const { response, body } = await render("/ko/compress-image-to-kb");
+  assert.equal(response.status, 200);
+  assert.match(body, /활용 사례/);
+  assert.match(body, /관공서·시험 원서접수 사진/);
+  assert.match(body, /카카오톡·이메일 첨부/);
+  assert.match(body, /핸드폰 사진도 압축할 수 있나요/);
+});
+
 test("renders indexable SEO content on the English homepage", async () => {
   const { response, body } = await render("/en");
   assert.equal(response.status, 200);

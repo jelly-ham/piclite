@@ -62,6 +62,7 @@ export type ToolPageCopy = ToolIntent & {
   steps: Array<{ title: string; body: string }>;
   benefitsTitle: string;
   benefits: Array<{ title: string; body: string }>;
+  useCasesTitle: string;
   faqTitle: string;
   faq: SeoFaq[];
   relatedTitle: string;
@@ -400,13 +401,13 @@ const TOOL_INTENTS: Record<ToolSlug, Record<KeywordLocale, ToolIntent>> = {
     ko: {
       name: "사진 용량 줄이기",
       title: "사진 용량 줄이기 — 100KB, 200KB 목표 압축",
-      description: "브라우저에서 JPG와 WebP 사진을 100KB, 200KB 등 원하는 목표 용량으로 압축하세요. 일괄 처리와 ZIP 다운로드를 지원합니다.",
+      description: "브라우저에서 JPG와 WebP 사진을 100KB, 200KB 등 목표 용량으로 압축하세요. 휴대폰에서도 사용할 수 있고 일괄 처리와 ZIP 다운로드를 지원합니다.",
       intro: "목표 용량을 50KB에서 2MB 사이로 설정하면 PicLite가 그 이하로 유지되는 가장 높은 JPG 또는 WebP 품질을 찾습니다. 사진은 기기 안에서 압축되고 업로드되지 않습니다.",
       input: "JPG, PNG, WebP, AVIF, BMP 또는 HEIC",
       output: "JPG, PNG 또는 WebP",
       why: "양식, 이메일, 플랫폼이 파일 용량을 제한할 때 유용합니다.",
       quality: "100KB, 500KB, 1MB, 2MB 프리셋과 50KB 단위 슬라이더를 지원합니다. PNG 출력은 무손실입니다.",
-      keywords: ["사진 용량 줄이기", "이미지 용량 줄이기", "사진 크기 줄이기", "100kb 압축", "사진 압축"],
+      keywords: ["사진 용량 줄이기", "이미지 용량 줄이기", "사진 크기 줄이기", "핸드폰 사진 용량 줄이기", "사진 용량 줄이는 방법", "이미지 파일 용량 줄이기", "사진 100kb 만들기", "100kb 압축", "사진 압축"],
     },
   },
   "heic-to-jpg": {
@@ -638,6 +639,7 @@ const LANDING_UI: Record<KeywordLocale, {
   batchTitle: string;
   batchBody: string;
   controlTitle: string;
+  useCasesTitle: string;
   faqTitle: string;
   freeQuestion: string;
   freeAnswer: string;
@@ -662,6 +664,7 @@ const LANDING_UI: Record<KeywordLocale, {
     batchTitle: "Batch-friendly",
     batchBody: "Add multiple files and download the results together when the workflow supports it.",
     controlTitle: "You control quality",
+    useCasesTitle: "Common use cases",
     faqTitle: "Frequently asked questions",
     freeQuestion: "Is this converter free?",
     freeAnswer: "Yes. PicLite is free to use in the browser and does not require an account or a paid plan.",
@@ -686,6 +689,7 @@ const LANDING_UI: Record<KeywordLocale, {
     batchTitle: "适合批量处理",
     batchBody: "可以添加多个文件，并在工作流程支持时一起下载结果。",
     controlTitle: "质量由你控制",
+    useCasesTitle: "常见使用场景",
     faqTitle: "常见问题",
     freeQuestion: "这个转换工具免费吗？",
     freeAnswer: "免费。PicLite 可以直接在浏览器中使用，不需要账号或付费套餐。",
@@ -710,6 +714,7 @@ const LANDING_UI: Record<KeywordLocale, {
     batchTitle: "일괄 처리에 적합",
     batchBody: "여러 파일을 한 번에 추가하고 흐름이 지원하면 결과를 함께 내려받으세요.",
     controlTitle: "품질은 직접 조절",
+    useCasesTitle: "활용 사례",
     faqTitle: "자주 묻는 질문",
     freeQuestion: "이 변환기는 무료인가요?",
     freeAnswer: "네. PicLite는 브라우저에서 무료로 사용할 수 있고 계정이나 유료 요금제가 필요하지 않습니다.",
@@ -749,6 +754,7 @@ export function getToolPageCopy(locale: KeywordLocale, slug: ToolSlug): ToolPage
       { title: ui.batchTitle, body: ui.batchBody },
       { title: ui.controlTitle, body: data.quality },
     ],
+    useCasesTitle: ui.useCasesTitle,
     faqTitle: ui.faqTitle,
     faq: [
       ...TOOL_GUIDES[slug][locale].faq,
