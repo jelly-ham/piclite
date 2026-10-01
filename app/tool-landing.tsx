@@ -214,6 +214,17 @@ const RELATED_LABELS: Record<KeywordLocale, Record<ToolSlug, string>> = {
     "image-to-pdf": "画像 → PDF",
     "pdf-to-jpg": "PDF → JPG",
   },
+  ru: {
+    "image-converter": "Конвертер изображений",
+    "image-compressor": "Сжатие изображений",
+    "compress-image-to-kb": "Сжать до размера",
+    "heic-to-jpg": "HEIC в JPG",
+    "webp-to-jpg": "WebP в JPG",
+    "png-to-jpg": "PNG в JPG",
+    "jpg-to-png": "JPG в PNG",
+    "image-to-pdf": "Изображения в PDF",
+    "pdf-to-jpg": "PDF в JPG",
+  },
 };
 
 function getRelatedLabel(locale: KeywordLocale, slug: ToolSlug) {
