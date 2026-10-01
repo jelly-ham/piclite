@@ -77,6 +77,11 @@ test("every sitemap URL serves indexable HTML with matching language, canonical 
     assert.equal((visible.match(/<h1\b/g) ?? []).length, 1, path);
     assert.equal((visible.match(/<main\b/g) ?? []).length, 1, path);
     assert.match(visible, /type="file"/, `${path} must offer a working converter`);
+    assert.match(
+      visible,
+      /class="icon-button github-link" href="https:\/\/github\.com\/jelly-ham\/piclite" target="_blank" rel="noopener noreferrer"/,
+      `${path}: GitHub header icon`,
+    );
     const title = body.match(/<title>(.*?)<\/title>/)?.[1];
     assert.ok(title && !titles.has(title), `${path} must have a unique title`);
     titles.add(title);
