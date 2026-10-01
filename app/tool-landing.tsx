@@ -170,6 +170,28 @@ const RELATED_LABELS: Record<KeywordLocale, Record<ToolSlug, string>> = {
     "image-to-pdf": "Imagens para PDF",
     "pdf-to-jpg": "PDF para JPG",
   },
+  de: {
+    "image-converter": "Bildkonverter",
+    "image-compressor": "Bildkompressor",
+    "compress-image-to-kb": "Auf Größe komprimieren",
+    "heic-to-jpg": "HEIC in JPG",
+    "webp-to-jpg": "WebP in JPG",
+    "png-to-jpg": "PNG in JPG",
+    "jpg-to-png": "JPG in PNG",
+    "image-to-pdf": "Bilder in PDF",
+    "pdf-to-jpg": "PDF in JPG",
+  },
+  fr: {
+    "image-converter": "Convertisseur d’images",
+    "image-compressor": "Compresseur d’images",
+    "compress-image-to-kb": "Compresser à une taille",
+    "heic-to-jpg": "HEIC en JPG",
+    "webp-to-jpg": "WebP en JPG",
+    "png-to-jpg": "PNG en JPG",
+    "jpg-to-png": "JPG en PNG",
+    "image-to-pdf": "Images en PDF",
+    "pdf-to-jpg": "PDF en JPG",
+  },
 };
 
 function getRelatedLabel(locale: KeywordLocale, slug: ToolSlug) {

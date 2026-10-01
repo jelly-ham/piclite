@@ -61,7 +61,7 @@ function structuredNodes(body) {
 test("every sitemap URL serves indexable HTML with matching language, canonical and visible content", async () => {
   const { body: sitemap } = await render("/sitemap.xml");
   const urls = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map((match) => match[1]);
-  assert.equal(urls.length, 57);
+  assert.equal(urls.length, 75);
   assert.equal(new Set(urls).size, urls.length);
   const titles = new Set();
   for (const url of urls) {
@@ -103,7 +103,7 @@ test("every sitemap URL serves indexable HTML with matching language, canonical 
 });
 
 test("unknown locales and tools return 404 instead of indexable duplicate pages", async () => {
-  for (const path of ["/xx", "/en/not-a-tool", "/fr/heic-to-jpg"]) {
+  for (const path of ["/xx", "/en/not-a-tool", "/zz/heic-to-jpg"]) {
     const { response, body } = await render(path);
     assert.equal(response.status, 404, path);
     // A real 404 is excluded from indexing even when the framework sends plain text.
