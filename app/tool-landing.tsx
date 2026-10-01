@@ -121,6 +121,17 @@ const RELATED_LABELS: Record<KeywordLocale, Record<ToolSlug, string>> = {
     "image-to-pdf": "图片转 PDF",
     "pdf-to-jpg": "PDF 转 JPG",
   },
+  ko: {
+    "image-converter": "이미지 변환",
+    "image-compressor": "이미지 압축",
+    "compress-image-to-kb": "사진 용량 줄이기",
+    "heic-to-jpg": "HEIC JPG 변환",
+    "webp-to-jpg": "WebP JPG 변환",
+    "png-to-jpg": "PNG JPG 변환",
+    "jpg-to-png": "JPG PNG 변환",
+    "image-to-pdf": "이미지 PDF 변환",
+    "pdf-to-jpg": "PDF JPG 변환",
+  },
 };
 
 function getRelatedLabel(locale: KeywordLocale, slug: ToolSlug) {

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { dictionaries, type Locale } from "./i18n";
-import { getRootSeoCopy, TOOL_SLUGS } from "./seo";
+import { getRootSeoCopy, isKeywordLocale, TOOL_SLUGS } from "./seo";
 import { GITHUB_URL } from "./site";
 
 const OPEN_SOURCE: Record<Locale, { kicker: string; title: string; body: string; cta: string }> = {
@@ -296,7 +296,7 @@ export default function SeoContent({ locale }: { locale: Locale }) {
         </div>
         <div className="seo-tool-links">
           {TOOL_SLUGS.map((slug) => {
-            const supportedLocale = locale === "en" || locale === "zh-cn";
+            const supportedLocale = isKeywordLocale(locale);
             const href = `/${supportedLocale ? locale : "en"}/${slug}`;
             return (
               <Link href={href} key={slug}>

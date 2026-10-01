@@ -24,7 +24,7 @@ export type RootSeoCopy = {
   keywords: string[];
 };
 
-export const KEYWORD_LOCALES = ["en", "zh-cn"] as const;
+export const KEYWORD_LOCALES = ["en", "zh-cn", "ko"] as const;
 export type KeywordLocale = (typeof KEYWORD_LOCALES)[number];
 
 export const TOOL_SLUGS = [
@@ -327,6 +327,17 @@ const TOOL_INTENTS: Record<ToolSlug, Record<KeywordLocale, ToolIntent>> = {
       quality: "JPG 和 WebP 可以调整质量，也可以选择无损 PNG 输出。",
       keywords: ["在线图片格式转换器", "免费图片转换", "图片格式转换", "不上传图片转换"],
     },
+    ko: {
+      name: "이미지 변환기",
+      title: "이미지 변환기 — JPG, PNG, WebP, HEIC 무료 변환",
+      description: "브라우저에서 이미지와 PDF를 변환하세요. HEIC, JPG, PNG, WebP, PDF를 지원하고 파일을 서버로 업로드하지 않습니다.",
+      intro: "이미지 파일을 골라 원하는 형식으로 바꾸세요. HEIC, JPG, PNG, WebP, AVIF, BMP, PDF를 읽고 JPG, PNG, WebP, PDF로 저장합니다. 변환은 기기 안에서 처리됩니다.",
+      input: "JPG, PNG, WebP, AVIF, BMP, HEIC 또는 PDF",
+      output: "JPG, PNG, WebP 또는 PDF",
+      why: "채팅 앱, 이메일, 웹 양식, 문서 작업에 필요한 형식으로 바꿀 때 사용합니다.",
+      quality: "JPG와 WebP는 저장 전에 품질을 조절할 수 있고, PNG는 무손실로 저장됩니다.",
+      keywords: ["이미지 변환", "이미지 변환기", "사진 형식 변환", "업로드 없는 이미지 변환"],
+    },
   },
   "image-compressor": {
     en: {
@@ -350,6 +361,17 @@ const TOOL_INTENTS: Record<ToolSlug, Record<KeywordLocale, ToolIntent>> = {
       why: "适合邮件附件、网页上传、聊天应用和存储空间有限的场景。",
       quality: "设置 JPG 或 WebP 的目标大小后，PicLite 会自动调整质量；PNG 保持无损。",
       keywords: ["在线图片压缩", "图片压缩", "压缩图片大小", "不上传图片压缩"],
+    },
+    ko: {
+      name: "이미지 압축",
+      title: "이미지 압축 — JPG, WebP 용량 줄이기, 업로드 없음",
+      description: "브라우저에서 JPG와 WebP 이미지를 압축하세요. 목표 용량을 정하면 품질을 자동으로 조절하며 파일을 업로드하지 않습니다.",
+      intro: "보내거나 게시하거나 저장하기 전에 이미지 파일 크기를 줄이세요. 목표 용량을 설정하면 PicLite가 기기 안에서 JPG 또는 WebP 품질을 조절합니다.",
+      input: "JPG, PNG, WebP, AVIF, BMP 또는 HEIC",
+      output: "JPG, PNG 또는 WebP",
+      why: "이메일 첨부, 웹 업로드, 채팅 앱, 저장 공간이 제한된 상황에 적합합니다.",
+      quality: "JPG와 WebP는 목표 용량을 정하면 품질이 자동으로 조절되고, PNG는 무손실을 유지합니다.",
+      keywords: ["이미지 압축", "사진 압축", "이미지 용량 줄이기", "업로드 없는 이미지 압축"],
     },
   },
   "compress-image-to-kb": {
@@ -375,6 +397,17 @@ const TOOL_INTENTS: Record<ToolSlug, Record<KeywordLocale, ToolIntent>> = {
       quality: "预设包含 100 KB、500 KB、1 MB 和 2 MB，滑块也支持 50 KB 步进的其他数值；PNG 输出保持无损。",
       keywords: ["压缩图片到100kb", "压缩图片到200kb", "图片压缩到指定大小", "减小图片kb", "压缩图片到目标大小"],
     },
+    ko: {
+      name: "사진 용량 줄이기",
+      title: "사진 용량 줄이기 — 100KB, 200KB 목표 압축",
+      description: "브라우저에서 JPG와 WebP 사진을 100KB, 200KB 등 원하는 목표 용량으로 압축하세요. 일괄 처리와 ZIP 다운로드를 지원합니다.",
+      intro: "목표 용량을 50KB에서 2MB 사이로 설정하면 PicLite가 그 이하로 유지되는 가장 높은 JPG 또는 WebP 품질을 찾습니다. 사진은 기기 안에서 압축되고 업로드되지 않습니다.",
+      input: "JPG, PNG, WebP, AVIF, BMP 또는 HEIC",
+      output: "JPG, PNG 또는 WebP",
+      why: "양식, 이메일, 플랫폼이 파일 용량을 제한할 때 유용합니다.",
+      quality: "100KB, 500KB, 1MB, 2MB 프리셋과 50KB 단위 슬라이더를 지원합니다. PNG 출력은 무손실입니다.",
+      keywords: ["사진 용량 줄이기", "이미지 용량 줄이기", "사진 크기 줄이기", "100kb 압축", "사진 압축"],
+    },
   },
   "heic-to-jpg": {
     en: {
@@ -398,6 +431,17 @@ const TOOL_INTENTS: Record<ToolSlug, Record<KeywordLocale, ToolIntent>> = {
       why: "JPG 更容易在 Windows、Android、邮件服务、网页表单和旧版图片应用中打开。",
       quality: "下载前可以选择 JPG 质量，也可以一次转换多张 iPhone 照片。",
       keywords: ["HEIC 转 JPG", "HEIC 转换器", "iPhone 照片转 JPG", "不上传 HEIC 转 JPG", "批量 HEIC 转 JPG"],
+    },
+    ko: {
+      name: "HEIC JPG 변환",
+      title: "HEIC JPG 변환 — 무료, 업로드 없는 아이폰 사진 변환",
+      description: "아이폰 HEIC 사진을 브라우저에서 JPG로 변환하세요. 일괄 변환과 ZIP 다운로드를 지원하고 사진을 업로드하지 않습니다.",
+      intro: "아이폰 HEIC 또는 HEIF 사진을 널리 지원되는 JPG로 바꾸세요. PicLite는 기기 안에서 변환하므로 원본 사진이 브라우저 밖으로 나가지 않습니다.",
+      input: "HEIC 또는 HEIF 사진",
+      output: "JPG 이미지",
+      why: "JPG는 Windows, Android, 이메일, 웹 양식, 오래된 사진 앱에서 더 쉽게 열립니다.",
+      quality: "다운로드 전에 JPG 품질을 선택할 수 있고, 여러 장의 아이폰 사진을 한 번에 변환할 수 있습니다.",
+      keywords: ["HEIC JPG 변환", "아이폰 사진 변환", "HEIC 변환기", "업로드 없는 HEIC 변환"],
     },
   },
   "webp-to-jpg": {
@@ -423,6 +467,17 @@ const TOOL_INTENTS: Record<ToolSlug, Record<KeywordLocale, ToolIntent>> = {
       quality: "调整 JPG 质量，在更小的文件和画面细节之间取得平衡。",
       keywords: ["WebP 转 JPG", "WebP 转换器", "在线 WebP 转 JPG", "不上传 WebP 转 JPG"],
     },
+    ko: {
+      name: "WebP JPG 변환",
+      title: "WebP JPG 변환 — 무료, 업로드 없는 변환",
+      description: "브라우저에서 WebP 이미지를 JPG로 변환하세요. 품질 선택과 일괄 변환을 지원하고 파일을 업로드하지 않습니다.",
+      intro: "WebP를 지원하지 않는 앱, 양식, 이메일, 편집기를 위해 WebP 이미지를 JPG로 변환하세요. 변환은 브라우저 안에서 실행됩니다.",
+      input: "WebP 이미지",
+      output: "JPG 이미지",
+      why: "JPG는 오래된 앱, 업로드 양식, 인쇄, 문서 작업에서 더 널리 지원됩니다.",
+      quality: "JPG 품질을 조절해 파일 크기와 화질의 균형을 맞출 수 있습니다.",
+      keywords: ["WebP JPG 변환", "WebP 변환기", "WebP 사진 변환", "업로드 없는 WebP 변환"],
+    },
   },
   "png-to-jpg": {
     en: {
@@ -446,6 +501,17 @@ const TOOL_INTENTS: Record<ToolSlug, Record<KeywordLocale, ToolIntent>> = {
       why: "对于照片，JPG 通常更小，并且被更多上传表单和聊天工具接受。",
       quality: "透明 PNG 区域会以白色 JPG 背景输出，可以选择需要的图片质量。",
       keywords: ["PNG 转 JPG", "PNG 转换器", "在线 PNG 转 JPG", "不上传 PNG 转 JPG"],
+    },
+    ko: {
+      name: "PNG JPG 변환",
+      title: "PNG JPG 변환 — 무료, 간편한 온라인 변환",
+      description: "브라우저에서 PNG 이미지를 JPG로 변환하세요. 파일 크기를 줄이고 업로드 없이 결과를 내려받을 수 있습니다.",
+      intro: "더 작은 파일이나 더 넓은 호환이 필요할 때 PNG 스크린샷, 사진, 그래픽을 JPG로 변환하세요. PicLite는 기기 안에서 이미지를 처리합니다.",
+      input: "PNG 이미지",
+      output: "JPG 이미지",
+      why: "사진에서는 JPG가 보통 더 작고, 더 많은 업로드 양식과 메신저에서 지원됩니다.",
+      quality: "투명한 PNG 영역은 흰색 JPG 배경으로 출력되며, 필요한 품질을 선택할 수 있습니다.",
+      keywords: ["PNG JPG 변환", "PNG 변환기", "PNG 사진 변환", "업로드 없는 PNG 변환"],
     },
   },
   "jpg-to-png": {
@@ -471,6 +537,17 @@ const TOOL_INTENTS: Record<ToolSlug, Record<KeywordLocale, ToolIntent>> = {
       quality: "PNG 输出是无损的，因此新文件可能比 JPG 原图更大。",
       keywords: ["JPG 转 PNG", "JPEG 转 PNG", "在线 JPG 转 PNG", "不上传 JPG 转 PNG"],
     },
+    ko: {
+      name: "JPG PNG 변환",
+      title: "JPG PNG 변환 — 무료, 업로드 없는 변환",
+      description: "브라우저에서 JPG 이미지를 PNG로 변환하세요. 편집과 디자인 작업에 필요한 무손실 형식으로 바꾸고 파일을 업로드하지 않습니다.",
+      intro: "편집기나 작업 흐름이 PNG를 요구할 때 JPG 이미지를 PNG로 변환하세요. 원본은 기기에 그대로 남습니다.",
+      input: "JPG 또는 JPEG 이미지",
+      output: "PNG 이미지",
+      why: "PNG는 다시 편집하거나 투명도가 필요한 작업 흐름에서 자주 요구됩니다.",
+      quality: "PNG는 해독된 픽셀에 대해 무손실이며, JPG와 WebP 품질 설정은 적용되지 않습니다.",
+      keywords: ["JPG PNG 변환", "JPG 변환기", "사진 PNG 변환", "업로드 없는 JPG 변환"],
+    },
   },
   "image-to-pdf": {
     en: {
@@ -495,6 +572,17 @@ const TOOL_INTENTS: Record<ToolSlug, Record<KeywordLocale, ToolIntent>> = {
       quality: "添加多张图片，然后直接从浏览器下载一个合并后的 PDF。",
       keywords: ["图片转 PDF", "JPG 转 PDF", "PNG 转 PDF", "不上传图片转 PDF"],
     },
+    ko: {
+      name: "이미지 PDF 변환",
+      title: "사진 PDF 변환 — JPG, PNG 이미지를 PDF로",
+      description: "브라우저에서 여러 이미지를 하나의 PDF로 합치세요. 이미지마다 한 페이지씩 만들고 파일을 업로드하지 않습니다.",
+      intro: "파일 목록의 이미지를 하나의 PDF로 합치며, 이미지마다 한 페이지가 됩니다. 이 페이지에서는 PDF가 미리 선택됩니다.",
+      input: "JPG, PNG, WebP, AVIF, BMP 또는 HEIC 이미지",
+      output: "여러 페이지로 합쳐진 PDF",
+      why: "여러 장의 사진이나 스캔 이미지를 문서 하나로 묶어 제출할 때 편리합니다.",
+      quality: "PDF 안의 이미지는 선택한 품질로 JPG로 인코딩되고, 투명 영역은 흰색이 됩니다.",
+      keywords: ["이미지 PDF 변환", "사진 PDF 변환", "JPG PDF 변환", "업로드 없는 PDF 변환"],
+    },
   },
   "pdf-to-jpg": {
     en: {
@@ -518,6 +606,17 @@ const TOOL_INTENTS: Record<ToolSlug, Record<KeywordLocale, ToolIntent>> = {
       why: "JPG 页面适合图片预览、幻灯片、消息发送，以及不接受 PDF 的系统。",
       quality: "每一页会被渲染为图片，然后可以在下载前选择 JPG 质量。",
       keywords: ["PDF 转 JPG", "PDF 转图片", "在线 PDF 转 JPG", "不上传 PDF 转 JPG"],
+    },
+    ko: {
+      name: "PDF JPG 변환",
+      title: "PDF JPG 변환 — 무료, 브라우저에서 바로 변환",
+      description: "PDF 페이지를 브라우저에서 JPG 이미지로 변환하세요. 파일을 업로드하지 않고 여러 페이지를 한 번에 처리합니다.",
+      intro: "PDF의 모든 페이지를 각각 이미지로 렌더링한 뒤 JPG로 내보냅니다. 문서에 들어 있는 원본 사진을 추출하는 대신 페이지 전체 모양을 캡처합니다.",
+      input: "PDF 문서",
+      output: "페이지마다 하나씩 JPG 이미지",
+      why: "PDF 뷰어가 없거나 페이지를 이미지로 보내야 할 때 유용합니다.",
+      quality: "모든 페이지를 이미지로 렌더링한 뒤 다운로드 전에 JPG 품질을 선택할 수 있습니다.",
+      keywords: ["PDF JPG 변환", "PDF 이미지 변환", "PDF 사진 변환", "업로드 없는 PDF 변환"],
     },
   },
 };
@@ -593,6 +692,30 @@ const LANDING_UI: Record<KeywordLocale, {
     deviceQuestion: "手机和平板可以使用吗？",
     deviceAnswer: "可以。PicLite 支持现代桌面和移动浏览器，转换在设备本地运行。",
     relatedTitle: "更多私密格式转换工具",
+  },
+  ko: {
+    eyebrow: "기기 안에서 처리되는 비공개 변환",
+    cta: "변환기 열기",
+    backLabel: "PicLite로 돌아가기",
+    stepsTitle: "사용 방법",
+    chooseTitle: "파일 선택",
+    chooseBody: "기기에서 지원되는 파일을 선택하거나 끌어다 놓으세요.",
+    outputTitle: "출력 형식 선택",
+    outputBody: "출력 형식을 고르고 필요하면 품질을 조절하세요.",
+    downloadTitle: "내려받기",
+    downloadBody: "브라우저에서 변환하고 결과를 내려받으세요.",
+    benefitsTitle: "PicLite를 쓰는 이유",
+    privateTitle: "업로드 없음",
+    privateBody: "파일은 브라우저에서 처리되고 변환 서버로 전송되지 않습니다.",
+    batchTitle: "일괄 처리에 적합",
+    batchBody: "여러 파일을 한 번에 추가하고 흐름이 지원하면 결과를 함께 내려받으세요.",
+    controlTitle: "품질은 직접 조절",
+    faqTitle: "자주 묻는 질문",
+    freeQuestion: "이 변환기는 무료인가요?",
+    freeAnswer: "네. PicLite는 브라우저에서 무료로 사용할 수 있고 계정이나 유료 요금제가 필요하지 않습니다.",
+    deviceQuestion: "휴대폰과 태블릿에서도 되나요?",
+    deviceAnswer: "네. PicLite는 최신 데스크톱과 모바일 브라우저에서 동작하고 변환은 기기에서 실행됩니다.",
+    relatedTitle: "더 많은 비공개 변환 도구",
   },
 };
 
