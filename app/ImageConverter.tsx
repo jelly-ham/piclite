@@ -821,6 +821,9 @@ export default function ImageConverter({
               onChange={(event) => {
                 const nextLocale = event.target.value;
                 const suffix = toolSlug && (nextLocale === "en" || nextLocale === "zh-cn") ? `/${toolSlug}` : "";
+                // Full-document navigation on purpose: the server must re-render <html lang/dir>
+                // for the new locale, which a client-side route change does not update.
+                // eslint-disable-next-line @next/next/no-location-assign-relative-destination
                 window.location.href = `/${nextLocale}${suffix}`;
               }}
             >
