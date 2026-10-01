@@ -40,6 +40,30 @@ export const TOOL_GUIDES: Record<ToolSlug, Record<KeywordLocale, Guide>> = {
         { question: "JPG, PNG, WebP 중 무엇을 선택해야 하나요?", answer: "사진에는 JPG, 스크린샷·로고·글자나 투명 배경이 있는 이미지에는 PNG, 받는 쪽이 지원하고 용량을 줄이고 싶을 때는 WebP를 선택하세요." },
       ],
     },
+    es: {
+      summary: "PicLite decodifica la imagen y crea un archivo nuevo en el formato que elijas. Cambiar solo la extensión del archivo no lo convierte.",
+      notes: [
+        "Elige JPG para fotos cuando la transparencia no importe; PNG para capturas, texto y gráficos transparentes; WebP cuando la app receptora lo acepte; PDF para combinar imágenes en un documento.",
+        "Las exportaciones de mapa de bits conservan las dimensiones de la imagen decodificada. PicLite no ofrece redimensionar, convertir a vectores ni exportar animaciones. La decodificación AVIF y la codificación WebP dependen del navegador.",
+      ],
+      faq: [
+        { question: "¿La conversión conserva los metadatos EXIF y GPS?", answer: "PicLite redibuja los píxeles decodificados en un lienzo y exporta un archivo nuevo, así que no copia los metadatos EXIF ni GPS. Guarda el original si necesitas los datos de la cámara o la ubicación." },
+        { question: "¿Puedo convertir imágenes animadas?", answer: "PicLite produce imágenes fijas. No conserva secuencias WebP animadas ni exporta archivos animados; usa un conversor especializado para eso." },
+        { question: "¿Qué formato elijo: JPG, PNG o WebP?", answer: "Elige JPG para fotos, PNG para capturas, logotipos y todo lo que tenga texto o transparencia, y WebP cuando la app o el sitio de destino lo acepte y ayude un archivo más pequeño." },
+      ],
+    },
+    pt: {
+      summary: "O PicLite decodifica a imagem e cria um arquivo novo no formato escolhido. Mudar só a extensão do arquivo não converte.",
+      notes: [
+        "Escolha JPG para fotos quando a transparência não importa; PNG para capturas, texto e gráficos transparentes; WebP quando o app de destino aceitar; PDF para juntar imagens em um documento.",
+        "As exportações de bitmap mantêm as dimensões da imagem decodificada. O PicLite não oferece redimensionamento, conversão vetorial nem exportação de animação. A decodificação AVIF e a codificação WebP dependem do navegador.",
+      ],
+      faq: [
+        { question: "A conversão mantém metadados EXIF e GPS?", answer: "O PicLite redesenha os pixels decodificados em um canvas e exporta um arquivo novo, então não copia metadados EXIF nem GPS. Guarde o original se precisar dos dados da câmera ou da localização." },
+        { question: "Posso converter imagens animadas?", answer: "O PicLite produz imagens estáticas. Ele não mantém sequências WebP animadas nem exporta arquivos animados; use um conversor especializado." },
+        { question: "Qual formato escolher: JPG, PNG ou WebP?", answer: "Escolha JPG para fotos, PNG para capturas, logotipos e tudo com texto ou transparência, e WebP quando o app ou site de destino aceitar e um arquivo menor ajudar." },
+      ],
+    },
   },
   "image-compressor": {
     en: {
@@ -70,6 +94,30 @@ export const TOOL_GUIDES: Record<ToolSlug, Record<KeywordLocale, Guide>> = {
         { question: "이미지를 정확히 100KB로 압축할 수 있나요?", answer: "JPG 또는 WebP 목표 슬라이더로 목표에 가깝게 맞출 수 있지만 정확한 크기를 보장하지는 않습니다. 표시된 결과를 확인하고, 여전히 크면 목표를 낮추거나 먼저 이미지 크기를 줄이세요." },
         { question: "압축은 무손실인가요?", answer: "JPG와 품질을 지정한 WebP는 손실 압축이라 세부 정보가 줄어들 수 있습니다. PNG는 해독된 픽셀에 대해 무손실이지만 파일이 더 커질 수 있고, JPG에서 이미 사라진 정보는 되살리지 못합니다." },
         { question: "크기를 줄이는 것과 압축하는 것 중 무엇이 좋나요?", answer: "PicLite는 픽셀 크기를 바꾸지 않고 압축합니다. 사진이 쓰일 곳보다 훨씬 크다면 편집기에서 먼저 크기를 줄이는 편이 품질만 낮추는 것보다 용량을 더 절약합니다." },
+      ],
+    },
+    es: {
+      summary: "PicLite usa un control de tamaño objetivo en JPG y WebP y ajusta la calidad de codificación en tu dispositivo para acercarse. Compara el resultado con el original antes de descargar.",
+      notes: [
+        "El control de tamaño objetivo se aplica a JPG y WebP y busca una salida igual o menor al tamaño elegido. La salida PNG es sin pérdida y no usa el control; recodificar un PNG no garantiza un archivo más pequeño.",
+        "El conversor mantiene las dimensiones de la imagen y no puede garantizar el objetivo exacto porque el tamaño depende del contenido y del codificador del navegador. Una imagen ya optimizada puede seguir siendo más grande con la calidad mínima. Compara los tamaños de la lista de archivos.",
+      ],
+      faq: [
+        { question: "¿Puedo comprimir una imagen a exactamente 100 KB o 200 KB?", answer: "PicLite puede apuntar a un tamaño con el control de JPG o WebP, pero no garantiza el tamaño exacto. Revisa el resultado y redimensiona la imagen primero si sigue siendo demasiado grande." },
+        { question: "¿La compresión es sin pérdida?", answer: "JPG y WebP con calidad usan compresión con pérdida, que puede quitar detalle. La codificación PNG es sin pérdida para los píxeles decodificados, pero puede producir un archivo más grande y no recupera el detalle ya perdido en un JPG." },
+        { question: "¿Conviene redimensionar o comprimir?", answer: "PicLite comprime sin cambiar las dimensiones en píxeles. Si la foto es mucho más grande que el uso final, redimensionarla antes en un editor suele ahorrar más espacio que solo bajar la calidad." },
+      ],
+    },
+    pt: {
+      summary: "O PicLite usa um controle de tamanho alvo em JPG e WebP e ajusta a qualidade de codificação no aparelho para chegar perto. Compare com o original antes de baixar.",
+      notes: [
+        "O controle de tamanho alvo vale para JPG e WebP e busca uma saída igual ou abaixo do tamanho escolhido. A saída PNG é sem perdas e não usa o controle; recodificar um PNG não garante um arquivo menor.",
+        "O conversor mantém as dimensões e não garante o alvo exato porque o tamanho depende do conteúdo e do codificador do navegador. Uma imagem já otimizada pode continuar maior na qualidade mínima. Compare os tamanhos na lista de arquivos.",
+      ],
+      faq: [
+        { question: "Dá para comprimir para exatamente 100 KB ou 200 KB?", answer: "O PicLite mira o tamanho com o controle de JPG ou WebP, mas não garante o valor exato. Confira o resultado e reduza a imagem antes se continuar grande demais." },
+        { question: "A compressão é sem perdas?", answer: "JPG e WebP com qualidade usam compressão com perdas, que pode remover detalhes. A codificação PNG é sem perdas para os pixels decodificados, mas pode gerar um arquivo maior e não recupera o detalhe já perdido no JPG." },
+        { question: "Vale mais redimensionar ou comprimir?", answer: "O PicLite comprime sem mudar as dimensões em pixels. Se a foto for muito maior que o uso final, redimensionar antes em um editor costuma economizar mais espaço do que só baixar a qualidade." },
       ],
     },
   },
@@ -131,6 +179,64 @@ export const TOOL_GUIDES: Record<ToolSlug, Record<KeywordLocale, Guide>> = {
         { title: "휴대폰 저장 공간", body: "아이폰 HEIC 사진은 JPG로 바꾸면서 동시에 목표 용량까지 줄일 수 있습니다. 원본은 남겨 두고 사본을 압축하세요." },
       ],
     },
+    es: {
+      summary: "Define un tamaño objetivo y PicLite ajusta la calidad de JPG o WebP en tu dispositivo para acercarse a él. El resultado es un archivo nuevo; compáralo con el original antes de descargar.",
+      notes: [
+        "El objetivo se aplica a JPG y WebP. PNG se guarda sin pérdida e ignora el objetivo, porque volver a codificar un PNG no garantiza un archivo más pequeño.",
+        "El objetivo es una meta, no una garantía: el tamaño final depende del contenido de la imagen y del codificador del navegador. Una foto ya optimizada puede superar el objetivo incluso con la calidad mínima.",
+        "PicLite mantiene las dimensiones en píxeles. Si el archivo sigue superando un límite estricto, reduce primero el tamaño en un editor y vuelve a comprimir.",
+        "El tamaño original y el resultado aparecen en la lista de archivos, así puedes comparar antes de descargar.",
+        "Las fotos HEIC también se pueden convertir a JPG en esta página aplicando el mismo tamaño objetivo; todo se procesa en tu dispositivo.",
+      ],
+      faq: [
+        { question: "¿Puedo comprimir una imagen exactamente a 100 KB?", answer: "PicLite apunta al objetivo y suele quedar por debajo, pero no garantiza un tamaño exacto. Revisa el resultado en la lista y baja el objetivo o reduce la imagen si un formulario la rechaza." },
+        { question: "¿Qué formatos admiten un tamaño objetivo?", answer: "El control se aplica a JPG y WebP. PNG es sin pérdida e ignora el objetivo, así que convertir un PNG a JPG suele ser la forma de alcanzar un límite pequeño." },
+        { question: "¿Por qué mi imagen sigue siendo más grande que el objetivo?", answer: "Las fotos muy grandes o con mucho detalle pueden no bajar del objetivo ni con la calidad mínima. Reduce primero las dimensiones y vuelve a comprimir." },
+        { question: "¿Puedo comprimir varias imágenes al mismo objetivo?", answer: "Sí. Agrega un lote y todos los archivos se comprimen al mismo objetivo en una sola pasada; se descargan juntos en un ZIP." },
+        { question: "¿Cómo puedo saber el tamaño de la foto?", answer: "La lista de archivos muestra el tamaño original y el resultado, junto con cuánto se redujo. También puedes verlo en las propiedades del archivo descargado." },
+        { question: "¿Funciona con fotos del teléfono?", answer: "Sí. Funciona en navegadores móviles modernos y la conversión se ejecuta en el dispositivo. Las fotos HEIC del iPhone se convierten a JPG con el mismo objetivo." },
+        { question: "¿Comprimir reduce la calidad de la foto?", answer: "JPG y WebP usan compresión con pérdida, así que bajar la calidad puede eliminar detalles. Con un objetivo amplio la diferencia suele ser mínima; compara el resultado con el original." },
+        { question: "¿La compresión reduce la resolución?", answer: "No. PicLite mantiene las dimensiones en píxeles. Si necesitas menos resolución, ajusta el tamaño en un editor y vuelve a comprimir." },
+        { question: "¿Necesito una cuenta o hay marca de agua?", answer: "No. Se usa gratis sin cuenta, no agrega marcas de agua y los archivos no se suben a un servidor." },
+        { question: "¿Qué hago si el archivo no baja del objetivo?", answer: "Reduce las dimensiones en un editor o convierte el PNG a JPG y vuelve a comprimir." },
+      ],
+      useCases: [
+        { title: "Trámites y formularios oficiales", body: "Muchos portales piden 'JPG, máximo 500 KB'. Fijar el objetivo un poco por debajo del límite reduce el riesgo de que el formulario rechace la foto." },
+        { title: "Currículums y portales de empleo", body: "Cada sistema tiene su propio límite para la foto de perfil. Usa 100 KB o 200 KB como objetivo y revisa el resultado al instante." },
+        { title: "WhatsApp, Telegram y correo", body: "Comprime varias fotos al mismo objetivo para no superar el límite de adjuntos; los resultados se descargan juntos en un ZIP." },
+        { title: "Blogs y tiendas en línea", body: "Reducir el peso antes de publicar aligera la carga de la página. Procesar varias imágenes a la vez ahorra tiempo." },
+        { title: "Espacio en el teléfono", body: "Puedes convertir fotos HEIC del iPhone a JPG y reducirlas al mismo tiempo. Conserva el original y comprime una copia." },
+      ],
+    },
+    pt: {
+      summary: "Defina um tamanho alvo e o PicLite ajusta a qualidade de JPG ou WebP no dispositivo para chegar perto dele. O resultado é um arquivo novo; compare com o original antes de baixar.",
+      notes: [
+        "O alvo vale para JPG e WebP. PNG é salvo sem perdas e ignora o alvo, porque recodificar um PNG não garante um arquivo menor.",
+        "O alvo é uma meta, não uma garantia: o tamanho final depende do conteúdo da imagem e do codificador do navegador. Uma foto já otimizada pode passar do alvo mesmo na qualidade mínima.",
+        "O PicLite mantém as dimensões em pixels. Se o arquivo ainda passar de um limite rígido, reduza primeiro o tamanho em um editor e comprima de novo.",
+        "O tamanho original e o resultado aparecem na lista de arquivos, então dá para comparar antes de baixar.",
+        "Fotos HEIC também podem ser convertidas para JPG nesta página com o mesmo alvo; tudo é processado no seu dispositivo.",
+      ],
+      faq: [
+        { question: "Dá para comprimir uma imagem exatamente para 100 KB?", answer: "O PicLite mira o alvo e costuma ficar abaixo, mas não garante um tamanho exato. Confira o resultado na lista e baixe o alvo ou reduza a imagem se um formulário recusar." },
+        { question: "Quais formatos aceitam um tamanho alvo?", answer: "O controle vale para saída JPG e WebP. PNG é sem perdas e ignora o alvo, então converter um PNG para JPG costuma ser o caminho para atingir um limite pequeno." },
+        { question: "Por que minha imagem continua maior que o alvo?", answer: "Fotos muito grandes ou com muito detalhe podem não descer até o alvo nem na qualidade mínima. Reduza as dimensões primeiro e comprima de novo." },
+        { question: "Posso comprimir várias imagens para o mesmo alvo?", answer: "Sim. Adicione um lote e todos os arquivos são comprimidos para o mesmo alvo de uma vez; eles baixam juntos em um ZIP." },
+        { question: "Como vejo o tamanho da foto?", answer: "A lista de arquivos mostra o tamanho original e o resultado, além de quanto foi reduzido. Você também pode ver nas propriedades do arquivo baixado." },
+        { question: "Funciona com fotos do celular?", answer: "Sim. Funciona em navegadores móveis modernos e a conversão roda no dispositivo. Fotos HEIC do iPhone são convertidas para JPG com o mesmo alvo." },
+        { question: "Comprimir deixa a foto com menos qualidade?", answer: "JPG e WebP usam compressão com perdas, então baixar a qualidade pode remover detalhes. Com um alvo folgado a diferença costuma ser pequena; compare com o original." },
+        { question: "A compressão reduz a resolução?", answer: "Não. O PicLite mantém as dimensões em pixels. Se precisar de menos resolução, ajuste o tamanho em um editor e comprima de novo." },
+        { question: "Preciso de conta ou tem marca d'água?", answer: "Não. O uso é gratuito, sem conta, não adiciona marca d'água e os arquivos não são enviados a um servidor." },
+        { question: "O que faço se o arquivo não chegar ao alvo?", answer: "Reduza as dimensões em um editor ou converta o PNG para JPG e comprima de novo." },
+      ],
+      useCases: [
+        { title: "Formulários e processos oficiais", body: "Muitos portais pedem 'JPG, até 500 KB'. Definir o alvo um pouco abaixo do limite reduz o risco de o formulário recusar a foto." },
+        { title: "Currículos e sites de emprego", body: "Cada sistema tem um limite para a foto de perfil. Use 100 KB ou 200 KB como alvo e confira o resultado na hora." },
+        { title: "WhatsApp, Telegram e e-mail", body: "Comprima várias fotos para o mesmo alvo e fique dentro do limite de anexos; os resultados baixam juntos em um ZIP." },
+        { title: "Blogs e lojas online", body: "Reduzir o peso antes de publicar deixa o carregamento mais leve. Processar várias imagens de uma vez economiza tempo." },
+        { title: "Espaço no celular", body: "Dá para converter fotos HEIC do iPhone para JPG e reduzir ao mesmo tempo. Guarde o original e comprima uma cópia." },
+      ],
+    },
   },
   "heic-to-jpg": {
     en: {
@@ -184,6 +290,40 @@ export const TOOL_GUIDES: Record<ToolSlug, Record<KeywordLocale, Guide>> = {
         { question: "첫 HEIC 변환이 느린 이유는?", answer: "브라우저가 HEIC 해독기를 필요할 때 내려받은 뒤 사진을 해독합니다. 큰 사진은 기기 메모리도 필요하므로, 메모리가 부족하면 한 번에 처리하는 파일 수를 줄이세요." },
       ],
     },
+    es: {
+      summary: "Convierte fotos HEIC o HEIF a JPG cuando un formulario o una app no abra el original. PicLite carga un decodificador HEIC local al seleccionar el archivo. Puedes convertir una foto o un álbum completo; si hay varios resultados, se descargan juntos en un ZIP.",
+      notes: [
+        "El JPG se preselecciona con calidad 82%. El HEIC ya es eficiente, así que el JPG resultante puede pesar más; ajusta la calidad después de ver el resultado.",
+        "El iPhone guarda las fotos como HEIC cuando la cámara está en 'Alta eficiencia'. Windows, Android y muchos formularios no abren HEIC, por eso suele necesitarse una copia en JPG.",
+        "Puedes añadir un álbum completo. Todas las fotos se convierten en la misma sesión en tu dispositivo y los resultados se descargan juntos en un ZIP.",
+        "Este flujo exporta una imagen fija: no conserva el movimiento de Live Photos, los datos de profundidad ni los metadatos del contenedor HEIC. Guarda el original para editar y archivar.",
+      ],
+      faq: [
+        { question: "¿Por qué Windows no abre las fotos de mi iPhone?", answer: "El iPhone guarda las fotos como HEIC y Windows no las abre sin un códec adicional. Al convertirlas a JPG se abren en Windows, Android, aplicaciones de correo y formularios web." },
+        { question: "¿Puedo convertir varias fotos HEIC a la vez?", answer: "Sí. Añade tantas fotos HEIC como necesites. Cada una se convierte en tu dispositivo y varios resultados se descargan juntos en un solo ZIP." },
+        { question: "¿Cómo hago que el iPhone deje de tomar fotos HEIC?", answer: "Ve a Ajustes, Cámara, Formatos y elige 'Más compatible'. Las fotos nuevas se guardarán como JPG; las que ya tomaste en HEIC necesitan una conversión." },
+        { question: "¿HEIC y HEIF son lo mismo?", answer: "HEIF es el formato contenedor y HEIC es el nombre que Apple usa para su variante de foto HEIF. PicLite acepta archivos .heic y .heif y los convierte a JPG." },
+        { question: "¿Por qué el JPG pesa más que la foto HEIC?", answer: "El HEIC puede almacenar la foto de forma más eficiente que el JPG. La conversión mejora la compatibilidad pero no garantiza un archivo más pequeño; baja la calidad si hay un límite de tamaño." },
+        { question: "¿Por qué la primera conversión HEIC tarda más?", answer: "El navegador descarga el decodificador HEIC cuando lo necesita y luego decodifica la foto. Las fotos grandes también requieren memoria del dispositivo; prueba con menos archivos si el teléfono se queda sin memoria." },
+      ],
+    },
+    pt: {
+      summary: "Converta fotos HEIC ou HEIF para JPG quando um formulário ou app não abrir o original. O PicLite carrega um decodificador HEIC local ao selecionar o arquivo. Dá para converter uma foto ou um álbum inteiro; com vários resultados, eles baixam juntos em um ZIP.",
+      notes: [
+        "O JPG vem predefinido com qualidade 82%. O HEIC já é eficiente, então o JPG pode ficar maior; ajuste a qualidade depois de ver o resultado.",
+        "O iPhone salva fotos como HEIC quando a câmera está em 'Alta eficiência'. Windows, Android e muitos formulários não abrem HEIC, por isso uma cópia em JPG costuma ser necessária.",
+        "Dá para adicionar um álbum inteiro. Todas as fotos são convertidas na mesma sessão no seu dispositivo e os resultados baixam juntos em um ZIP.",
+        "Este fluxo exporta uma imagem estática: não mantém o movimento das Live Photos, dados de profundidade nem os metadados do contêiner HEIC. Guarde o original para editar e arquivar.",
+      ],
+      faq: [
+        { question: "Por que o Windows não abre as fotos do meu iPhone?", answer: "O iPhone salva como HEIC e o Windows não abre sem um codec extra. Convertendo para JPG, as fotos abrem no Windows, Android, apps de e-mail e formulários." },
+        { question: "Posso converter várias fotos HEIC de uma vez?", answer: "Sim. Adicione quantas fotos HEIC precisar. Cada uma é convertida no seu dispositivo e vários resultados baixam juntos em um único ZIP." },
+        { question: "Como faço o iPhone parar de tirar fotos HEIC?", answer: "Vá em Ajustes, Câmera, Formatos e escolha 'Mais compatível'. As fotos novas serão JPG; as que já estão em HEIC precisam de uma conversão." },
+        { question: "HEIC e HEIF são a mesma coisa?", answer: "HEIF é o formato contêiner e HEIC é o nome que a Apple usa para sua variante de foto HEIF. O PicLite aceita arquivos .heic e .heif e converte para JPG." },
+        { question: "Por que o JPG fica maior que a foto HEIC?", answer: "O HEIC pode armazenar a foto de forma mais eficiente que o JPG. A conversão melhora a compatibilidade, mas não garante um arquivo menor; baixe a qualidade se houver limite de tamanho." },
+        { question: "Por que a primeira conversão HEIC demora mais?", answer: "O navegador baixa o decodificador HEIC quando precisa e depois decodifica a foto. Fotos grandes também exigem memória do aparelho; use menos arquivos se o celular ficar sem memória." },
+      ],
+    },
   },
   "webp-to-jpg": {
     en: {
@@ -214,6 +354,30 @@ export const TOOL_GUIDES: Record<ToolSlug, Record<KeywordLocale, Guide>> = {
         { question: "투명한 WebP 배경은 어떻게 되나요?", answer: "PicLite는 JPG로 내보내기 전에 흰 배경을 그립니다. 투명 픽셀을 유지하려면 출력 형식으로 PNG를 선택하세요." },
         { question: "움직이는 WebP도 JPG에서 움직이나요?", answer: "아니요. JPG는 정지 이미지 형식이고 PicLite는 애니메이션을 내보내지 않습니다. 움직임이 필요하면 원본 WebP를 남겨 두세요." },
         { question: "WebP를 JPG와 PNG 중 무엇으로 변환해야 하나요?", answer: "용량이 중요하고 사진일 때는 JPG, 투명 영역이나 선명한 가장자리가 있을 때는 PNG를 선택하세요. JPG는 투명 영역을 흰색으로 바꾸고 가는 선을 흐리게 만들 수 있습니다." },
+      ],
+    },
+    es: {
+      summary: "PicLite convierte una imagen WebP en un JPG fijo con fondo blanco. Úsalo cuando un formulario de carga o un editor antiguo no acepte WebP.",
+      notes: [
+        "El JPG no conserva la transparencia. PicLite rellena las zonas transparentes con blanco; elige PNG si necesitas mantenerla.",
+        "Convertir un WebP con pérdida a JPG añade otra codificación con pérdida. Subir la calidad no recupera el detalle perdido y el archivo puede pesar más.",
+      ],
+      faq: [
+        { question: "¿Qué pasa con los fondos transparentes de WebP?", answer: "PicLite dibuja un fondo blanco antes de exportar el JPG. Para conservar píxeles transparentes, selecciona PNG como salida." },
+        { question: "¿Un WebP animado sigue animado como JPG?", answer: "No. El JPG es un formato fijo y PicLite no exporta secuencias de animación. Conserva el WebP original si el movimiento importa." },
+        { question: "¿Conviene convertir WebP a JPG o a PNG?", answer: "Elige JPG para fotos cuando importe un archivo pequeño y PNG cuando la imagen tenga transparencia o bordes definidos, porque el JPG rellena la transparencia con blanco y puede difuminar líneas finas." },
+      ],
+    },
+    pt: {
+      summary: "O PicLite transforma uma imagem WebP em um JPG estático com fundo branco. Use quando um formulário ou editor antigo não aceitar WebP.",
+      notes: [
+        "O JPG não guarda transparência. O PicLite preenche as áreas transparentes com branco; escolha PNG se precisar mantê-las.",
+        "Converter um WebP com perdas para JPG adiciona outra etapa com perdas. Aumentar a qualidade não recupera o detalhe perdido e o arquivo pode ficar maior.",
+      ],
+      faq: [
+        { question: "O que acontece com fundos transparentes do WebP?", answer: "O PicLite desenha um fundo branco antes de exportar o JPG. Para manter pixels transparentes, selecione PNG como saída." },
+        { question: "Um WebP animado continua animado como JPG?", answer: "Não. O JPG é estático e o PicLite não exporta sequências de animação. Guarde o WebP original se o movimento importa." },
+        { question: "Devo converter WebP para JPG ou PNG?", answer: "Escolha JPG para fotos quando um arquivo pequeno importa e PNG quando a imagem tiver transparência ou bordas nítidas, porque o JPG troca a transparência por branco e pode borrar linhas finas." },
       ],
     },
   },
@@ -248,6 +412,30 @@ export const TOOL_GUIDES: Record<ToolSlug, Record<KeywordLocale, Guide>> = {
         { question: "언제 PNG를 유지하는 게 좋나요?", answer: "스크린샷, 도표, 로고, 글자나 투명 배경이 있는 이미지는 PNG를 유지하세요. JPG는 사진에 잘 맞지만 선명한 가장자리에 압축 흔적을 남길 수 있습니다." },
       ],
     },
+    es: {
+      summary: "Convierte PNG a JPG para cargas que exigen JPEG. PicLite conserva las dimensiones en píxeles y reemplaza las zonas transparentes con blanco.",
+      notes: [
+        "El JPG funciona bien en fotos. Para textos pequeños, diagramas definidos y logotipos puede convenir más el PNG, ya que el JPG puede crear artefactos visibles en los bordes.",
+        "La salida JPG tiene pérdida, incluso con calidad alta. Guarda el PNG original para futuras ediciones y revisa el tamaño del resultado, porque la conversión no siempre reduce el archivo.",
+      ],
+      faq: [
+        { question: "¿PNG a JPG conserva el fondo transparente?", answer: "No. El JPG no almacena píxeles transparentes; PicLite los reemplaza con blanco. Conserva el PNG o usa WebP si necesitas transparencia." },
+        { question: "¿PNG a JPG reduce las dimensiones de la imagen?", answer: "No. PicLite exporta con las dimensiones decodificadas. La calidad afecta la codificación y el tamaño del archivo, no el ancho ni el alto." },
+        { question: "¿Cuándo conviene conservar el PNG?", answer: "Conserva el PNG en capturas, diagramas, logotipos e imágenes con texto o transparencia. El JPG funciona bien en fotos, pero puede dejar artefactos en bordes definidos." },
+      ],
+    },
+    pt: {
+      summary: "Converta PNG para JPG para envios que exigem JPEG. O PicLite mantém as dimensões em pixels e troca as áreas transparentes por branco.",
+      notes: [
+        "O JPG funciona bem em fotos. Para textos pequenos, diagramas nítidos e logotipos, o PNG pode ser melhor, pois o JPG pode criar artefatos visíveis nas bordas.",
+        "A saída JPG tem perdas, mesmo em qualidade alta. Guarde o PNG original para edições futuras e confira o tamanho do resultado, porque a conversão nem sempre reduz o arquivo.",
+      ],
+      faq: [
+        { question: "PNG para JPG mantém o fundo transparente?", answer: "Não. O JPG não guarda pixels transparentes; o PicLite troca por branco. Mantenha o PNG ou use WebP se precisar de transparência." },
+        { question: "PNG para JPG reduz as dimensões da imagem?", answer: "Não. O PicLite exporta nas dimensões decodificadas. A qualidade afeta a codificação e o tamanho do arquivo, não a largura nem a altura." },
+        { question: "Quando vale a pena manter o PNG?", answer: "Mantenha o PNG em capturas, diagramas, logotipos e imagens com texto ou transparência. O JPG funciona bem em fotos, mas pode deixar artefatos em bordas nítidas." },
+      ],
+    },
   },
   "jpg-to-png": {
     en: {
@@ -278,6 +466,30 @@ export const TOOL_GUIDES: Record<ToolSlug, Record<KeywordLocale, Guide>> = {
         { question: "JPG를 PNG로 바꾸면 화질이 좋아지나요?", answer: "손실 JPG 인코딩을 한 번 더 거치는 일은 피하지만, 사라진 세부 정보를 되살리거나 JPEG 흔적을 없애지는 못합니다. 보이는 내용과 픽셀 크기는 그대로입니다." },
         { question: "PNG를 선택하면 품질 슬라이더가 비활성화되는 이유는?", answer: "PicLite는 PNG를 무손실로 내보냅니다. 브라우저의 PNG 인코더는 JPG와 WebP 품질 설정을 사용하지 않으므로 슬라이더가 적용되지 않습니다." },
         { question: "편집이나 인쇄 전에 JPG를 PNG로 바꿔야 하나요?", answer: "편집기가 PNG를 요구하면 변환이 도움이 되지만, 사라진 세부 정보를 되살리거나 더 선명하게 만들지는 않습니다. 인쇄에는 보통 원본 JPG로 충분합니다." },
+      ],
+    },
+    es: {
+      summary: "Convierte JPG o JPEG a PNG cuando un editor o flujo de trabajo requiera PNG. El PNG viene preseleccionado y se codifica sin pérdida a partir de los píxeles decodificados.",
+      notes: [
+        "Convertir JPG a PNG no recupera el detalle perdido en la compresión JPEG: solo codifica sin pérdida la imagen tal como se decodifica.",
+        "El PNG puede pesar mucho más que el JPG. La conversión tampoco elimina el fondo ni lo vuelve transparente; para eso necesitas un editor de imágenes.",
+      ],
+      faq: [
+        { question: "¿JPG a PNG mejora la calidad?", answer: "Evita otra codificación JPG con pérdida, pero no recupera detalle perdido ni elimina los artefactos JPEG. El contenido visible y las dimensiones siguen igual." },
+        { question: "¿Por qué el control de calidad está desactivado para PNG?", answer: "PicLite exporta PNG sin pérdida. El codificador PNG del navegador no usa el ajuste de calidad de JPG y WebP, así que el control no se aplica." },
+        { question: "¿Conviene convertir JPG a PNG antes de editar o imprimir?", answer: "Convertir a PNG es útil cuando el editor lo exige, pero no recupera detalle ni da más nitidez. Para imprimir, el JPG original suele bastar." },
+      ],
+    },
+    pt: {
+      summary: "Converta JPG ou JPEG para PNG quando um editor ou fluxo exigir PNG. O PNG vem predefinido e é codificado sem perdas a partir dos pixels decodificados.",
+      notes: [
+        "Converter JPG para PNG não recupera o detalhe perdido na compressão JPEG: apenas codifica sem perdas a imagem como ela foi decodificada.",
+        "O PNG pode ser bem maior que o JPG. A conversão também não remove o fundo nem o deixa transparente; para isso é preciso um editor de imagens.",
+      ],
+      faq: [
+        { question: "JPG para PNG melhora a qualidade?", answer: "Evita outra codificação JPG com perdas, mas não recupera detalhe perdido nem remove artefatos JPEG. O conteúdo visível e as dimensões continuam iguais." },
+        { question: "Por que o controle de qualidade fica desativado no PNG?", answer: "O PicLite exporta PNG sem perdas. O codificador PNG do navegador não usa o ajuste de qualidade de JPG e WebP, então o controle não se aplica." },
+        { question: "Devo converter JPG para PNG antes de editar ou imprimir?", answer: "Converter para PNG ajuda quando o editor exige, mas não recupera detalhe nem deixa a imagem mais nítida. Para imprimir, o JPG original costuma bastar." },
       ],
     },
   },
@@ -312,6 +524,30 @@ export const TOOL_GUIDES: Record<ToolSlug, Record<KeywordLocale, Guide>> = {
         { question: "PDF와 원본 이미지 중 무엇을 보내야 하나요?", answer: "PDF는 여러 이미지를 한 파일에 순서대로 담아 양식 제출에 적합합니다. 받는 사람이 이미지를 각각 편집하거나 잘라야 하면 이미지를 그대로 보내세요." },
       ],
     },
+    es: {
+      summary: "PicLite combina las imágenes de la lista de archivos en un solo PDF, con una imagen por página. En esta página el PDF viene preseleccionado.",
+      notes: [
+        "Cada página sigue las dimensiones y la orientación de su imagen; no hay un diseño fijo A4 o Carta. Revisa el orden de la lista antes de convertir; por ahora no se puede reordenar arrastrando.",
+        "Las imágenes se codifican como JPG dentro del PDF con la calidad elegida y las zonas transparentes se vuelven blancas. El resultado contiene páginas de imagen, no texto OCR buscable.",
+      ],
+      faq: [
+        { question: "¿Puedo combinar varias fotos en un solo PDF?", answer: "Sí. Añade las imágenes, revisa el orden en la lista, elige PDF y crea el documento. PicLite coloca una imagen por página y descarga un único PDF combinado." },
+        { question: "¿El texto escaneado queda buscable en el PDF?", answer: "No. PicLite inserta las imágenes en las páginas sin reconocimiento óptico de caracteres. Usa una herramienta OCR si necesitas texto buscable o seleccionable." },
+        { question: "¿Conviene enviar el PDF o las imágenes originales?", answer: "El PDF guarda varias imágenes en un archivo y conserva su orden, lo que conviene para formularios y envíos de documentos. Envía las imágenes si la otra persona necesita editarlas o recortarlas por separado." },
+      ],
+    },
+    pt: {
+      summary: "O PicLite junta as imagens da lista de arquivos em um único PDF, com uma imagem por página. Nesta página o PDF vem predefinido.",
+      notes: [
+        "Cada página segue as dimensões e a orientação da imagem; não existe layout fixo A4 ou Carta. Confira a ordem da lista antes de converter; por enquanto não dá para reordenar arrastando.",
+        "As imagens são codificadas como JPG dentro do PDF na qualidade escolhida e áreas transparentes viram branco. O resultado tem páginas de imagem, sem texto OCR pesquisável.",
+      ],
+      faq: [
+        { question: "Posso juntar várias fotos em um PDF?", answer: "Sim. Adicione as imagens, confira a ordem na lista, escolha PDF e crie o documento. O PicLite coloca uma imagem por página e baixa um único PDF." },
+        { question: "O texto digitalizado fica pesquisável no PDF?", answer: "Não. O PicLite insere as imagens nas páginas sem reconhecimento óptico de caracteres. Use uma ferramenta de OCR se precisar de texto pesquisável ou selecionável." },
+        { question: "Devo enviar o PDF ou as imagens originais?", answer: "O PDF guarda várias imagens em um arquivo e mantém a ordem, o que ajuda em formulários e envios de documento. Envie as imagens se a outra pessoa precisar editar ou recortar cada uma." },
+      ],
+    },
   },
   "pdf-to-jpg": {
     en: {
@@ -342,6 +578,30 @@ export const TOOL_GUIDES: Record<ToolSlug, Record<KeywordLocale, Guide>> = {
         { question: "PDF JPG 변환은 원본 이미지를 추출하나요?", answer: "아니요. PicLite는 글자, 그래픽, 배치를 포함한 페이지 전체를 이미지로 렌더링합니다. PDF에 포함된 원본 이미지 파일이 필요하면 PDF 이미지 추출 도구를 사용하세요." },
         { question: "PDF에서 일부 페이지만 변환할 수 있나요?", answer: "PicLite는 먼저 모든 페이지를 렌더링합니다. 파일 목록에 나타난 뒤 필요 없는 페이지를 지우고 남은 이미지를 변환해 내려받으세요." },
         { question: "스크린샷 대신 PDF JPG 변환을 쓰는 게 좋은 때는?", answer: "PDF JPG 변환은 페이지 전체를 긴 변 최대 4096 픽셀로 렌더링하므로 스크린샷보다 페이지를 온전하게 담습니다. 슬라이드, 포스터, 단일 페이지 문서에 적합합니다." },
+      ],
+    },
+    es: {
+      summary: "PicLite renderiza cada página del PDF como una imagen independiente y exporta archivos JPG. Captura la apariencia completa de la página en lugar de extraer las fotos originales incrustadas.",
+      notes: [
+        "Las páginas se renderizan hasta el doble de su tamaño natural en el PDF, con un máximo de 4096 píxeles en el lado largo. La calidad JPG cambia la compresión, no esta resolución de renderizado.",
+        "Varios resultados se descargan como ZIP. Los documentos grandes necesitan más memoria del dispositivo; prueba con un documento más pequeño si falla. Los PDF protegidos con contraseña necesitan una copia desbloqueada porque esta interfaz no pide contraseña.",
+      ],
+      faq: [
+        { question: "¿PDF a JPG extrae las imágenes originales del PDF?", answer: "No. PicLite renderiza cada página completa, incluidos texto, gráficos y diseño, como imagen. Si necesitas los archivos de imagen incrustados, usa una herramienta de extracción de imágenes de PDF." },
+        { question: "¿Puedo convertir solo algunas páginas del PDF?", answer: "PicLite renderiza todas las páginas al inicio. Cuando aparezcan en la lista, elimina las que no necesites y convierte las restantes." },
+        { question: "¿Cuándo conviene PDF a JPG en vez de una captura de pantalla?", answer: "PDF a JPG renderiza la página completa con hasta 4096 píxeles en el lado largo, así que captura la página de forma más fiable que una captura de pantalla; funciona bien con diapositivas, carteles y páginas sueltas." },
+      ],
+    },
+    pt: {
+      summary: "O PicLite renderiza cada página do PDF como uma imagem separada e exporta arquivos JPG. Ele captura a aparência completa da página em vez de extrair as fotos originais embutidas.",
+      notes: [
+        "As páginas são renderizadas em até o dobro do tamanho natural no PDF, com limite de 4096 pixels no lado maior. A qualidade do JPG muda a compressão, não essa resolução de renderização.",
+        "Vários resultados baixam como ZIP. Documentos grandes exigem mais memória do aparelho; teste um documento menor se falhar. PDFs com senha precisam de uma cópia desbloqueada porque esta interface não pede senha.",
+      ],
+      faq: [
+        { question: "PDF para JPG extrai as imagens originais do PDF?", answer: "Não. O PicLite renderiza a página inteira, com texto, gráficos e layout, como imagem. Se precisar dos arquivos de imagem embutidos, use uma ferramenta de extração de imagens de PDF." },
+        { question: "Posso converter só algumas páginas do PDF?", answer: "O PicLite renderiza todas as páginas primeiro. Quando elas aparecerem na lista, remova as que não precisar e converta as restantes." },
+        { question: "Quando é melhor usar PDF para JPG em vez de uma captura de tela?", answer: "O PDF para JPG renderiza a página inteira com até 4096 pixels no lado maior, então captura a página de forma mais confiável que uma captura de tela; funciona bem com slides, pôsteres e páginas únicas." },
       ],
     },
   },

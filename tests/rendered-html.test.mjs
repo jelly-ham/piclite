@@ -61,7 +61,7 @@ function structuredNodes(body) {
 test("every sitemap URL serves indexable HTML with matching language, canonical and visible content", async () => {
   const { body: sitemap } = await render("/sitemap.xml");
   const urls = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map((match) => match[1]);
-  assert.equal(urls.length, 39);
+  assert.equal(urls.length, 57);
   assert.equal(new Set(urls).size, urls.length);
   const titles = new Set();
   for (const url of urls) {
