@@ -88,6 +88,30 @@ export const TOOL_GUIDES: Record<ToolSlug, Record<KeywordLocale, Guide>> = {
         { question: "Quel format choisir : JPG, PNG ou WebP ?", answer: "Choisissez le JPG pour les photos, le PNG pour les captures, les logos et tout ce qui contient du texte ou de la transparence, et le WebP quand l’application ou le site de destination l’accepte et qu’un fichier plus léger aide." },
       ],
     },
+    "zh-tw": {
+      summary: "PicLite 會解碼圖片，並依選定格式建立新檔案。只改副檔名不會完成轉換。",
+      notes: [
+        "不需要透明背景的照片可選 JPG；截圖、文字和透明圖形可選 PNG；接收方支援時可選 WebP；要合併成文件可選 PDF。",
+        "點陣匯出會保留解碼後的圖片尺寸，不提供調整尺寸、向量轉換或動畫匯出。AVIF 解碼與 WebP 編碼取決於瀏覽器支援。",
+      ],
+      faq: [
+        { question: "轉換會保留 EXIF 與 GPS 資訊嗎？", answer: "PicLite 會在畫布上重繪解碼後的像素並匯出新檔案，不會複製原始 EXIF 或 GPS 資訊。如需保留拍攝參數或位置資訊，請保存原檔。" },
+        { question: "可以轉換動態圖片嗎？", answer: "PicLite 輸出靜態圖片，不保留動態 WebP 的動畫序列，也不匯出動畫檔案。處理動畫請使用專用工具。" },
+        { question: "該如何選擇 JPG、PNG 還是 WebP？", answer: "照片選 JPG；截圖、標誌，以及含文字或透明背景的圖片選 PNG；接收方支援且希望縮小檔案時選 WebP。" },
+      ],
+    },
+    ja: {
+      summary: "PicLiteは画像をデコードし、選んだ形式で新しいファイルを作成します。拡張子を変えるだけでは変換されません。",
+      notes: [
+        "透過が必要ない写真はJPG、スクリーンショット・文字・透過グラフィックはPNG、受け取り側が対応していればWebP、画像を文書にまとめるならPDFを選んでください。",
+        "ビットマップ出力はデコード後の画像サイズを維持します。リサイズ、ベクター変換、アニメーション出力には対応していません。AVIFのデコードとWebPのエンコードはブラウザの対応状況によります。",
+      ],
+      faq: [
+        { question: "変換するとEXIFやGPS情報は残りますか？", answer: "PicLiteはデコードしたピクセルをキャンバスに描き直して新しいファイルを書き出すため、元のEXIFやGPS情報はコピーされません。撮影情報や位置情報が必要な場合は元ファイルを保管してください。" },
+        { question: "アニメーション画像も変換できますか？", answer: "PicLiteは静止画を出力します。アニメーションWebPのコマを保持したり、アニメーションファイルを書き出したりはしません。動きが必要な場合は専用ツールを使ってください。" },
+        { question: "JPG、PNG、WebPのどれを選ぶべき？", answer: "写真はJPG、スクリーンショット・ロゴ・文字や透過を含む画像はPNG、受け取り側が対応していてファイルを小さくしたい場合はWebPを選んでください。" },
+      ],
+    },
   },
   "image-compressor": {
     en: {
@@ -166,6 +190,30 @@ export const TOOL_GUIDES: Record<ToolSlug, Record<KeywordLocale, Guide>> = {
         { question: "Puis-je compresser une image à exactement 100 Ko ou 200 Ko ?", answer: "PicLite peut viser une taille avec le réglage JPG ou WebP, mais ne garantit pas la valeur exacte. Vérifiez le résultat affiché et redimensionnez d’abord l’image si elle reste trop lourde." },
         { question: "La compression est-elle sans perte ?", answer: "Le JPG et le WebP avec réglage de qualité utilisent une compression avec pertes, qui peut supprimer des détails. Le PNG est sans perte pour les pixels décodés, mais peut produire un fichier plus lourd et ne restaure pas les détails déjà perdus en JPG." },
         { question: "Vaut-il mieux redimensionner ou compresser ?", answer: "PicLite compresse sans changer les dimensions en pixels. Si la photo est bien plus grande que son usage final, la redimensionner d’abord dans un éditeur économise souvent plus d’espace que baisser la qualité seule." },
+      ],
+    },
+    "zh-tw": {
+      summary: "PicLite 提供目標大小滑桿，並在裝置本機調整 JPG 或 WebP 的編碼品質，盡量接近選定大小。下載前請與原圖比較。",
+      notes: [
+        "目標大小適用於 JPG 與 WebP，目標是讓輸出不超過選定大小。PNG 為無損輸出，不使用目標大小滑桿，重新編碼也不保證檔案更小。",
+        "轉換會保持圖片尺寸，無法保證精確達標，因為檔案大小取決於圖片內容與瀏覽器編碼器。已最佳化的圖片在最低品質下仍可能更大，請比較檔案清單顯示的大小。",
+      ],
+      faq: [
+        { question: "可以把圖片壓縮到指定的 100KB 或 200KB 嗎？", answer: "PicLite 可以透過 JPG 或 WebP 的目標大小滑桿盡量接近指定大小，但不保證精確達標。請檢查顯示的結果；若仍然過大，可以先用編輯器縮小尺寸。" },
+        { question: "圖片壓縮是無損的嗎？", answer: "JPG 與帶品質設定的 WebP 使用有損編碼，可能損失細節。PNG 對解碼後的像素採無損編碼，但檔案可能更大，也無法還原 JPG 已丟失的細節。" },
+        { question: "該縮小尺寸還是壓縮品質？", answer: "PicLite 壓縮時保持像素尺寸不變。若照片遠大於實際用途，先用編輯器縮小尺寸，通常比單純降低品質更省空間。" },
+      ],
+    },
+    ja: {
+      summary: "PicLiteはJPGとWebPに目標サイズのスライダーを使い、端末内でエンコード品質を調整して近づけます。ダウンロード前に元画像と比較してください。",
+      notes: [
+        "目標サイズはJPGとWebPに適用され、選んだサイズ以下に収めることを目指します。PNGは可逆で目標は使われません。PNGを再エンコードしても必ず小さくなるわけではありません。",
+        "画像の寸法はそのまま維持され、ファイルサイズは画像の内容とブラウザのエンコーダーに左右されるため、目標を正確に達成することはできません。すでに最適化された画像は最低品質でも大きいままのことがあります。ファイル一覧のサイズを比較してください。",
+      ],
+      faq: [
+        { question: "画像をちょうど100KBや200KBに圧縮できますか？", answer: "PicLiteはJPGまたはWebPのスライダーで目標に近づけますが、正確なサイズは保証しません。表示された結果を確認し、大きすぎる場合は先に画像を縮小してください。" },
+        { question: "圧縮は可逆ですか？", answer: "JPGと品質設定つきのWebPは非可逆圧縮で、細部が失われることがあります。PNGはデコード後のピクセルに対して可逆ですが、ファイルが大きくなることがあり、すでに失われたJPGの細部は戻りません。" },
+        { question: "縮小と圧縮のどちらがよいですか？", answer: "PicLiteはピクセルサイズを変えずに圧縮します。写真が用途に対して大きすぎる場合は、先に編集ソフトで縮小した方が品質低下だけより容量を節約できることが多いです。" },
       ],
     },
   },
@@ -343,6 +391,64 @@ export const TOOL_GUIDES: Record<ToolSlug, Record<KeywordLocale, Guide>> = {
         { title: "Espace sur le téléphone", body: "Vous pouvez convertir les photos HEIC de l’iPhone en JPG et les réduire en même temps. Gardez l’original et compressez une copie." },
       ],
     },
+    "zh-tw": {
+      summary: "設定目標大小後，PicLite 會在裝置上調整 JPG 或 WebP 品質，盡量接近該大小。輸出的是新檔案，下載前請與原圖比較。",
+      notes: [
+        "目標大小僅適用於 JPG 與 WebP。PNG 以無損方式儲存，不受目標大小控制，因為重新編碼 PNG 不保證檔案更小。",
+        "目標是參考值而非保證：最終大小取決於圖片內容與瀏覽器編碼器。已最佳化的照片即使使用最低品質，也可能高於目標值。",
+        "PicLite 保持圖片像素尺寸不變。若檔案仍超過硬性限制，請先用編輯器縮小尺寸，再重新壓縮。",
+        "檔案清單會顯示原始與結果檔案大小，下載前就能比較縮小幅度。",
+        "HEIC 照片也可以在本頁轉成 JPG，並套用相同的目標大小；轉換與壓縮都在你的裝置上完成。",
+      ],
+      faq: [
+        { question: "可以把圖片精確壓縮到 100KB 嗎？", answer: "PicLite 會盡量接近目標值，通常會略低於目標，但不保證精確大小。請在清單中查看結果；如果表單仍不接受，可以調低目標或先縮小圖片尺寸。" },
+        { question: "哪些格式支援目標大小？", answer: "目標大小適用於 JPG 與 WebP 輸出。PNG 為無損格式，不受目標控制；若需要小檔案，把 PNG 轉成 JPG 通常是最快的方法。" },
+        { question: "為什麼壓縮後仍大於目標值？", answer: "尺寸很大或細節很多照片，即使使用最低品質也可能無法低於目標。請先縮小尺寸，再重新壓縮。" },
+        { question: "可以一次把多張圖片壓縮到同一目標嗎？", answer: "可以。一次加入多張圖片，所有檔案會朝同一目標壓縮，最後打包成 ZIP 一起下載。" },
+        { question: "要怎麼確認照片的檔案大小？", answer: "檔案清單會顯示原始與結果大小，以及縮小的比例。下載後的檔案也可以在系統的檔案資訊中查看。" },
+        { question: "手機照片也能壓縮嗎？", answer: "可以。支援現代手機瀏覽器，轉換在裝置上執行。iPhone 的 HEIC 照片可以轉成 JPG 並套用相同目標。" },
+        { question: "壓縮會讓照片變模糊嗎？", answer: "JPG 與 WebP 使用有損壓縮，降低品質可能減少細節。目標大小充裕時差異通常不明顯，建議與原圖比較確認。" },
+        { question: "壓縮會降低解析度嗎？", answer: "不會。PicLite 保持像素尺寸不變。若需要較低解析度，請先用編輯器調整尺寸再壓縮。" },
+        { question: "需要註冊或會有浮水印嗎？", answer: "不需要。免費使用、免註冊、不會加上浮水印，檔案也不會上傳到伺服器。" },
+        { question: "檔案縮不到目標大小怎麼辦？", answer: "先用編輯器縮小尺寸，或把 PNG 轉成 JPG 後再壓縮一次。" },
+      ],
+      useCases: [
+        { title: "公務與考試報名照片", body: "許多報名網站要求「JPG、500KB 以下」。把目標設定得比限制稍低，可以降低被表單拒絕的風險。" },
+        { title: "履歷與求職網站大頭照", body: "各系統的照片大小限制不同。以 100KB 或 200KB 為目標，並立即確認結果。" },
+        { title: "LINE、WhatsApp 與電子郵件", body: "多張照片一次壓縮到相同目標，就不容易超過附件限制，結果會打包成 ZIP 下載。" },
+        { title: "部落格與網路商店圖片", body: "發布前先縮小檔案，可讓網頁載入更輕快；批次處理多張圖片也能節省時間。" },
+        { title: "手機儲存空間", body: "iPhone 的 HEIC 照片可以同時轉成 JPG 並縮小。保留原檔，壓縮複本就好。" },
+      ],
+    },
+    ja: {
+      summary: "目標サイズを設定すると、PicLiteが端末内でJPGまたはWebPの品質を調整して近づけます。出力は新しいファイルなので、ダウンロード前に元画像と比較してください。",
+      notes: [
+        "目標サイズはJPGとWebPに適用されます。PNGは可逆で保存され、目標は適用されません。PNGを再エンコードしてもファイルが小さくなる保証はありません。",
+        "目標は目安であり保証ではありません。最終的なサイズは画像の内容とブラウザのエンコーダーに左右されます。すでに最適化された写真は最低品質でも目標を超えることがあります。",
+        "PicLiteはピクセルサイズを維持します。厳しい上限を超える場合は、先に編集ソフトで寸法を縮めてから再圧縮してください。",
+        "元ファイルと結果のサイズはファイル一覧に表示されるので、ダウンロード前に削減量を確認できます。",
+        "HEIC写真もこのページでJPGに変換しながら同じ目標サイズを適用できます。変換と圧縮はすべて端末内で処理されます。",
+      ],
+      faq: [
+        { question: "画像を正確に100KBに圧縮できますか？", answer: "PicLiteは目標値に近づけ、多くの場合は少し下回りますが、正確なサイズは保証しません。一覧で結果を確認し、フォームに拒否されたら目標を下げるか画像を縮小してください。" },
+        { question: "目標サイズに対応する形式は？", answer: "JPGとWebPの出力に適用されます。PNGは可逆で目標が効かないため、小さな上限にはPNGをJPGに変換するのが近道です。" },
+        { question: "圧縮しても目標より大きいのはなぜ？", answer: "非常に大きい、または細部の多い写真は最低品質でも目標を下回らないことがあります。まず寸法を縮めてから再圧縮してください。" },
+        { question: "複数の画像を同じ目標に圧縮できますか？", answer: "はい。複数追加すると、すべて同じ目標に向けて一度に圧縮され、ZIPでまとめてダウンロードされます。" },
+        { question: "ファイルサイズはどう確認しますか？", answer: "ファイル一覧に元サイズと結果、削減量が表示されます。ダウンロードしたファイルのプロパティでも確認できます。" },
+        { question: "スマホの写真にも使えますか？", answer: "はい。最新のモバイルブラウザで動作し、変換は端末内で実行されます。iPhoneのHEIC写真も同じ目標でJPGに変換できます。" },
+        { question: "圧縮すると画質は落ちますか？", answer: "JPGとWebPは非可逆圧縮のため、品質を下げると細部が失われることがあります。目標に余裕があれば差は小さいことが多く、元画像と比較して確認してください。" },
+        { question: "圧縮すると解像度も下がりますか？", answer: "いいえ。PicLiteはピクセルサイズを維持します。解像度を下げたい場合は、編集ソフトでサイズを調整してから再圧縮してください。" },
+        { question: "アカウント登録や透かしはありますか？", answer: "いいえ。無料で、アカウント不要、透かしも付かず、ファイルはサーバーに送信されません。" },
+        { question: "目標サイズまで縮まないときは？", answer: "編集ソフトで寸法を縮めるか、PNGをJPGに変換してから再圧縮してください。" },
+      ],
+      useCases: [
+        { title: "行政・試験の応募写真", body: "応募サイトは「JPG、500KB以下」のように指定することが多く、目標を少し低めに設定すると拒否されるリスクを減らせます。" },
+        { title: "履歴書・求人サイトのプロフィール写真", body: "システムごとに上限が異なります。100KBや200KBを目標にして、結果をすぐ確認しましょう。" },
+        { title: "LINE・メールの添付", body: "複数の写真を同じ目標に圧縮すれば添付上限を超えにくくなり、結果はZIPでまとめてダウンロードされます。" },
+        { title: "ブログ・ネットショップの画像", body: "公開前に軽くするとページの読み込みが軽くなります。複数まとめて処理すると時短になります。" },
+        { title: "スマホの空き容量", body: "iPhoneのHEIC写真をJPGに変換しながら容量も削減できます。元ファイルを残し、コピーを圧縮しましょう。" },
+      ],
+    },
   },
   "heic-to-jpg": {
     en: {
@@ -464,6 +570,40 @@ export const TOOL_GUIDES: Record<ToolSlug, Record<KeywordLocale, Guide>> = {
         { question: "Pourquoi la première conversion HEIC est-elle plus lente ?", answer: "Le navigateur télécharge le décodeur HEIC à la demande puis décode la photo. Les grandes photos demandent aussi de la mémoire ; utilisez moins de fichiers si le téléphone manque de mémoire." },
       ],
     },
+    "zh-tw": {
+      summary: "表單或應用程式打不開原檔時，可把 HEIC 或 HEIF 靜態照片轉成 JPG。選擇 HEIC 檔案後，PicLite 會載入在裝置上執行的解碼器。可以轉換單張或整個相簿；多個結果會打包成 ZIP 一起下載。",
+      notes: [
+        "本頁預設 JPG 品質 82%。HEIC 本身壓縮效率高，轉出的 JPG 可能更大，請查看結果後調整品質。",
+        "iPhone 相機設為「高效率」時會把照片存成 HEIC。Windows、Android 和許多網頁表單無法開啟 HEIC，因此通常需要 JPG 複本。",
+        "可以一次加入整個相簿。所有照片都在同一個裝置端工作階段中轉換，多個結果會打包成 ZIP 一起下載。",
+        "此流程輸出靜態圖片，不保留原況照片的動態內容、景深資料或原始 HEIC 容器中繼資料。編輯與備份請保留原檔。",
+      ],
+      faq: [
+        { question: "為什麼 Windows 打不開 iPhone 照片？", answer: "iPhone 預設把照片存成 HEIC，Windows 未安裝額外解碼器就無法開啟。轉成 JPG 後，Windows、Android、郵件程式與網頁表單都能正常開啟。" },
+        { question: "可以一次轉換多張 HEIC 照片嗎？", answer: "可以。一次加入任意數量的 HEIC 照片，每張都在你的裝置上轉換，多個結果會打包成單一 ZIP 下載。" },
+        { question: "如何讓 iPhone 不再拍 HEIC 照片？", answer: "開啟「設定」→「相機」→「格式」，選擇「最相容」。之後新拍的照片會存成 JPG；先前拍攝的 HEIC 照片仍需轉換一次。" },
+        { question: "HEIC 和 HEIF 一樣嗎？", answer: "HEIF 是容器格式，HEIC 是 Apple 為其照片變體使用的名稱。PicLite 同時接受 .heic 與 .heif 檔案，都能轉成 JPG。" },
+        { question: "為什麼轉出的 JPG 比 HEIC 大？", answer: "HEIC 儲存照片的效率可能高於 JPG。轉換能改善相容性，但不保證檔案更小；若有容量限制，可以降低 JPG 品質。" },
+        { question: "為什麼第一次轉換 HEIC 比較慢？", answer: "瀏覽器需要先下載 HEIC 解碼器，再解碼照片。大照片也需要裝置記憶體；手機記憶體不足時，請減少一次處理的檔案數量。" },
+      ],
+    },
+    ja: {
+      summary: "フォームやアプリが元ファイルを開けないとき、HEICまたはHEIFの静止画をJPGに変換します。HEICファイルを選ぶと、端末内で動くデコーダーを読み込みます。1枚でもアルバム全体でも変換でき、結果が複数ある場合はZIPでまとめてダウンロードされます。",
+      notes: [
+        "JPGは品質82%で選択されています。HEICはすでに効率のよい形式なので、変換後のJPGが大きくなることがあります。結果を確認して品質を調整してください。",
+        "iPhoneのカメラが「高効率」設定の場合、写真はHEICで保存されます。Windows、Android、多くのWebフォームはHEICを開けないため、JPGのコピーが必要になります。",
+        "アルバム全体をまとめて追加できます。すべての写真は同じ端末内セッションで変換され、複数の結果はZIPでまとめてダウンロードされます。",
+        "この流れでは静止画を出力します。Live Photosの動き、深度データ、元のHEICコンテナのメタデータは保持されません。編集・保管用に元ファイルを残してください。",
+      ],
+      faq: [
+        { question: "WindowsでiPhoneの写真が開けないのはなぜ？", answer: "iPhoneは既定でHEICで保存し、Windowsは追加コーデックなしでは開けません。JPGに変換すれば、Windows、Android、メールアプリ、Webフォームで開けます。" },
+        { question: "複数のHEIC写真を一度に変換できますか？", answer: "はい。必要な数だけHEIC写真を追加してください。それぞれ端末内で変換され、複数の結果は1つのZIPでダウンロードされます。" },
+        { question: "iPhoneでHEICではなくJPGで撮るには？", answer: "設定のカメラ、フォーマットの順に開き、「互換性優先」を選びます。以降の新しい写真はJPGで保存され、すでに撮ったHEIC写真は一度変換が必要です。" },
+        { question: "HEICとHEIFは同じものですか？", answer: "HEIFはコンテナ形式で、HEICはAppleが写真用HEIFに付けた名前です。PicLiteは.heicと.heifの両方を受け付け、JPGに変換します。" },
+        { question: "変換したJPGがHEICより大きいのはなぜ？", answer: "HEICはJPGより効率よく保存できることがあります。変換は互換性を高めますが、ファイルが小さくなる保証はありません。上限がある場合はJPG品質を下げてください。" },
+        { question: "最初のHEIC変換が遅いのはなぜ？", answer: "ブラウザが必要になった時点でHEICデコーダーをダウンロードし、その後で写真をデコードします。大きな写真は端末メモリも使うため、メモリ不足なら一度に処理する枚数を減らしてください。" },
+      ],
+    },
   },
   "webp-to-jpg": {
     en: {
@@ -542,6 +682,30 @@ export const TOOL_GUIDES: Record<ToolSlug, Record<KeywordLocale, Guide>> = {
         { question: "Que deviennent les fonds transparents du WebP ?", answer: "PicLite dessine un fond blanc avant d’exporter le JPG. Pour conserver les pixels transparents, choisissez le PNG en sortie." },
         { question: "Un WebP animé reste-t-il animé en JPG ?", answer: "Non. Le JPG est une image fixe et PicLite n’exporte pas de séquence animée. Gardez le WebP d’origine si le mouvement compte." },
         { question: "Faut-il convertir le WebP en JPG ou en PNG ?", answer: "Choisissez le JPG pour les photos quand un fichier léger compte, et le PNG quand l’image a de la transparence ou des bords nets, car le JPG remplace la transparence par du blanc et peut flouter les traits fins." },
+      ],
+    },
+    "zh-tw": {
+      summary: "PicLite 會把 WebP 圖片轉成白底靜態 JPG。適合不接受 WebP 的上傳表單或舊版編輯器。",
+      notes: [
+        "JPG 不保留透明度。PicLite 會把透明區域填成白色；若需要保留透明度，請選擇 PNG。",
+        "有損 WebP 轉成 JPG 會再經過一次有損編碼。提高品質無法還原已遺失的細節，輸出檔案也可能變大。",
+      ],
+      faq: [
+        { question: "WebP 的透明背景會變成什麼？", answer: "PicLite 在輸出 JPG 前會先畫上白色背景。若要保留透明像素，請選擇 PNG 輸出。" },
+        { question: "動態 WebP 轉成 JPG 後還會動嗎？", answer: "不會。JPG 是靜態格式，PicLite 不輸出動畫序列。若需要動態效果，請保留原始 WebP。" },
+        { question: "WebP 該轉成 JPG 還是 PNG？", answer: "重視檔案大小且是照片時選 JPG；圖片有透明區域或清晰邊緣時選 PNG，因為 JPG 會把透明區域變成白色，也可能讓細線變模糊。" },
+      ],
+    },
+    ja: {
+      summary: "PicLiteはWebP画像を白背景の静止JPGに変換します。WebPを受け付けないアップロードフォームや古い編集ソフトで使えます。",
+      notes: [
+        "JPGは透過を保存できません。PicLiteは透明部分を白で塗りつぶすため、透過を保ちたい場合はPNGを選んでください。",
+        "非可逆WebPをJPGにすると、さらに非可逆エンコードが加わります。品質を上げても失われた細部は戻らず、ファイルが大きくなることがあります。",
+      ],
+      faq: [
+        { question: "WebPの透明な背景はどうなりますか？", answer: "PicLiteはJPGを書き出す前に白い背景を描きます。透明ピクセルを残したい場合はPNGを選んでください。" },
+        { question: "アニメーションWebPはJPGでも動きますか？", answer: "いいえ。JPGは静止画形式で、PicLiteはアニメーションを出力しません。動きが必要なら元のWebPを残してください。" },
+        { question: "WebPはJPGとPNGのどちらに変換すべき？", answer: "ファイルサイズが重要な写真はJPG、透過や輪郭がはっきりした画像はPNGを選んでください。JPGは透明部分を白に置き換え、細い線をぼかすことがあります。" },
       ],
     },
   },
@@ -624,6 +788,30 @@ export const TOOL_GUIDES: Record<ToolSlug, Record<KeywordLocale, Guide>> = {
         { question: "Quand faut-il garder le PNG ?", answer: "Gardez le PNG pour les captures d’écran, schémas, logos et images avec du texte ou de la transparence. Le JPG convient aux photos mais peut laisser des artefacts sur les bords nets." },
       ],
     },
+    "zh-tw": {
+      summary: "需要 JPEG 上傳時，可把 PNG 轉成 JPG。PicLite 保持像素尺寸，並把透明區域換成白色。",
+      notes: [
+        "照片用 JPG 通常合適。小字、清晰圖表與標誌用 PNG 可能更好；JPG 可能在邊緣產生可見的壓縮痕跡。",
+        "JPG 即使品質高仍是有損輸出。請保留原始 PNG 以便後續編輯，並檢查輸出大小，因為轉換不一定能縮小檔案。",
+      ],
+      faq: [
+        { question: "PNG 轉 JPG 會保留透明背景嗎？", answer: "不會。JPG 無法儲存透明像素，PicLite 會填成白色。需要透明度時請保留 PNG 或改用 WebP。" },
+        { question: "PNG 轉 JPG 會縮小圖片尺寸嗎？", answer: "不會。PicLite 依解碼後的尺寸輸出。品質影響編碼與檔案大小，不會改變寬高。" },
+        { question: "什麼情況該保留 PNG？", answer: "截圖、圖表、標誌，以及含文字或透明背景的圖片建議保留 PNG。JPG 適合照片，但可能在清晰邊緣留下壓縮痕跡。" },
+      ],
+    },
+    ja: {
+      summary: "JPEGでのアップロードが必要なとき、PNGをJPGに変換します。PicLiteはピクセルサイズを維持し、透明部分を白に置き換えます。",
+      notes: [
+        "写真にはJPGが向いています。小さな文字、鮮明な図表、ロゴにはPNGの方が適することがあり、JPGは輪郭に目立つ圧縮の跡が出ることがあります。",
+        "JPGは高品質でも非可逆です。後から編集できるよう元のPNGを残し、変換で必ずしも小さくならないため結果サイズを確認してください。",
+      ],
+      faq: [
+        { question: "PNGからJPGで透明な背景は残りますか？", answer: "いいえ。JPGは透明ピクセルを保存できず、PicLiteは白で置き換えます。透過が必要ならPNGを残すかWebPを使ってください。" },
+        { question: "PNGからJPGで画像サイズは小さくなりますか？", answer: "いいえ。PicLiteはデコード後のサイズで出力します。品質はエンコードとファイルサイズに影響し、幅や高さは変わりません。" },
+        { question: "PNGのまま残すべきなのはどんなとき？", answer: "スクリーンショット、図表、ロゴ、文字や透過を含む画像はPNGのままがおすすめです。JPGは写真に向きますが、輪郭に圧縮の跡が残ることがあります。" },
+      ],
+    },
   },
   "jpg-to-png": {
     en: {
@@ -702,6 +890,30 @@ export const TOOL_GUIDES: Record<ToolSlug, Record<KeywordLocale, Guide>> = {
         { question: "Le JPG vers PNG améliore-t-il la qualité ?", answer: "Cela évite un nouvel encodage JPG avec pertes, mais ne restaure pas les détails perdus et ne supprime pas les artefacts JPEG. Le contenu visible et les dimensions restent identiques." },
         { question: "Pourquoi le réglage de qualité est-il désactivé pour le PNG ?", answer: "PicLite exporte le PNG sans perte. L’encodeur PNG du navigateur n’utilise pas le réglage de qualité JPG et WebP, donc le curseur ne s’applique pas." },
         { question: "Faut-il convertir le JPG en PNG avant d’éditer ou d’imprimer ?", answer: "La conversion aide quand l’éditeur l’exige, mais ne restaure pas les détails et ne rend pas l’image plus nette. Pour l’impression, le JPG d’origine suffit généralement." },
+      ],
+    },
+    "zh-tw": {
+      summary: "編輯器或工作流程需要 PNG 時，可把 JPG 或 JPEG 轉成 PNG。本頁預設 PNG，並對解碼後的像素採無損編碼。",
+      notes: [
+        "JPG 轉 PNG 不會還原 JPEG 壓縮時遺失的細節，只是把目前解碼出的影像以無損方式編碼。",
+        "PNG 可能比 JPG 大很多。轉換也不會去背或讓背景透明；去背需要使用影像編輯器。",
+      ],
+      faq: [
+        { question: "JPG 轉 PNG 會提升畫質嗎？", answer: "可以避免再一次 JPG 有損編碼，但無法還原遺失的細節或移除 JPEG 壓縮痕跡。可見內容與像素尺寸都不變。" },
+        { question: "為什麼選 PNG 後品質滑桿不能調整？", answer: "PicLite 以無損方式輸出 PNG。瀏覽器的 PNG 編碼器不使用 JPG 與 WebP 的品質設定，因此滑桿不適用。" },
+        { question: "編輯或列印前該把 JPG 轉成 PNG 嗎？", answer: "編輯器要求 PNG 時轉換是合理的，但不會還原細節或讓圖片更銳利。列印通常用原始 JPG 就足夠。" },
+      ],
+    },
+    ja: {
+      summary: "編集ソフトやフローがPNGを求める場合に、JPGやJPEGをPNGへ変換します。PNGが選択済みで、デコード後のピクセルは可逆でエンコードされます。",
+      notes: [
+        "JPGをPNGにしても、JPEG圧縮で失われた細部は戻りません。デコードされた画像を可逆でエンコードするだけです。",
+        "PNGはJPGよりはるかに大きくなることがあります。変換で背景が消えたり透明になったりもしません。背景の除去には画像編集ソフトが必要です。",
+      ],
+      faq: [
+        { question: "JPGからPNGにすると画質は良くなりますか？", answer: "非可逆のJPGエンコードをもう一度行うのは避けられますが、失われた細部は戻らず、JPEGの圧縮痕も消えません。見た目とピクセルサイズは同じです。" },
+        { question: "PNGを選ぶと品質スライダーが使えないのはなぜ？", answer: "PicLiteはPNGを可逆で出力します。ブラウザのPNGエンコーダーはJPGとWebPの品質設定を使わないため、スライダーは適用されません。" },
+        { question: "編集や印刷の前にJPGをPNGへ変換すべき？", answer: "編集ソフトがPNGを求める場合は役立ちますが、細部は戻らず、よりシャープにもなりません。印刷なら元のJPGで十分なことがほとんどです。" },
       ],
     },
   },
@@ -784,6 +996,30 @@ export const TOOL_GUIDES: Record<ToolSlug, Record<KeywordLocale, Guide>> = {
         { question: "Faut-il envoyer le PDF ou les images d’origine ?", answer: "Le PDF regroupe plusieurs images dans un fichier et conserve l’ordre, ce qui convient aux formulaires et aux dépôts de documents. Envoyez les images si la personne doit les retoucher ou les recadrer séparément." },
       ],
     },
+    "zh-tw": {
+      summary: "PicLite 會把檔案清單中的圖片合併成一份 PDF，每張圖片一頁。本頁預設輸出 PDF。",
+      notes: [
+        "每頁依圖片本身的尺寸與方向呈現，沒有固定的 A4 或 Letter 版面。轉換前請確認檔案清單順序；目前不支援拖曳排序。",
+        "PDF 內的圖片以選定品質編碼成 JPG，透明區域會變成白色。輸出內容是圖片頁面，沒有可搜尋的 OCR 文字。",
+      ],
+      faq: [
+        { question: "可以把多張照片合併成一份 PDF 嗎？", answer: "可以。加入圖片、確認清單順序、選擇 PDF 後建立文件。PicLite 會每頁放一張圖片，並下載單一合併 PDF。" },
+        { question: "圖片轉 PDF 後，掃描的文字可以搜尋嗎？", answer: "不行。PicLite 把圖片嵌入 PDF 頁面，不進行文字辨識。需要可搜尋或可選取的文字時，請使用 OCR 工具。" },
+        { question: "該傳送 PDF 還是原始圖片？", answer: "PDF 把多張圖片收進單一檔案並保留順序，適合表單與文件送件。若對方需要個別編輯或裁切，直接傳送圖片更合適。" },
+      ],
+    },
+    ja: {
+      summary: "PicLiteはファイル一覧の画像を1つのPDFにまとめ、1枚につき1ページにします。このページではPDFが選択済みです。",
+      notes: [
+        "各ページは画像の寸法と向きに従い、固定のA4やレターのレイアウトはありません。変換前に一覧の順序を確認してください。現在ドラッグでの並べ替えはできません。",
+        "PDF内の画像は選んだ品質でJPGとしてエンコードされ、透明部分は白になります。出力は画像ページで、検索可能なOCRテキストは含まれません。",
+      ],
+      faq: [
+        { question: "複数の写真を1つのPDFにできますか？", answer: "はい。画像を追加し、一覧で順序を確認してPDFを選ぶと、1枚につき1ページのPDFを1つダウンロードできます。" },
+        { question: "スキャンした文字はPDFで検索できますか？", answer: "いいえ。PicLiteは画像をPDFページに埋め込むだけで、文字認識は行いません。検索・選択できるテキストが必要な場合はOCRツールを使ってください。" },
+        { question: "PDFと元画像のどちらを送るべき？", answer: "PDFは複数の画像を1ファイルに順序どおりまとめるため、フォーム提出や書類送付に向いています。相手が個別に編集・トリミングする場合は画像をそのまま送ってください。" },
+      ],
+    },
   },
   "pdf-to-jpg": {
     en: {
@@ -862,6 +1098,30 @@ export const TOOL_GUIDES: Record<ToolSlug, Record<KeywordLocale, Guide>> = {
         { question: "Le PDF vers JPG extrait-il les images d’origine du PDF ?", answer: "Non. PicLite rend la page entière, texte, graphiques et mise en page compris, sous forme d’image. Si vous voulez les fichiers images intégrés, utilisez un outil d’extraction d’images PDF." },
         { question: "Puis-je convertir seulement certaines pages du PDF ?", answer: "PicLite rend d’abord toutes les pages. Quand elles apparaissent dans la liste, supprimez celles dont vous n’avez pas besoin puis convertissez les autres." },
         { question: "Quand préférer PDF vers JPG à une capture d’écran ?", answer: "PDF vers JPG rend la page entière avec jusqu’à 4096 pixels sur le bord le plus long : la page est capturée plus fidèlement qu’avec une capture d’écran, idéal pour les diapositives, affiches et pages uniques." },
+      ],
+    },
+    "zh-tw": {
+      summary: "PicLite 會把 PDF 每一頁轉成獨立圖片，再輸出 JPG 檔案。它保留整頁外觀，而不是取出文件中嵌入的原始照片。",
+      notes: [
+        "頁面最高以 PDF 原始尺寸的兩倍轉換，長邊上限為 4096 像素。JPG 品質只改變壓縮程度，不影響這個轉換解析度。",
+        "多個結果會打包成 ZIP 下載。大型文件需要較多裝置記憶體；若轉換失敗，可改用較小的文件。此介面沒有密碼輸入功能，加密 PDF 需要先解除鎖定的副本。",
+      ],
+      faq: [
+        { question: "PDF 轉 JPG 會取出 PDF 中的原始圖片嗎？", answer: "不會。PicLite 會把包含文字、圖形與版面的整頁轉成圖片。若需要文件中嵌入的原始圖片檔，請使用 PDF 圖片擷取工具。" },
+        { question: "可以只轉換 PDF 中特定頁面嗎？", answer: "PicLite 會先轉換所有頁面。頁面出現在檔案清單後，可以移除不需要的頁面，再轉換剩下的圖片。" },
+        { question: "什麼時候該用 PDF 轉 JPG 而不是截圖？", answer: "PDF 轉 JPG 會把整頁以長邊最高 4096 像素轉換，比截圖更完整可靠，適合投影片、海報與單頁文件。" },
+      ],
+    },
+    ja: {
+      summary: "PicLiteはPDFの各ページを個別の画像として描画し、JPGファイルで書き出します。埋め込まれた元写真を抽出するのではなく、ページ全体の見た目をキャプチャします。",
+      notes: [
+        "ページはPDFの自然なサイズの最大2倍まで、長辺4096ピクセルを上限に描画されます。JPG品質は圧縮を変えるだけで、この描画解像度は変わりません。",
+        "結果が複数あるとZIPでダウンロードされます。大きな文書は端末メモリを多く使うため、失敗する場合は小さめの文書で試してください。この画面にはパスワード入力がなく、暗号化PDFはロック解除済みのコピーが必要です。",
+      ],
+      faq: [
+        { question: "PDFからJPGは元の画像を抽出しますか？", answer: "いいえ。PicLiteは文字、図形、レイアウトを含むページ全体を画像として描画します。埋め込まれた元画像ファイルが必要な場合はPDF画像抽出ツールを使ってください。" },
+        { question: "PDFの一部のページだけ変換できますか？", answer: "PicLiteはまず全ページを描画します。一覧に表示された後、不要なページを削除して残りを変換・ダウンロードできます。" },
+        { question: "スクリーンショットではなくPDFからJPGを使うべき場面は？", answer: "PDFからJPGは長辺最大4096ピクセルでページ全体を描画するため、スクリーンショットより確実にページを捉えられます。スライド、ポスター、単一ページの文書に向いています。" },
       ],
     },
   },
