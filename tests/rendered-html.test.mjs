@@ -47,7 +47,7 @@ const localeTags = {
   en: "en", "zh-cn": "zh-CN", "zh-tw": "zh-TW", ja: "ja", ko: "ko",
   ru: "ru", es: "es", pt: "pt", fr: "fr", de: "de", ar: "ar", hi: "hi",
 };
-const toolSlugs = ["image-converter", "image-compressor", "heic-to-jpg", "webp-to-jpg", "png-to-jpg", "jpg-to-png", "image-to-pdf", "pdf-to-jpg"];
+const toolSlugs = ["image-converter", "image-compressor", "compress-image-to-kb", "heic-to-jpg", "webp-to-jpg", "png-to-jpg", "jpg-to-png", "image-to-pdf", "pdf-to-jpg"];
 
 function htmlContent(body) {
   return body.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, "");
@@ -61,7 +61,7 @@ function structuredNodes(body) {
 test("every sitemap URL serves indexable HTML with matching language, canonical and visible content", async () => {
   const { body: sitemap } = await render("/sitemap.xml");
   const urls = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map((match) => match[1]);
-  assert.equal(urls.length, 28);
+  assert.equal(urls.length, 30);
   assert.equal(new Set(urls).size, urls.length);
   const titles = new Set();
   for (const url of urls) {
@@ -140,6 +140,8 @@ test("renders indexable SEO content on the English homepage", async () => {
   assert.equal((body.match(/https:\/\/buy\.stripe\.com\//g) ?? []).length, 5);
   assert.match(body, /7sY4gB79d4xO1qee9u9AA00/);
   assert.match(body, /6oU9AVgJN9S80ma0iE9AA04/);
+  assert.match(body, /https:\/\/github\.com\/jelly-ham\/piclite/);
+  assert.match(body, /Open source and self-hostable/);
 });
 
 test("renders a keyword landing page with metadata and structured data", async () => {
@@ -154,10 +156,11 @@ test("renders a keyword landing page with metadata and structured data", async (
 });
 
 test("renders the image compressor target-size control", async () => {
-  const { response, body } = await render("/en/image-compressor");
-  assert.equal(response.status, 200);
-  assert.match(body, /Target file size/);
-  assert.match(body, /Quality is adjusted automatically to approach this size/);
+  for (const path of ["/en/image-compressor", "/en/compress-image-to-kb", "/zh-cn/compress-image-to-kb"]) {
+    const { response, body } = await render(path);
+    assert.equal(response.status, 200, path);
+    assert.match(body, /Target file size|\u76ee\u6807\u6587\u4ef6\u5927\u5c0f/, path);
+  }
 });
 
 test("publishes keyword pages in the sitemap", async () => {

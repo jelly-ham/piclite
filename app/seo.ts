@@ -1,5 +1,5 @@
 import { dictionaries, type Locale } from "./i18n";
-import { SITE_NAME, SITE_URL } from "./site";
+import { GITHUB_URL, SITE_NAME, SITE_URL } from "./site";
 import { TOOL_GUIDES } from "./tool-guides";
 
 export type SeoFaq = {
@@ -30,6 +30,7 @@ export type KeywordLocale = (typeof KEYWORD_LOCALES)[number];
 export const TOOL_SLUGS = [
   "image-converter",
   "image-compressor",
+  "compress-image-to-kb",
   "heic-to-jpg",
   "webp-to-jpg",
   "png-to-jpg",
@@ -122,6 +123,11 @@ const ROOT_SEO_COPY: Partial<Record<Locale, RootSeoCopy>> = {
         answer:
           "Yes. PicLite can render PDF pages as images and combine image files into a multi-page PDF. The conversion happens on your device.",
       },
+      {
+        question: "Is PicLite open source?",
+        answer:
+          "Yes. PicLite is open source under the MIT license, so anyone can read the code, run it locally, or self-host a copy to verify how files are processed.",
+      },
     ],
     toolsTitle: "Popular image conversion tools",
     openTool: "Open tool",
@@ -188,6 +194,11 @@ const ROOT_SEO_COPY: Partial<Record<Locale, RootSeoCopy>> = {
           "可以。选择 HEIC 或 HEIF 照片，将输出格式设为 JPG，即可在浏览器本地完成转换；原始照片不会上传到 PicLite。",
       },
       {
+        question: "PicLite 是开源项目吗？",
+        answer:
+          "是。PicLite 以 MIT 许可证开源，任何人都可以阅读代码、在本地运行或自行部署一份副本，验证文件的处理方式。",
+      },
+      {
         question: "PicLite 支持 PDF 转 JPG 和图片转 PDF 吗？",
         answer:
           "支持。PicLite 可以把 PDF 页面渲染为图片，也可以把多张图片合并为多页 PDF，转换过程在你的设备上完成。",
@@ -245,6 +256,10 @@ const ROOT_SEO_COPY: Partial<Record<Locale, RootSeoCopy>> = {
       {
         question: "可以不上傳檔案把 HEIC 轉成 JPG 嗎？",
         answer: "可以。選擇 HEIC 或 HEIF 相片，將輸出格式設為 JPG，即可在瀏覽器本機完成轉換。",
+      },
+      {
+        question: "PicLite 是開源專案嗎？",
+        answer: "是。PicLite 以 MIT 授權條款開源，任何人都可以閱讀程式碼、在本機執行或自行部署一份副本，驗證檔案的處理方式。",
       },
       {
         question: "PicLite 支援 PDF 轉 JPG 和圖片轉 PDF 嗎？",
@@ -335,6 +350,30 @@ const TOOL_INTENTS: Record<ToolSlug, Record<KeywordLocale, ToolIntent>> = {
       why: "适合邮件附件、网页上传、聊天应用和存储空间有限的场景。",
       quality: "设置 JPG 或 WebP 的目标大小后，PicLite 会自动调整质量；PNG 保持无损。",
       keywords: ["在线图片压缩", "图片压缩", "压缩图片大小", "不上传图片压缩"],
+    },
+  },
+  "compress-image-to-kb": {
+    en: {
+      name: "Compress image to a target size",
+      title: "Compress image to 100 KB or 200 KB — private, no upload",
+      description: "Reduce JPG and WebP photos toward a target file size such as 100 KB or 200 KB in your browser. Batch processing, no upload and no account.",
+      intro: "Set a target file size from 50 KB to 2 MB and PicLite searches for the highest JPG or WebP quality that stays at or below it. Photos are compressed on your device and never uploaded.",
+      input: "JPG, PNG, WebP, AVIF, BMP or HEIC",
+      output: "JPG, PNG or WebP",
+      why: "Useful when a form, email service or platform enforces a hard file size limit.",
+      quality: "Presets cover 100 KB, 500 KB, 1 MB and 2 MB, and the slider accepts any 50 KB step in between. PNG output stays lossless.",
+      keywords: ["compress image to 100kb", "compress image to 200kb", "reduce image size in kb", "compress jpeg to 100kb", "compress image to target size"],
+    },
+    "zh-cn": {
+      name: "压缩图片到指定大小",
+      title: "压缩图片到 100 KB / 200 KB｜本地处理、不上传",
+      description: "在浏览器中把 JPG 或 WebP 图片压缩到 100 KB、200 KB 等目标大小，支持批量处理，文件不上传、无需注册。",
+      intro: "把目标文件大小设为 50 KB 到 2 MB 之间的任意值，PicLite 会自动寻找不超过该大小的最高 JPG 或 WebP 质量。照片在你的设备上完成压缩，不会上传。",
+      input: "JPG、PNG、WebP、AVIF、BMP 或 HEIC",
+      output: "JPG、PNG 或 WebP",
+      why: "适合表单、邮件服务或平台对文件大小有硬性限制的场景。",
+      quality: "预设包含 100 KB、500 KB、1 MB 和 2 MB，滑块也支持 50 KB 步进的其他数值；PNG 输出保持无损。",
+      keywords: ["压缩图片到100kb", "压缩图片到200kb", "图片压缩到指定大小", "减小图片kb", "压缩图片到目标大小"],
     },
   },
   "heic-to-jpg": {
@@ -634,6 +673,8 @@ export function rootStructuredData(locale: Locale) {
         operatingSystem: "Any",
         browserRequirements: "Requires a modern browser with JavaScript enabled",
         isAccessibleForFree: true,
+        codeRepository: GITHUB_URL,
+        license: `${GITHUB_URL}/blob/main/LICENSE`,
         inLanguage: dictionaries[locale].tag,
         featureList: copy.features.map((feature) => feature.title),
         keywords: copy.keywords.join(", "),

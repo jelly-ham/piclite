@@ -2,6 +2,7 @@ import { dictionaries, LOCALES } from "./i18n";
 
 export const SITE_NAME = "PicLite";
 export const SITE_URL = "https://piclite.net";
+export const GITHUB_URL = "https://github.com/jelly-ham/piclite";
 export const SOCIAL_IMAGE = "/og.png";
 export const SOCIAL_IMAGE_URL = `${SITE_URL}${SOCIAL_IMAGE}`;
 export const SITE_LOGO_URL = `${SITE_URL}/icon-512.png`;

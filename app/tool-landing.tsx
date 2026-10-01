@@ -102,6 +102,7 @@ const RELATED_LABELS: Record<KeywordLocale, Record<ToolSlug, string>> = {
   en: {
     "image-converter": "Image converter",
     "image-compressor": "Image compressor",
+    "compress-image-to-kb": "Compress to a size",
     "heic-to-jpg": "HEIC to JPG",
     "webp-to-jpg": "WebP to JPG",
     "png-to-jpg": "PNG to JPG",
@@ -112,6 +113,7 @@ const RELATED_LABELS: Record<KeywordLocale, Record<ToolSlug, string>> = {
   "zh-cn": {
     "image-converter": "图片格式转换",
     "image-compressor": "图片压缩",
+    "compress-image-to-kb": "压缩到指定大小",
     "heic-to-jpg": "HEIC 转 JPG",
     "webp-to-jpg": "WebP 转 JPG",
     "png-to-jpg": "PNG 转 JPG",

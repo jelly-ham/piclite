@@ -102,9 +102,10 @@ export default async function ToolPage({ params }: ToolPageProps) {
         heading={copy.name}
         introduction={copy.intro}
         initialFormat={rawTool === "jpg-to-png" ? "png" : rawTool === "image-to-pdf" ? "pdf" : "jpeg"}
-        initialQuality={rawTool === "image-compressor" ? 68 : 82}
+        initialQuality={rawTool === "image-compressor" || rawTool === "compress-image-to-kb" ? 68 : 82}
+        initialTargetSizeKb={rawTool === "compress-image-to-kb" ? 100 : 500}
         toolSlug={rawTool}
-        enableTargetSize={rawTool === "image-compressor" || rawTool === "image-converter"}
+        enableTargetSize={rawTool === "image-compressor" || rawTool === "image-converter" || rawTool === "compress-image-to-kb"}
         navigation={
           <nav className="seo-breadcrumbs tool-breadcrumbs" aria-label={locale === "en" ? "Breadcrumb" : "面包屑导航"}>
             <a href={`/${locale}`}>PicLite</a>

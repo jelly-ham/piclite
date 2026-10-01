@@ -277,6 +277,7 @@ export default function ImageConverter({
   navigation,
   initialFormat = "jpeg",
   initialQuality = 82,
+  initialTargetSizeKb = 500,
   toolSlug,
   enableTargetSize = false,
 }: {
@@ -288,13 +289,14 @@ export default function ImageConverter({
   navigation?: React.ReactNode;
   initialFormat?: OutputFormat;
   initialQuality?: number;
+  initialTargetSizeKb?: number;
   toolSlug?: string;
   enableTargetSize?: boolean;
 }) {
   const [items, setItems] = useState<ImageItem[]>([]);
   const [format, setFormat] = useState<OutputFormat>(initialFormat);
   const [quality, setQuality] = useState(initialQuality);
-  const [targetSizeKb, setTargetSizeKb] = useState(500);
+  const [targetSizeKb, setTargetSizeKb] = useState(initialTargetSizeKb);
   const targetSizeEnabled = enableTargetSize && (format === "jpeg" || format === "webp");
   const [pdfResult, setPdfResult] = useState<PdfResult | null>(null);
   const [isDragging, setIsDragging] = useState(false);
